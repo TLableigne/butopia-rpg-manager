@@ -117,7 +117,11 @@ namespace ButopiaMysteries.GraphicsUserInterface
         {
             foreach (CharacterView view in views)
             {
-                ShowSheetViewFor(view.Sheet.Name);
+                if (view.Contains(e.Location)) 
+                { 
+                    ShowSheetViewFor(view.Sheet.Name);
+                }
+               
             }
                 
         }
