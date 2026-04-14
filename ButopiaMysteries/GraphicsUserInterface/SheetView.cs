@@ -109,6 +109,10 @@ namespace ButopiaMysteries.GraphicsUserInterface
             if (sender is Label label)
             {
                 Indicator indicator = indicatorLabels.Keys.FirstOrDefault(i => indicatorLabels[i].Equals(label), Indicator.None);
+                if (indicator == Indicator.Maximum)
+                {
+                    return; 
+                }
                 if (indicator != Indicator.None)
                 {
                     IndicatorEdit(indicator);
@@ -141,6 +145,18 @@ namespace ButopiaMysteries.GraphicsUserInterface
             {
                 indicatorPoints = dialog.Points;
                 Sheet.Indicators[indicator] = dialog.Value;
+
+                int max = Sheet.Indicators[Indicator.Body];
+                if (Sheet.Indicators[Indicator.Mind] > max)
+                {
+                    max = Sheet.Indicators[Indicator.Mind];
+                }
+                if (Sheet.Indicators[Indicator.Sense] > max)
+                {
+                    max = Sheet.Indicators[Indicator.Sense];
+                }
+                Sheet.Indicators[Indicator.Maximum] = max;
+
                 DisplayControls();
             }
         }

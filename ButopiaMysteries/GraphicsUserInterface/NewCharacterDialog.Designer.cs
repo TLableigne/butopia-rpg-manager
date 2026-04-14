@@ -33,6 +33,7 @@
             nameTextBox = new TextBox();
             nameLabel = new Label();
             randomCreationCheckBox = new CheckBox();
+            fixePoint = new CheckBox();
             SuspendLayout();
             // 
             // okButton
@@ -77,20 +78,30 @@
             // randomCreationCheckBox
             // 
             randomCreationCheckBox.AutoSize = true;
-            randomCreationCheckBox.Checked = true;
-            randomCreationCheckBox.CheckState = CheckState.Checked;
             randomCreationCheckBox.Location = new Point(166, 38);
             randomCreationCheckBox.Name = "randomCreationCheckBox";
             randomCreationCheckBox.Size = new Size(132, 19);
             randomCreationCheckBox.TabIndex = 4;
             randomCreationCheckBox.Text = "Random Generation";
             randomCreationCheckBox.UseVisualStyleBackColor = true;
+            randomCreationCheckBox.CheckedChanged += randomCreationCheckBox_CheckedChanged;
+            // 
+            // fixePoint
+            // 
+            fixePoint.AutoSize = true;
+            fixePoint.Location = new Point(166, 78);
+            fixePoint.Name = "fixePoint";
+            fixePoint.Size = new Size(159, 19);
+            fixePoint.TabIndex = 5;
+            fixePoint.Text = "Utiliser les donné de base";
+            fixePoint.UseVisualStyleBackColor = true;
             // 
             // NewCharacterDialog
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(467, 131);
+            Controls.Add(fixePoint);
             Controls.Add(randomCreationCheckBox);
             Controls.Add(nameLabel);
             Controls.Add(nameTextBox);
@@ -110,5 +121,6 @@
         private TextBox nameTextBox;
         private Label nameLabel;
         private CheckBox randomCreationCheckBox;
+        private CheckBox fixePoint;
     }
 }

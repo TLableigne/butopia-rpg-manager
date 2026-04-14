@@ -24,6 +24,8 @@ namespace ButopiaMysteries.GraphicsUserInterface
         /// The fact that this character is randomly created or not.
         /// </summary>
         public bool RandomGeneration { get { return randomCreationCheckBox.Checked; } }
+
+        public bool FixePoint { get { return fixePoint.Checked; } }
         /// <summary>
         /// Empty constructor.
         /// </summary>
@@ -39,13 +41,23 @@ namespace ButopiaMysteries.GraphicsUserInterface
 
         private void NameTextBox_TextChanged(object sender, EventArgs e)
         {
-            
+
             okButton.Enabled = nameLabel.Text.Length > 0;
         }
 
 
 
         private void NewCharacterDialog_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void randomCreationCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            okButton.Enabled = true;
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
 
         }

@@ -58,6 +58,20 @@ namespace ButopiaMysteries.Logic
 
                         break;
                     }
+                case Rules.Fixed:
+                    {
+                        Indicators.Add(Indicator.Body, 2);
+                        Indicators.Add(Indicator.Mind, 2);
+                        Indicators.Add(Indicator.Sense, 2);
+                        Indicators.Add(Indicator.Maximum, Math.Max(
+                            Math.Max(Indicators[Indicator.Body], Indicators[Indicator.Mind]),
+                            Indicators[Indicator.Sense]));
+                        foreach (Skill skill in Skill_Operations.AllSkillsSuchAs(_ => true))
+                        {
+                            Skills.Add(skill,1);
+                        }
+                        break;
+                    }
             }
         }
 
