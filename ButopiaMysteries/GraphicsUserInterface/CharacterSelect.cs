@@ -18,7 +18,6 @@ namespace ButopiaMysteries.GraphicsUserInterface
         public CharacterSelect()
         {
             InitializeComponent();
-            // Very first try: create a character, put it in the roster, associate it to the button
             Roster = new();
             MysterySheet charOne = new(Names.RandomName);
             charOne.RandomGeneration();
@@ -57,11 +56,6 @@ namespace ButopiaMysteries.GraphicsUserInterface
             }
             createButton.Enabled = Roster.Sheets.Count < 12;
         }
-        private void AddOneNewCharacterView(MysterySheet sheet)
-        {
-            CreateCharacterViews();
-            Refresh();
-        }
         private void CreateButton_Click(object sender, EventArgs e)
         {
             CreationDialog();
@@ -90,7 +84,8 @@ namespace ButopiaMysteries.GraphicsUserInterface
                 MysterySheet sheet = new(name);
                 sheet.RandomGeneration(rule);
                 Roster.Sheets.Add(sheet.Name, sheet);
-                AddOneNewCharacterView(sheet);
+                CreateCharacterViews();
+                Refresh();
             }
         }
 
@@ -98,18 +93,39 @@ namespace ButopiaMysteries.GraphicsUserInterface
         {
             Dispose();
         }
-
+        
         private void CharacterSelect_MouseDown(object sender, MouseEventArgs e)
         {
+            CharacterView perso = null;
+            bool trouve = false;
             foreach (CharacterView view in views)
             {
-                if (view.Contains(e.Location)) 
-                { 
-                    ShowSheetViewFor(view.Sheet.Name);
+                if (view.Contains(e.Location))
+                {
+                    perso = view;
+                    trouve = true;
+                    break; 
                 }
-               
             }
-                
+            if (trouve == true)
+            {
+                if (e.Button == MouseButtons.Left)
+                {
+                    ShowSheetViewFor(perso.Sheet.Name);
+                }
+
+                else if (e.Button == MouseButtons.Right)
+                {
+                    DialogResult reponse = MessageBox.Show( "Êtes-vous sûr de vouloir supprimer " + perso.Sheet.Name + " ?",
+                        "Confirmation",  MessageBoxButtons.YesNo);
+                    if (reponse == DialogResult.Yes)
+                    {
+                        Roster.Sheets.Remove(perso.Sheet.Name);
+                        CreateCharacterViews();
+                        Refresh();
+                    }
+                }
+            }
         }
 
         private void CharacterSelect_Load(object sender, EventArgs e)
