@@ -43,19 +43,23 @@ namespace ButopiaMysteries.GraphicsUserInterface
         private void CreateCharacterViews()
         {
             views.Clear();
-            int x = referencePoint.X;
-            int y = referencePoint.Y + ViewSettings.DefaultPawnSide;
+            int x = 10; 
+            int y = 10 + ViewSettings.DefaultPawnSide; 
             foreach (string name in Roster.Sheets.Keys)
             {
-                views.Add(new CharacterView(Roster.Sheets[name], new Point(x, y)));
+                views.Add(new CharacterView(Roster.Sheets[name], new Point(x, y))); 
                 y += ViewSettings.DefaultPawnSide + ViewSettings.DefaultPawnFrame.Height;
+                if (y + ViewSettings.DefaultPawnFrame.Height > Height - 40)
+                {
+                    y = 10 + ViewSettings.DefaultPawnSide;
+                    x += ViewSettings.DefaultPawnFrame.Width + 20;
+                }
             }
-            referencePoint = new(x, y);
+            createButton.Enabled = Roster.Sheets.Count < 12;
         }
         private void AddOneNewCharacterView(MysterySheet sheet)
         {
-            views.Add(new CharacterView(sheet, new Point(referencePoint.X, referencePoint.Y + ViewSettings.DefaultPawnSide)));
-            referencePoint = new Point(referencePoint.X, referencePoint.Y + ViewSettings.DefaultPawnSide + ViewSettings.DefaultPawnFrame.Height);
+            CreateCharacterViews();
             Refresh();
         }
         private void CreateButton_Click(object sender, EventArgs e)

@@ -67,9 +67,9 @@ namespace ButopiaMysteries.GraphicsUserInterface
         }
         private void fixePointCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            okButton.Enabled = true; 
             if (fixePointCheckBox.Checked)
             {
+                okButton.Enabled = false;
                 SelectedRules = Rules.Fixed;
                 randomCreationCheckBox.Checked = false;
             }
