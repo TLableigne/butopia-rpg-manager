@@ -68,8 +68,11 @@ namespace ButopiaMysteries.GraphicsUserInterface
             if (dialog.ShowDialog() == DialogResult.OK)
             {
                 Rules regleChoisie = dialog.SelectedRules;
-
                 string nomChoisi = dialog.CharacterName;
+                if (string.IsNullOrWhiteSpace(nomChoisi))
+                {
+                    nomChoisi = Names.RandomName;
+                }
                 CreateCharacter(nomChoisi, regleChoisie);
             }
         }

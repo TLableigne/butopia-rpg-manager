@@ -69,7 +69,6 @@ namespace ButopiaMysteries.GraphicsUserInterface
         {
             if (fixePointCheckBox.Checked)
             {
-                okButton.Enabled = false;
                 SelectedRules = Rules.Fixed;
                 randomCreationCheckBox.Checked = false;
             }
