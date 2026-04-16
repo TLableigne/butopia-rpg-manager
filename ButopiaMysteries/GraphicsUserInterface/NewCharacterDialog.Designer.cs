@@ -33,7 +33,7 @@
             nameTextBox = new TextBox();
             nameLabel = new Label();
             randomCreationCheckBox = new CheckBox();
-            fixePoint = new CheckBox();
+            fixePointCheckBox = new CheckBox();
             SuspendLayout();
             // 
             // okButton
@@ -86,22 +86,23 @@
             randomCreationCheckBox.UseVisualStyleBackColor = true;
             randomCreationCheckBox.CheckedChanged += randomCreationCheckBox_CheckedChanged;
             // 
-            // fixePoint
+            // fixePointCheckBox
             // 
-            fixePoint.AutoSize = true;
-            fixePoint.Location = new Point(166, 78);
-            fixePoint.Name = "fixePoint";
-            fixePoint.Size = new Size(159, 19);
-            fixePoint.TabIndex = 5;
-            fixePoint.Text = "Utiliser les donné de base";
-            fixePoint.UseVisualStyleBackColor = true;
+            fixePointCheckBox.AutoSize = true;
+            fixePointCheckBox.Location = new Point(166, 78);
+            fixePointCheckBox.Name = "fixePointCheckBox";
+            fixePointCheckBox.Size = new Size(159, 19);
+            fixePointCheckBox.TabIndex = 5;
+            fixePointCheckBox.Text = "Utiliser les donné de base";
+            fixePointCheckBox.UseVisualStyleBackColor = true;
+            fixePointCheckBox.CheckedChanged += fixePointCheckBox_CheckedChanged;
             // 
             // NewCharacterDialog
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(467, 131);
-            Controls.Add(fixePoint);
+            Controls.Add(fixePointCheckBox);
             Controls.Add(randomCreationCheckBox);
             Controls.Add(nameLabel);
             Controls.Add(nameTextBox);
@@ -121,6 +122,6 @@
         private TextBox nameTextBox;
         private Label nameLabel;
         private CheckBox randomCreationCheckBox;
-        private CheckBox fixePoint;
+        private CheckBox fixePointCheckBox;
     }
 }

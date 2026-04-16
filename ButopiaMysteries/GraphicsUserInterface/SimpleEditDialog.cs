@@ -97,7 +97,7 @@ namespace ButopiaMysteries.GraphicsUserInterface
         }
         private void PlusClick(object sender, EventArgs e)
         {
-            Points += indicator ? Indicator_Operations.IndicatorPointsAtLevel(Value+1) : Skill_Operations.SkillPointsAtLevel(Value+1);
+            Points -= indicator ? Indicator_Operations.IndicatorPointsAtLevel(Value+1) : Skill_Operations.SkillPointsAtLevel(Value+1);
             Value++;
             plusButton.Enabled=false;
             minusButton.Enabled=false;

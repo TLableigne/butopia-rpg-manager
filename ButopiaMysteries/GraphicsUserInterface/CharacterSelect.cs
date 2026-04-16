@@ -60,41 +60,22 @@ namespace ButopiaMysteries.GraphicsUserInterface
         }
         private void CreateButton_Click(object sender, EventArgs e)
         {
-            /*CreateRandom();
-            MysterySheet charTwo = new(Names.RandomName);
-            AddOneNewCharacterView(charTwo);
-            */
             CreationDialog();
         }
+
 
         private void CreationDialog()
         {
             NewCharacterDialog dialog = new();
             if (dialog.ShowDialog() == DialogResult.OK)
             {
-                if (dialog.RandomGeneration)
-                {
-                    CreateRandom();
-                    MysterySheet charTwo = new(Names.RandomName);
-                    AddOneNewCharacterView(charTwo);
+                Rules regleChoisie = dialog.SelectedRules;
 
-                }
-                else
-                {
-                    CreateRandomWithName(dialog.CharacterName);
-                    MysterySheet charTwo = new(dialog.CharacterName);
-                    AddOneNewCharacterView(charTwo);
-                }
+                string nomChoisi = dialog.CharacterName;
+                CreateCharacter(nomChoisi, regleChoisie);
             }
         }
-
-        private void CreateRandom()
-        {
-            string name = Names.RandomName;
-            CreateRandomWithName(name);
-        }
-
-        private void CreateRandomWithName(string name)
+        private void CreateCharacter(string name, Rules rule)
         {
             if (Roster.Sheets.ContainsKey(name))
             {
@@ -103,8 +84,9 @@ namespace ButopiaMysteries.GraphicsUserInterface
             else
             {
                 MysterySheet sheet = new(name);
-                sheet.RandomGeneration();
+                sheet.RandomGeneration(rule);
                 Roster.Sheets.Add(sheet.Name, sheet);
+                AddOneNewCharacterView(sheet);
             }
         }
 

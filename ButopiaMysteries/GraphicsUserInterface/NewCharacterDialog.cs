@@ -19,13 +19,16 @@ namespace ButopiaMysteries.GraphicsUserInterface
         /// <summary>
         /// The name of the character.
         /// </summary>
+        /// 
+
+        public Rules SelectedRules;
         public string CharacterName { get { return nameTextBox.Text; } }
         /// <summary>
         /// The fact that this character is randomly created or not.
         /// </summary>
         public bool RandomGeneration { get { return randomCreationCheckBox.Checked; } }
 
-        public bool FixePoint { get { return fixePoint.Checked; } }
+        public bool FixePoint { get { return fixePointCheckBox.Checked; } }
         /// <summary>
         /// Empty constructor.
         /// </summary>
@@ -33,6 +36,7 @@ namespace ButopiaMysteries.GraphicsUserInterface
         {
             InitializeComponent();
             okButton.Enabled = false;
+            SelectedRules = Rules.None;
         }
         private void NameTextBox_DoubleClick(object sender, EventArgs e)
         {
@@ -55,11 +59,20 @@ namespace ButopiaMysteries.GraphicsUserInterface
         private void randomCreationCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             okButton.Enabled = true;
+            if (randomCreationCheckBox.Checked)
+            {
+                SelectedRules = Rules.None;
+                fixePointCheckBox.Checked = false;
+            }
         }
-
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        private void fixePointCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-
+            okButton.Enabled = true; 
+            if (fixePointCheckBox.Checked)
+            {
+                SelectedRules = Rules.Fixed;
+                randomCreationCheckBox.Checked = false;
+            }
         }
     }
 }

@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SheetView));
             nameLabel = new Label();
             indicLabel1 = new Label();
             indicLabel3 = new Label();
@@ -285,7 +284,6 @@
             theToolStrip.Size = new Size(429, 25);
             theToolStrip.TabIndex = 29;
             theToolStrip.Text = "toolStrip1";
-            theToolStrip.Visible = false;
             // 
             // modeToolStripButton
             // 
