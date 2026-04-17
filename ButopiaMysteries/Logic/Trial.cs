@@ -36,5 +36,23 @@ namespace ButopiaMysteries.Logic
 
             return results;
         }
+        public static Difficulty OpenTrial(MysterySheet character, Indicator indicator, Skill skill)
+        {
+            int nbDé = character.Indicators[indicator];
+            int skillLevel = character.Skills[skill];
+            List<int> resDé = Cast(nbDé);
+            int totalScore = NumericResult(resDé, skillLevel);
+            return Difficulty_Operations.GetMaximumDifficulty(totalScore);
+        }
+        public static bool ClosedTrial(MysterySheet character, Indicator indicator, Skill skill, Difficulty difficultéVisée)
+        {
+            bool res = false;
+            Difficulty difficulté = OpenTrial(character, indicator, skill);
+            if (difficulté.MinimumScore() >= difficultéVisée.MinimumScore())
+            {
+               res = true;
+            }
+            return res;
+        }
     }
 }
