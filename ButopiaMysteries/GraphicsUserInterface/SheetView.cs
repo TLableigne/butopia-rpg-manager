@@ -80,7 +80,9 @@ namespace ButopiaMysteries.GraphicsUserInterface
         }
         private string DisplaySkill(Skill skill)
         {
-            return skill.Name() + " : " + Sheet.Skills[skill];
+            int level = Sheet.Skills[skill];
+            string levelText = Skill_Operations.GetSkillText(level);
+            return skill.Name() + " : " + levelText;
         }
 
         private string DisplayIndicator(Indicator indicator)

@@ -50,11 +50,11 @@ namespace ButopiaMysteries.GraphicsUserInterface
                 y += ViewSettings.DefaultPawnSide + ViewSettings.DefaultPawnFrame.Height;
                 if (y + ViewSettings.DefaultPawnFrame.Height > Height - 40)
                 {
-                    y = 10 + ViewSettings.DefaultPawnSide;
+                    y = ViewSettings.DefaultPawnSide + 10;
                     x += ViewSettings.DefaultPawnFrame.Width + 20;
                 }
             }
-            createButton.Enabled = Roster.Sheets.Count < 12;
+            createButton.Enabled = Roster.Sheets.Count < 15;
         }
         private void CreateButton_Click(object sender, EventArgs e)
         {
