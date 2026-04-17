@@ -11,6 +11,7 @@ namespace ButopiaMysteries.Logic
     /// </summary>
     public static class Trial
     {
+        private static readonly Random random = new Random();
         public static int NumericResult(List<int>? list, int skill=0)
         {
             if (skill == 0 || list == null || list.Count == 0)
@@ -23,6 +24,17 @@ namespace ButopiaMysteries.Logic
                 result += item;
             }
             return result;
+        }
+        public static List<int> Cast(int nbDé)
+        {
+            List<int> results = new List<int>();
+
+            for (int i = 0; i < nbDé; i++)
+            {
+                results.Add(random.Next(1, 7));
+            }
+
+            return results;
         }
     }
 }
