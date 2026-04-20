@@ -17,7 +17,7 @@ namespace ButopiaMysteries.Logic
         private Skill Skill;
         private Indicator Indicator;
         private Difficulty? Diff;
-        public TrialForm(MysterySheet sheet, Skill skill, Indicator indicator, Difficulty? diff )
+        public TrialForm(MysterySheet sheet, Skill skill, Indicator indicator, Difficulty? diff)
         {
             InitializeComponent();
             Sheet = sheet;
@@ -25,12 +25,12 @@ namespace ButopiaMysteries.Logic
             Indicator = indicator;
             Diff = diff;
         }
-        public void afficherInfo() 
+        public void afficherInfo()
         {
             Nom.Text = "Personnage : " + Sheet.Name;
-            Competance.Text = $"Compétence : "+ Skill.Name() +  " - Niveau : " + Sheet.Skills[Skill];
+            Competance.Text = $"Compétence : " + Skill.Name() + " - Niveau : " + Sheet.Skills[Skill];
             Indicateur.Text = $"Indicateur : " + Indicator + " - Niveau : " + Sheet.Indicators[Indicator];
-            if (Diff != null )
+            if (Diff != null)
             {
                 Difficulte.Text = "Difficulté visée : " + Diff.Value.Name();
             }
@@ -42,6 +42,21 @@ namespace ButopiaMysteries.Logic
             result.Text = "Jeux en cours";
 
 
+        }
+
+        private void Lancer_Click(object sender, EventArgs e)
+        {
+            Lancer.Enabled = false;
+            if (Diff != null)
+            {
+                bool res = Trial.ClosedTrial(Sheet, Indicator, Skill, (Difficulty)Diff);
+                result.Text = "resultat : " + res;
+            }
+            else
+            {
+                Difficulty res = Trial.OpenTrial(Sheet, Indicator, Skill);
+                result.Text = Difficulty_Operations.Name(res);
+            }
         }
 
     }

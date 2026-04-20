@@ -99,9 +99,11 @@
             Lancer.TabIndex = 6;
             Lancer.Text = "lancer l'épreuve";
             Lancer.UseVisualStyleBackColor = true;
+            Lancer.Click += Lancer_Click;
             // 
             // Fermer
             // 
+            Fermer.DialogResult = DialogResult.Cancel;
             Fermer.Location = new Point(631, 370);
             Fermer.Name = "Fermer";
             Fermer.Size = new Size(75, 23);
