@@ -30,6 +30,8 @@
         {
             createButton = new Button();
             quitButton = new Button();
+            boxDifficulty = new ComboBox();
+            BoxSkill = new ComboBox();
             SuspendLayout();
             // 
             // createButton
@@ -52,11 +54,29 @@
             quitButton.UseVisualStyleBackColor = true;
             quitButton.Click += QuitButton_Click;
             // 
+            // boxDifficulty
+            // 
+            boxDifficulty.FormattingEnabled = true;
+            boxDifficulty.Location = new Point(358, 12);
+            boxDifficulty.Name = "boxDifficulty";
+            boxDifficulty.Size = new Size(121, 23);
+            boxDifficulty.TabIndex = 3;
+            // 
+            // BoxSkill
+            // 
+            BoxSkill.FormattingEnabled = true;
+            BoxSkill.Location = new Point(507, 12);
+            BoxSkill.Name = "BoxSkill";
+            BoxSkill.Size = new Size(121, 23);
+            BoxSkill.TabIndex = 4;
+            // 
             // CharacterSelect
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(BoxSkill);
+            Controls.Add(boxDifficulty);
             Controls.Add(quitButton);
             Controls.Add(createButton);
             Name = "CharacterSelect";
@@ -70,5 +90,7 @@
         #endregion
         private Button createButton;
         private Button quitButton;
+        private ComboBox boxDifficulty;
+        private ComboBox BoxSkill;
     }
 }

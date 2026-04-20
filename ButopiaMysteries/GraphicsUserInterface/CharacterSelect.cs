@@ -1,5 +1,6 @@
 using ButopiaMysteries.Logic;
 using System.Windows.Forms;
+using System.Windows.Forms.VisualStyles;
 
 namespace ButopiaMysteries.GraphicsUserInterface
 {
@@ -34,6 +35,19 @@ namespace ButopiaMysteries.GraphicsUserInterface
 
         private void CharacterSelect_Paint(object sender, PaintEventArgs e)
         {
+            Graphics g = e.Graphics;
+            Pen zonePen = new Pen(Color.Black, 2);
+            Rectangle zoneAuto = new Rectangle(500, 50, 250, 100);
+            Rectangle zoneExamen = new Rectangle(500, 170, 250, 100);
+            Rectangle zoneEntrainement = new Rectangle(500, 290, 250, 100);
+            g.DrawRectangle(zonePen, zoneAuto);
+            g.DrawRectangle(zonePen, zoneExamen);
+            g.DrawRectangle(zonePen, zoneEntrainement);
+            Font font = SystemFonts.DefaultFont;
+            g.DrawString("Salle d'auto-évaluation", font, Brushes.Black, 505, 55);
+            g.DrawString("Salle d'examen", font, Brushes.Black, 505, 175);
+            g.DrawString("Salle d'entraînement", font, Brushes.Black, 505, 295);
+
             foreach (CharacterView view in views)
             {
                 view.Draw(e.Graphics);
@@ -54,7 +68,7 @@ namespace ButopiaMysteries.GraphicsUserInterface
                     x += ViewSettings.DefaultPawnFrame.Width + 20;
                 }
             }
-            createButton.Enabled = Roster.Sheets.Count < 15;
+            createButton.Enabled = Roster.Sheets.Count < 12;
         }
         private void CreateButton_Click(object sender, EventArgs e)
         {
@@ -133,7 +147,8 @@ namespace ButopiaMysteries.GraphicsUserInterface
 
         private void CharacterSelect_Load(object sender, EventArgs e)
         {
-
+            boxDifficulty.DataSource = Enum.GetValues(typeof(Difficulty));
+            BoxSkill.DataSource = Enum.GetValues(typeof(Skill));
         }
     }
 }
