@@ -84,6 +84,8 @@
             Load += CharacterSelect_Load;
             Paint += CharacterSelect_Paint;
             MouseDown += CharacterSelect_MouseDown;
+            MouseMove += CharacterSelect_MouseMove;
+            MouseUp += CharacterSelect_MouseUp;
             ResumeLayout(false);
         }
 

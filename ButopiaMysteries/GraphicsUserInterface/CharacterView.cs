@@ -68,5 +68,10 @@ namespace ButopiaMysteries.GraphicsUserInterface
             graphics.FillRectangle(brush, new Rectangle(hOrigin, new Size(ViewSettings.DefaultPawnSide * 3, ViewSettings.DefaultPawnSide)));
             graphics.FillRectangle(brush, new Rectangle(vOrigin, new Size(ViewSettings.DefaultPawnSide, ViewSettings.DefaultPawnSide * 2)));
         }
+
+        public void Move(Point nouvPosition)
+        {
+            location = nouvPosition;
+        }
     }
 }

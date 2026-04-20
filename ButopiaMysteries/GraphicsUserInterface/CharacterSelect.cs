@@ -12,7 +12,8 @@ namespace ButopiaMysteries.GraphicsUserInterface
         private Roster Roster { get; init; }
         private Point referencePoint = Point.Empty;
         private readonly List<CharacterView> views = [];
-
+        private CharacterView? persoDépacer = null;
+        private bool deplacement = false;
         /// <summary>
         /// Empty constructor.
         /// </summary>
@@ -50,7 +51,14 @@ namespace ButopiaMysteries.GraphicsUserInterface
 
             foreach (CharacterView view in views)
             {
-                view.Draw(e.Graphics);
+                if (view != persoDépacer)
+                {
+                    view.Draw(e.Graphics);
+                }
+            }
+            if (persoDépacer != null)
+            {
+                persoDépacer.Draw(e.Graphics);
             }
         }
         private void CreateCharacterViews()
@@ -113,35 +121,63 @@ namespace ButopiaMysteries.GraphicsUserInterface
         
         private void CharacterSelect_MouseDown(object sender, MouseEventArgs e)
         {
+
             CharacterView perso = null;
             bool trouve = false;
-            foreach (CharacterView view in views)
-            {
-                if (view.Contains(e.Location))
+            
+                foreach (CharacterView view in views)
                 {
-                    perso = view;
-                    trouve = true;
-                    break; 
-                }
-            }
-            if (trouve == true)
-            {
-                if (e.Button == MouseButtons.Left)
-                {
-                    ShowSheetViewFor(perso.Sheet.Name);
-                }
-
-                else if (e.Button == MouseButtons.Right)
-                {
-                    DialogResult reponse = MessageBox.Show( "Êtes-vous sûr de vouloir supprimer " + perso.Sheet.Name + " ?",
-                        "Confirmation",  MessageBoxButtons.YesNo);
-                    if (reponse == DialogResult.Yes)
+                    if (view.Contains(e.Location))
                     {
-                        Roster.Sheets.Remove(perso.Sheet.Name);
-                        CreateCharacterViews();
-                        Refresh();
+                        perso = view;
+                        trouve = true;
+                        break;
                     }
                 }
+                if (trouve == true)
+                {
+                    if (e.Button == MouseButtons.Left)
+                    {
+                        persoDépacer = perso;
+                        deplacement = true;
+                    }
+
+                    else if (e.Button == MouseButtons.Right)
+                    {
+                        DialogResult reponse = MessageBox.Show("Êtes-vous sûr de vouloir supprimer " + perso.Sheet.Name + " ?",
+                            "Confirmation", MessageBoxButtons.YesNo);
+                        if (reponse == DialogResult.Yes)
+                        {
+                            Roster.Sheets.Remove(perso.Sheet.Name);
+                            CreateCharacterViews();
+                            Refresh();
+                        }
+                    }
+                }
+
+        }
+        private void CharacterSelect_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (deplacement && persoDépacer != null)
+            {
+                int offsetX = ViewSettings.DefaultPawnFrame.Width / 2;
+                int offsetY = ViewSettings.DefaultPawnFrame.Height / 2;
+
+                Point nouvellePos = new Point(e.X - offsetX, e.Y - offsetY);
+
+                persoDépacer.Move(nouvellePos);
+                Refresh();
+            }
+        }
+
+        private void CharacterSelect_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (deplacement)
+            {
+                deplacement = false;
+                persoDépacer = null;
+                CreateCharacterViews();
+                Refresh();
             }
         }
 
