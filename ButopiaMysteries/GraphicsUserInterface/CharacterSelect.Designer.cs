@@ -79,6 +79,7 @@
             Controls.Add(boxDifficulty);
             Controls.Add(quitButton);
             Controls.Add(createButton);
+            DoubleBuffered = true;
             Name = "CharacterSelect";
             Text = "Sélection";
             Load += CharacterSelect_Load;

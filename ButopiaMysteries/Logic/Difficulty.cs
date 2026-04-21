@@ -8,7 +8,7 @@ namespace ButopiaMysteries.Logic
 {
     public enum Difficulty
     {
-        Rien,
+        None,
         Trivial,
         Facile,
         Normal,
@@ -27,7 +27,7 @@ namespace ButopiaMysteries.Logic
         {
             return difficulty switch
             {
-                Difficulty.Rien => "Rien",
+                Difficulty.None => "Aucune",
                 Difficulty.Trivial => "Trivial",
                 Difficulty.Facile => "Facile",
                 Difficulty.Normal => "Normal",
@@ -45,7 +45,7 @@ namespace ButopiaMysteries.Logic
         {
             return difficulty switch
             {
-                Difficulty.Rien => 0,
+                Difficulty.None => 0,
                 Difficulty.Trivial => 5,
                 Difficulty.Facile => 10,
                 Difficulty.Normal => 15,
@@ -96,7 +96,7 @@ namespace ButopiaMysteries.Logic
             { 
                 return Difficulty.Trivial;
             }
-            return Difficulty.Rien;
+            return Difficulty.None;
         }
     }
 }

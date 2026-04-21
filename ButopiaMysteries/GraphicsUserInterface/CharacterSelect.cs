@@ -14,6 +14,9 @@ namespace ButopiaMysteries.GraphicsUserInterface
         private readonly List<CharacterView> views = [];
         private CharacterView? persoDépacer = null;
         private bool deplacement = false;
+        private Rectangle zoneAuto = new Rectangle(500, 50, 250, 100);
+        private Rectangle zoneExamen = new Rectangle(500, 170, 250, 100);
+        private Rectangle zoneEntrainement = new Rectangle(500, 290, 250, 100);
         /// <summary>
         /// Empty constructor.
         /// </summary>
@@ -38,9 +41,6 @@ namespace ButopiaMysteries.GraphicsUserInterface
         {
             Graphics g = e.Graphics;
             Pen zonePen = new Pen(Color.Black, 2);
-            Rectangle zoneAuto = new Rectangle(500, 50, 250, 100);
-            Rectangle zoneExamen = new Rectangle(500, 170, 250, 100);
-            Rectangle zoneEntrainement = new Rectangle(500, 290, 250, 100);
             g.DrawRectangle(zonePen, zoneAuto);
             g.DrawRectangle(zonePen, zoneExamen);
             g.DrawRectangle(zonePen, zoneEntrainement);
@@ -172,13 +172,25 @@ namespace ButopiaMysteries.GraphicsUserInterface
 
         private void CharacterSelect_MouseUp(object sender, MouseEventArgs e)
         {
-            if (deplacement)
+            Skill skillChoisi = (Skill)BoxSkill.SelectedItem;
+            Difficulty diffChoisi = (Difficulty)boxDifficulty.SelectedItem;
+            Indicator? indicateurDedui = skillChoisi.GetIndicator();
+            if (deplacement && persoDépacer != null)
             {
-                deplacement = false;
-                persoDépacer = null;
-                CreateCharacterViews();
-                Refresh();
+                if (zoneExamen.Contains(e.Location)) 
+                {
+                        bool res = Trial.ClosedTrial(persoDépacer.Sheet, indicateurDedui.Value, skillChoisi, diffChoisi);
+                }
+                else if( zoneAuto.Contains(e.Location))
+                {
+                    Difficulty res = Trial.OpenTrial(persoDépacer.Sheet, indicateurDedui.Value, skillChoisi);
+                }
+                
             }
+            deplacement = false;
+            persoDépacer = null;
+            CreateCharacterViews();
+            Refresh();    
         }
 
         private void CharacterSelect_Load(object sender, EventArgs e)
