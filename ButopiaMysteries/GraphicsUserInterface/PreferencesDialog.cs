@@ -31,6 +31,7 @@ namespace ButopiaMysteries.GraphicsUserInterface
                     ViewSettings.CharacterColor = colorDialog.Color;
                     label5.BackColor = colorDialog.Color;
                     label5.ForeColor = colorDialog.Color;
+                    ViewSettings.DefaultPawnColour = colorDialog.Color;
                     Refresh();
                 }
             }

@@ -23,7 +23,6 @@ namespace ButopiaMysteries.GraphicsUserInterface
         public CharacterSelect()
         {
             InitializeComponent();
-            // Very first try: create a character, put it in the roster, associate it to the button
             Roster = new();
             MysterySheet charOne = new(Names.RandomName);
             charOne.RandomGeneration();
@@ -36,7 +35,8 @@ namespace ButopiaMysteries.GraphicsUserInterface
 
             for (int i = 0; i < ViewSettings.InitialCharacterCount; i++)
             {
-                CreateRandom(); 
+                String name = Names.RandomName;
+                CreateCharacter(name , Rules.None);
             }
         }
 
@@ -227,5 +227,6 @@ namespace ButopiaMysteries.GraphicsUserInterface
             boxDifficulty.DataSource = Enum.GetValues(typeof(Difficulty));
             BoxSkill.DataSource = Enum.GetValues(typeof(Skill));
         }
+
     }
 }
