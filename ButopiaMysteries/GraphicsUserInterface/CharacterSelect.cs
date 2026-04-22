@@ -138,9 +138,17 @@ namespace ButopiaMysteries.GraphicsUserInterface
                 {
                     if (e.Button == MouseButtons.Left)
                     {
-                        persoDépacer = perso;
-                        deplacement = true;
-                    }
+                        if (e.Clicks == 2)
+                        {
+                            ShowSheetViewFor(perso.Sheet.Name);
+                            deplacement = false;
+                        }
+                        else
+                        {
+                            persoDépacer = perso;
+                            deplacement = true;
+                        }
+                }
 
                     else if (e.Button == MouseButtons.Right)
                     {
@@ -172,25 +180,34 @@ namespace ButopiaMysteries.GraphicsUserInterface
 
         private void CharacterSelect_MouseUp(object sender, MouseEventArgs e)
         {
-            Skill skillChoisi = (Skill)BoxSkill.SelectedItem;
-            Difficulty diffChoisi = (Difficulty)boxDifficulty.SelectedItem;
-            Indicator? indicateurDedui = skillChoisi.GetIndicator();
-            if (deplacement && persoDépacer != null)
+            if (deplacement && persoDépacer != null && BoxSkill.SelectedItem != null && boxDifficulty.SelectedItem != null)
             {
-                if (zoneExamen.Contains(e.Location)) 
+                Skill s = (Skill)BoxSkill.SelectedItem;
+                Difficulty d = (Difficulty)boxDifficulty.SelectedItem;
+                Indicator? i = s.GetIndicator();
+                if (i.HasValue)
                 {
-                        bool res = Trial.ClosedTrial(persoDépacer.Sheet, indicateurDedui.Value, skillChoisi, diffChoisi);
+                    Difficulty? diffFinale = null;
+                    if (zoneExamen.Contains(e.Location))
+                    {
+                        diffFinale = d;
+                    }
+                    else
+                    {
+                        diffFinale = null;
+                    }
+                    if (zoneExamen.Contains(e.Location) || zoneAuto.Contains(e.Location))
+                    {
+                        TrialForm tf = new TrialForm(persoDépacer.Sheet, s, i.Value, diffFinale);
+                        tf.afficherInfo();
+                        tf.ShowDialog();
+                    }
                 }
-                else if( zoneAuto.Contains(e.Location))
-                {
-                    Difficulty res = Trial.OpenTrial(persoDépacer.Sheet, indicateurDedui.Value, skillChoisi);
-                }
-                
             }
             deplacement = false;
             persoDépacer = null;
             CreateCharacterViews();
-            Refresh();    
+            Refresh();
         }
 
         private void CharacterSelect_Load(object sender, EventArgs e)
