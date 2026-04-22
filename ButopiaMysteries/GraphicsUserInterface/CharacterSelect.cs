@@ -23,12 +23,21 @@ namespace ButopiaMysteries.GraphicsUserInterface
         public CharacterSelect()
         {
             InitializeComponent();
+            // Very first try: create a character, put it in the roster, associate it to the button
             Roster = new();
             MysterySheet charOne = new(Names.RandomName);
             charOne.RandomGeneration();
             Roster.Sheets.Add(charOne.Name, charOne);
             referencePoint = new Point(10, 10);
             CreateCharacterViews();
+
+            this.BackColor = ViewSettings.BackgroundColor;
+            this.Text = "Sélection des personnages"; 
+
+            for (int i = 0; i < ViewSettings.InitialCharacterCount; i++)
+            {
+                CreateRandom(); 
+            }
         }
 
 
@@ -80,6 +89,9 @@ namespace ButopiaMysteries.GraphicsUserInterface
         }
         private void CreateButton_Click(object sender, EventArgs e)
         {
+            
+            
+            
             CreationDialog();
         }
 

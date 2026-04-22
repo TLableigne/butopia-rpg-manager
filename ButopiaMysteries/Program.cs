@@ -13,7 +13,17 @@ namespace ButopiaMysteries.GraphicsUserInterface
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            Application.Run(new CharacterSelect());
+            using (PreferencesDialog prefDialog = new PreferencesDialog())
+            {
+                if (prefDialog.ShowDialog() == DialogResult.OK)
+                {
+                    Application.Run(new CharacterSelect());
+                }
+                else
+                {
+                    Application.Exit();
+                }
+            }
         }
     }
 }
