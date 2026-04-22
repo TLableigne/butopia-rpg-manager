@@ -23,5 +23,9 @@ namespace ButopiaMysteries.GraphicsUserInterface
         /// The font used to draw the names.
         /// </summary>
         public static Font CharacterFont { get; } = SystemFonts.DefaultFont;
+
+        public static Color BackgroundColor { get; set; } = Color.White;
+        public static Color CharacterColor { get; set; } = Color.Teal;
+        public static int InitialCharacterCount { get; set; } = 1;
     }
 }

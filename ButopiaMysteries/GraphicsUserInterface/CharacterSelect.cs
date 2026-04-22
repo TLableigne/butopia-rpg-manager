@@ -25,6 +25,14 @@ namespace ButopiaMysteries.GraphicsUserInterface
             Roster.Sheets.Add(charOne.Name, charOne);
             referencePoint = new Point(10, 10);
             CreateCharacterViews();
+
+            this.BackColor = ViewSettings.BackgroundColor;
+            this.Text = "Sélection des personnages"; 
+
+            for (int i = 0; i < ViewSettings.InitialCharacterCount; i++)
+            {
+                CreateRandom(); 
+            }
         }
 
 
@@ -60,10 +68,9 @@ namespace ButopiaMysteries.GraphicsUserInterface
         }
         private void CreateButton_Click(object sender, EventArgs e)
         {
-            /*CreateRandom();
-            MysterySheet charTwo = new(Names.RandomName);
-            AddOneNewCharacterView(charTwo);
-            */
+            
+            
+            
             CreationDialog();
         }
 
@@ -117,7 +124,10 @@ namespace ButopiaMysteries.GraphicsUserInterface
         {
             foreach (CharacterView view in views)
             {
-                ShowSheetViewFor(view.Sheet.Name);
+                if (view.Contains(e.Location))
+                {
+                    ShowSheetViewFor(view.Sheet.Name);
+                }
             }
                 
         }
