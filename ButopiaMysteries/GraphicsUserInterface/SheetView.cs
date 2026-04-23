@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace ButopiaMysteries.GraphicsUserInterface
 {
-    /// <summary>
+    /// <summary> 
     /// A class to view/edit a Mystery Sheet
     /// </summary>
     public partial class SheetView : Form
@@ -19,7 +19,7 @@ namespace ButopiaMysteries.GraphicsUserInterface
         private MysterySheet Sheet { get; init; }
         private readonly Dictionary<Indicator, Label> indicatorLabels = [];
         private readonly Dictionary<Skill, Label> skillLabels = [];
-        private bool edit = false;
+        private bool edit;
         private int indicatorPoints = 0;
         private int skillPoints = 0;
         /// <summary>
@@ -29,6 +29,8 @@ namespace ButopiaMysteries.GraphicsUserInterface
         public SheetView(MysterySheet mysterySheet)
         {
             InitializeComponent();
+            edit = mysterySheet.estEnFormation;
+
             Sheet = mysterySheet;
             nameLabel.Text = Sheet.Name;
             indicatorLabels.Add(Indicator.Body, indicLabel1);
@@ -55,9 +57,9 @@ namespace ButopiaMysteries.GraphicsUserInterface
         }
         private void DisplayControls()
         {
-            if (edit)
+            if (!edit)
             {
-                modeToolStripButton.Text = "Edit Mode";
+                modeToolStripButton.Text = "Mode Création";
                 indicatorPointsToolStripLabel.Visible = true;
                 indicatorPointsToolStripLabel.Text = "PI: " + indicatorPoints;
                 skillPointsToolStripLabel.Visible = true;
@@ -65,7 +67,7 @@ namespace ButopiaMysteries.GraphicsUserInterface
             }
             else
             {
-                modeToolStripButton.Text = "View Mode";
+                modeToolStripButton.Text = "Mode Formation";
                 indicatorPointsToolStripLabel.Visible = false;
                 skillPointsToolStripLabel.Visible = false;
             }
@@ -97,7 +99,11 @@ namespace ButopiaMysteries.GraphicsUserInterface
 
         private void ModeToolStripButton_Click(object sender, EventArgs e)
         {
-            edit = !edit;
+            edit = true;
+            Sheet.estEnFormation = true;
+            modeToolStripButton.Enabled= false;
+            
+
             DisplayControls();
         }
 

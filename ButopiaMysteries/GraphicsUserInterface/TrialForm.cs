@@ -53,17 +53,17 @@ namespace ButopiaMysteries.Logic
                     bool res = Trial.ClosedTrial(Sheet, Indicator, Skill, (Difficulty)Diff);
                     if (res)
                     {
-                        text += "Bravo tu as passé l'epreuve" + Environment.NewLine; 
+                        text +="Bravo tu as passé l'epreuve n°"+i + Environment.NewLine; 
                     }
                     else
                     {
-                        text += "Dommage tu n'as pas réussi l'épreuve :'( " + Environment.NewLine;
+                        text += "Dommage tu n'as pas réussi l'épreuve n°"+i + Environment.NewLine;
                     }
                 }
                 else
                 {
                     Difficulty res = Trial.OpenTrial(Sheet, Indicator, Skill);
-                    text += "Bravo tu as réussi a atteindre la difficulté : " + Difficulty_Operations.Name(res) +""+ Environment.NewLine;
+                    text += "Bravo tu as réussi a atteindre la difficulté : " + Difficulty_Operations.Name(res) +" pour l'épreuve n°"+i+ Environment.NewLine;
 
                 }
             }
@@ -71,3 +71,4 @@ namespace ButopiaMysteries.Logic
         }  
     }
 }
+ 

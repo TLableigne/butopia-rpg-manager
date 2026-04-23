@@ -146,6 +146,7 @@ namespace ButopiaMysteries.GraphicsUserInterface
                         break;
                     }
                 }
+
                 if (trouve == true)
                 {
                     if (e.Button == MouseButtons.Left)
@@ -154,6 +155,7 @@ namespace ButopiaMysteries.GraphicsUserInterface
                         {
                             ShowSheetViewFor(perso.Sheet.Name);
                             deplacement = false;
+                            
                         }
                         else
                         {
@@ -194,31 +196,45 @@ namespace ButopiaMysteries.GraphicsUserInterface
         {
             if (deplacement && persoDépacer != null && !BoxSkill.SelectedItem.Equals(Skill.None))
             {
-                Skill s = (Skill)BoxSkill.SelectedItem;
+                    Skill s = (Skill)BoxSkill.SelectedItem;
 
-                Indicator? i = s.GetIndicator();
-                if (i.HasValue)
-                {
-                    if (zoneAuto.Contains(e.Location))
+                    Indicator? i = s.GetIndicator();
+                    if (i.HasValue)
                     {
-                        TrialForm tf = new TrialForm(persoDépacer.Sheet, s, i.Value, null);
-                        tf.afficherInfo();
-                        tf.ShowDialog();
-                    }
-                    else if (zoneExamen.Contains(e.Location))
-                    {
-                        if (!boxDifficulty.SelectedItem.Equals(Difficulty.None))
+                        if (zoneAuto.Contains(e.Location))
                         {
-                            Difficulty d = (Difficulty)boxDifficulty.SelectedItem;
-                            TrialForm tf = new TrialForm(persoDépacer.Sheet, s, i.Value, d);
-                            tf.afficherInfo();
-                            tf.ShowDialog();
+                        if (persoDépacer.Sheet.estEnFormation != true)
+                        {
+                            MessageBox.Show("Ce personnage dois étre en formation pour participer a une épreuve");
                         }
                         else {
-                            MessageBox.Show("Veuillez choisir une difficulté svp");
+                            TrialForm tf = new TrialForm(persoDépacer.Sheet, s, i.Value, null);
+                            tf.afficherInfo();
+                            tf.ShowDialog(); }
+
                         }
-                    }
-                }
+                        else if (zoneExamen.Contains(e.Location))
+                        {
+                            if (persoDépacer.Sheet.estEnFormation != true)
+                            {
+                                MessageBox.Show("Ce personnage dois étre en formation pour participer a une épreuve");
+                            }
+                        else {                             
+                            if (!boxDifficulty.SelectedItem.Equals(Difficulty.None))
+                            {
+                                Difficulty d = (Difficulty)boxDifficulty.SelectedItem;
+                                TrialForm tf = new TrialForm(persoDépacer.Sheet, s, i.Value, d);
+                                tf.afficherInfo();
+                                tf.ShowDialog();
+                            }
+                            else
+                            {
+                                MessageBox.Show("Veuillez choisir une difficulté svp");
+                            }
+                        }
+
+                        }
+                    } 
             }
             deplacement = false;
             persoDépacer = null;

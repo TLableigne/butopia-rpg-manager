@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ButopiaMysteries")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0021d6d42775f1d6370e4bdaa62add950de4b2b9")]
 [assembly: System.Reflection.AssemblyProductAttribute("ButopiaMysteries")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ButopiaMysteries")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

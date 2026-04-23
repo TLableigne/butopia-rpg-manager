@@ -25,6 +25,8 @@ namespace ButopiaMysteries.Logic
         /// Mapping: skills to numeric level.
         /// </summary>
         public Dictionary<Skill, int> Skills { get; init; }
+
+        public bool estEnFormation { get; set; }
         /// <summary>
         /// Parametered constructor.
         /// </summary>
@@ -34,6 +36,7 @@ namespace ButopiaMysteries.Logic
             Name = name;
             Indicators = [];
             Skills = [];
+            estEnFormation = false;
         }
         /// <summary>
         /// Generate the indicator and skill levels randomly.

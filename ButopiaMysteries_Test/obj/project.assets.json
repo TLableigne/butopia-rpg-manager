@@ -1007,11 +1007,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "Z:\\Documents\\R2.02 C#\\SAE\\ButopiaMysteries_stade0\\ButopiaMysteries_stade0\\ButopiaMysteries\\ButopiaMysteries_Test\\ButopiaMysteries_Test.csproj",
+      "projectUniqueName": "Z:\\Documents\\R2.02 C#\\SAE\\sae-s2.01-devapp\\ButopiaMysteries_Test\\ButopiaMysteries_Test.csproj",
       "projectName": "ButopiaMysteries_Test",
-      "projectPath": "Z:\\Documents\\R2.02 C#\\SAE\\ButopiaMysteries_stade0\\ButopiaMysteries_stade0\\ButopiaMysteries\\ButopiaMysteries_Test\\ButopiaMysteries_Test.csproj",
+      "projectPath": "Z:\\Documents\\R2.02 C#\\SAE\\sae-s2.01-devapp\\ButopiaMysteries_Test\\ButopiaMysteries_Test.csproj",
       "packagesPath": "C:\\Users\\antcarpentie\\.nuget\\packages\\",
-      "outputPath": "Z:\\Documents\\R2.02 C#\\SAE\\ButopiaMysteries_stade0\\ButopiaMysteries_stade0\\ButopiaMysteries\\ButopiaMysteries_Test\\obj\\",
+      "outputPath": "Z:\\Documents\\R2.02 C#\\SAE\\sae-s2.01-devapp\\ButopiaMysteries_Test\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -1032,8 +1032,8 @@
         "net8.0-windows7.0": {
           "targetAlias": "net8.0-windows",
           "projectReferences": {
-            "Z:\\Documents\\R2.02 C#\\SAE\\ButopiaMysteries_stade0\\ButopiaMysteries_stade0\\ButopiaMysteries\\ButopiaMysteries\\ButopiaMysteries.csproj": {
-              "projectPath": "Z:\\Documents\\R2.02 C#\\SAE\\ButopiaMysteries_stade0\\ButopiaMysteries_stade0\\ButopiaMysteries\\ButopiaMysteries\\ButopiaMysteries.csproj"
+            "Z:\\Documents\\R2.02 C#\\SAE\\sae-s2.01-devapp\\ButopiaMysteries\\ButopiaMysteries.csproj": {
+              "projectPath": "Z:\\Documents\\R2.02 C#\\SAE\\sae-s2.01-devapp\\ButopiaMysteries\\ButopiaMysteries.csproj"
             }
           }
         }
