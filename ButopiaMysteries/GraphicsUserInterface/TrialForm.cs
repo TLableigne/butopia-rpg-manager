@@ -24,6 +24,7 @@ namespace ButopiaMysteries.Logic
             Skill = skill;
             Indicator = indicator;
             Diff = diff;
+            result.Text = "";
         }
         public void afficherInfo()
         {
@@ -38,10 +39,7 @@ namespace ButopiaMysteries.Logic
             {
                 Difficulte.Text = "Type : Épreuve Ouverte";
             }
-
-            result.Text = "Jeux en cours";
-
-
+            result.Text = " Le résultat sera ici lance l'épreuve pour le découvrir ";
         }
 
         private void Lancer_Click(object sender, EventArgs e)
@@ -50,14 +48,21 @@ namespace ButopiaMysteries.Logic
             if (Diff != null)
             {
                 bool res = Trial.ClosedTrial(Sheet, Indicator, Skill, (Difficulty)Diff);
-                result.Text = "resultat : " + res;
+                if (res)
+                {
+                    result.Text = "Bravo tu as passer l'epreuve";
+                }
+                else
+                {
+                    result.Text = "Dommage tu n'as pas réussi l'épreuve :'( ";
+                }
             }
             else
             {
                 Difficulty res = Trial.OpenTrial(Sheet, Indicator, Skill);
-                result.Text = Difficulty_Operations.Name(res);
+                result.Text = "Bravo tu as réussi a atteindre la difficulté : " + Difficulty_Operations.Name(res);
+
             }
         }
-
     }
 }

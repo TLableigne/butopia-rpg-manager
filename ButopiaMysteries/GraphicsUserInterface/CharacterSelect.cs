@@ -33,7 +33,7 @@ namespace ButopiaMysteries.GraphicsUserInterface
             this.BackColor = ViewSettings.BackgroundColor;
             this.Text = "Sélection des personnages"; 
 
-            for (int i = 0; i < ViewSettings.InitialCharacterCount; i++)
+            for (int i = 0; i < ViewSettings.InitialCharacterCount-1; i++)
             {
                 String name = Names.RandomName;
                 CreateCharacter(name , Rules.None);
@@ -192,27 +192,31 @@ namespace ButopiaMysteries.GraphicsUserInterface
 
         private void CharacterSelect_MouseUp(object sender, MouseEventArgs e)
         {
-            if (deplacement && persoDépacer != null && BoxSkill.SelectedItem != null && boxDifficulty.SelectedItem != null)
+            if (deplacement && persoDépacer != null && !BoxSkill.SelectedItem.Equals(Skill.None))
             {
                 Skill s = (Skill)BoxSkill.SelectedItem;
-                Difficulty d = (Difficulty)boxDifficulty.SelectedItem;
+
                 Indicator? i = s.GetIndicator();
                 if (i.HasValue)
                 {
-                    Difficulty? diffFinale = null;
-                    if (zoneExamen.Contains(e.Location))
+                    if (zoneAuto.Contains(e.Location))
                     {
-                        diffFinale = d;
-                    }
-                    else
-                    {
-                        diffFinale = null;
-                    }
-                    if (zoneExamen.Contains(e.Location) || zoneAuto.Contains(e.Location))
-                    {
-                        TrialForm tf = new TrialForm(persoDépacer.Sheet, s, i.Value, diffFinale);
+                        TrialForm tf = new TrialForm(persoDépacer.Sheet, s, i.Value, null);
                         tf.afficherInfo();
                         tf.ShowDialog();
+                    }
+                    else if (zoneExamen.Contains(e.Location))
+                    {
+                        if (!boxDifficulty.SelectedItem.Equals(Difficulty.None))
+                        {
+                            Difficulty d = (Difficulty)boxDifficulty.SelectedItem;
+                            TrialForm tf = new TrialForm(persoDépacer.Sheet, s, i.Value, d);
+                            tf.afficherInfo();
+                            tf.ShowDialog();
+                        }
+                        else {
+                            MessageBox.Show("Veuillez choisir une difficulté svp");
+                        }
                     }
                 }
             }

@@ -31,7 +31,6 @@
             Nom = new Label();
             Competance = new Label();
             Indicateur = new Label();
-            Niveau = new Label();
             Difficulte = new Label();
             result = new Label();
             Lancer = new Button();
@@ -41,7 +40,7 @@
             // Nom
             // 
             Nom.AutoSize = true;
-            Nom.Location = new Point(83, 151);
+            Nom.Location = new Point(48, 75);
             Nom.Name = "Nom";
             Nom.Size = new Size(32, 15);
             Nom.TabIndex = 0;
@@ -50,7 +49,7 @@
             // Competance
             // 
             Competance.AutoSize = true;
-            Competance.Location = new Point(205, 151);
+            Competance.Location = new Point(48, 154);
             Competance.Name = "Competance";
             Competance.Size = new Size(73, 15);
             Competance.TabIndex = 1;
@@ -59,25 +58,16 @@
             // Indicateur
             // 
             Indicateur.AutoSize = true;
-            Indicateur.Location = new Point(375, 151);
+            Indicateur.Location = new Point(48, 247);
             Indicateur.Name = "Indicateur";
             Indicateur.Size = new Size(60, 15);
             Indicateur.TabIndex = 2;
             Indicateur.Text = "indicateur";
             // 
-            // Niveau
-            // 
-            Niveau.AutoSize = true;
-            Niveau.Location = new Point(539, 151);
-            Niveau.Name = "Niveau";
-            Niveau.Size = new Size(42, 15);
-            Niveau.TabIndex = 3;
-            Niveau.Text = "niveau";
-            // 
             // Difficulte
             // 
             Difficulte.AutoSize = true;
-            Difficulte.Location = new Point(660, 151);
+            Difficulte.Location = new Point(48, 356);
             Difficulte.Name = "Difficulte";
             Difficulte.Size = new Size(94, 15);
             Difficulte.TabIndex = 4;
@@ -85,15 +75,15 @@
             // 
             // result
             // 
-            result.Location = new Point(495, 299);
+            result.Location = new Point(306, 247);
             result.Name = "result";
             result.RightToLeft = RightToLeft.No;
-            result.Size = new Size(50, 30);
+            result.Size = new Size(376, 30);
             result.TabIndex = 5;
             // 
             // Lancer
             // 
-            Lancer.Location = new Point(307, 262);
+            Lancer.Location = new Point(399, 144);
             Lancer.Name = "Lancer";
             Lancer.Size = new Size(154, 35);
             Lancer.TabIndex = 6;
@@ -104,7 +94,7 @@
             // Fermer
             // 
             Fermer.DialogResult = DialogResult.Cancel;
-            Fermer.Location = new Point(631, 370);
+            Fermer.Location = new Point(669, 379);
             Fermer.Name = "Fermer";
             Fermer.Size = new Size(75, 23);
             Fermer.TabIndex = 7;
@@ -120,7 +110,6 @@
             Controls.Add(Lancer);
             Controls.Add(result);
             Controls.Add(Difficulte);
-            Controls.Add(Niveau);
             Controls.Add(Indicateur);
             Controls.Add(Competance);
             Controls.Add(Nom);
@@ -135,7 +124,6 @@
         private Label Nom;
         private Label Competance;
         private Label Indicateur;
-        private Label Niveau;
         private Label Difficulte;
         private Label result;
         private Button Lancer;
