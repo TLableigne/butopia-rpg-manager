@@ -19,7 +19,6 @@ namespace ButopiaMysteries.GraphicsUserInterface
         private MysterySheet Sheet { get; init; }
         private readonly Dictionary<Indicator, Label> indicatorLabels = [];
         private readonly Dictionary<Skill, Label> skillLabels = [];
-        private bool edit;
         private int indicatorPoints = 0;
         private int skillPoints = 0;
         /// <summary>
@@ -29,14 +28,13 @@ namespace ButopiaMysteries.GraphicsUserInterface
         public SheetView(MysterySheet mysterySheet)
         {
             InitializeComponent();
-            edit = mysterySheet.estEnFormation;
-
             Sheet = mysterySheet;
             nameLabel.Text = Sheet.Name;
             indicatorLabels.Add(Indicator.Body, indicLabel1);
             indicatorLabels.Add(Indicator.Mind, indicLabel2);
             indicatorLabels.Add(Indicator.Sense, indicLabel3);
             indicatorLabels.Add(Indicator.Maximum, indicLabel4);
+            labelXP.Text = "Le nombre d'experience accumulé est de " + mysterySheet.xp;
             skillLabels.Add(Skill.Feat, skillLabel1);
             skillLabel2.Text = string.Empty;
             skillLabels.Add(Skill.Design, skillLabel3);
@@ -57,7 +55,7 @@ namespace ButopiaMysteries.GraphicsUserInterface
         }
         private void DisplayControls()
         {
-            if (!edit)
+            if (!Sheet.estEnFormation)
             {
                 modeToolStripButton.Text = "Mode Création";
                 indicatorPointsToolStripLabel.Visible = true;
@@ -99,7 +97,6 @@ namespace ButopiaMysteries.GraphicsUserInterface
 
         private void ModeToolStripButton_Click(object sender, EventArgs e)
         {
-            edit = true;
             Sheet.estEnFormation = true;
             modeToolStripButton.Enabled= false;
             
@@ -110,7 +107,7 @@ namespace ButopiaMysteries.GraphicsUserInterface
 
         private void Label_MouseClick(object sender, MouseEventArgs e)
         {
-            if (!edit)
+            if (!Sheet.estEnFormation)
             {
                 return;
             }

@@ -45,7 +45,7 @@ namespace ButopiaMysteries.Logic
         private void Lancer_Click(object sender, EventArgs e)
         {
             string text ="";
-            for (int i = 0; i < numUpDownNbEpreuve.Value; i++)
+            for (int i = 0; i <=numUpDownNbEpreuve.Value; i++)
             {
                 Lancer.Enabled = false;
                 if (Diff != null)
@@ -53,7 +53,8 @@ namespace ButopiaMysteries.Logic
                     bool res = Trial.ClosedTrial(Sheet, Indicator, Skill, (Difficulty)Diff);
                     if (res)
                     {
-                        text +="Bravo tu as passé l'epreuve n°"+i + Environment.NewLine; 
+                        text +="Bravo tu as passé l'epreuve n°"+i + Environment.NewLine;
+                        Sheet.xp++;
                     }
                     else
                     {

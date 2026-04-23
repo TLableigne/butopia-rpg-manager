@@ -54,6 +54,7 @@
             modeToolStripButton = new ToolStripButton();
             indicatorPointsToolStripLabel = new ToolStripLabel();
             skillPointsToolStripLabel = new ToolStripLabel();
+            labelXP = new Label();
             theToolStrip.SuspendLayout();
             SuspendLayout();
             // 
@@ -307,11 +308,21 @@
             skillPointsToolStripLabel.Size = new Size(86, 22);
             skillPointsToolStripLabel.Text = "toolStripLabel1";
             // 
+            // labelXP
+            // 
+            labelXP.AutoSize = true;
+            labelXP.Location = new Point(39, 302);
+            labelXP.Name = "labelXP";
+            labelXP.Size = new Size(253, 15);
+            labelXP.TabIndex = 30;
+            labelXP.Text = "labelXP                                                                     ";
+            // 
             // SheetView
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(429, 337);
+            Controls.Add(labelXP);
             Controls.Add(theToolStrip);
             Controls.Add(closeButton);
             Controls.Add(skillLabel16);
@@ -371,5 +382,6 @@
         private ToolStripButton modeToolStripButton;
         private ToolStripLabel indicatorPointsToolStripLabel;
         private ToolStripLabel skillPointsToolStripLabel;
+        private Label labelXP;
     }
 }
