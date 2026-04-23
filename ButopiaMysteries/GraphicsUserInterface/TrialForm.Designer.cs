@@ -35,6 +35,9 @@
             result = new Label();
             Lancer = new Button();
             Fermer = new Button();
+            numUpDownNbEpreuve = new NumericUpDown();
+            labelNumUpDown = new Label();
+            ((System.ComponentModel.ISupportInitialize)numUpDownNbEpreuve).BeginInit();
             SuspendLayout();
             // 
             // Nom
@@ -101,11 +104,32 @@
             Fermer.Text = "Fermer";
             Fermer.UseVisualStyleBackColor = true;
             // 
+            // numUpDownNbEpreuve
+            // 
+            numUpDownNbEpreuve.Location = new Point(639, 30);
+            numUpDownNbEpreuve.Maximum = new decimal(new int[] { 10, 0, 0, 0 });
+            numUpDownNbEpreuve.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
+            numUpDownNbEpreuve.Name = "numUpDownNbEpreuve";
+            numUpDownNbEpreuve.Size = new Size(120, 23);
+            numUpDownNbEpreuve.TabIndex = 8;
+            numUpDownNbEpreuve.Value = new decimal(new int[] { 1, 0, 0, 0 });
+            // 
+            // labelNumUpDown
+            // 
+            labelNumUpDown.AutoSize = true;
+            labelNumUpDown.Location = new Point(494, 32);
+            labelNumUpDown.Name = "labelNumUpDown";
+            labelNumUpDown.Size = new Size(129, 15);
+            labelNumUpDown.TabIndex = 9;
+            labelNumUpDown.Text = "Nombre d'executions : ";
+            // 
             // TrialForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(labelNumUpDown);
+            Controls.Add(numUpDownNbEpreuve);
             Controls.Add(Fermer);
             Controls.Add(Lancer);
             Controls.Add(result);
@@ -115,6 +139,7 @@
             Controls.Add(Nom);
             Name = "TrialForm";
             Text = "TrialForm";
+            ((System.ComponentModel.ISupportInitialize)numUpDownNbEpreuve).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -128,5 +153,7 @@
         private Label result;
         private Button Lancer;
         private Button Fermer;
+        private NumericUpDown numUpDownNbEpreuve;
+        private Label labelNumUpDown;
     }
 }

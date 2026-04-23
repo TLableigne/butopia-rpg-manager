@@ -44,25 +44,30 @@ namespace ButopiaMysteries.Logic
 
         private void Lancer_Click(object sender, EventArgs e)
         {
-            Lancer.Enabled = false;
-            if (Diff != null)
+            string text ="";
+            for (int i = 0; i < numUpDownNbEpreuve.Value; i++)
             {
-                bool res = Trial.ClosedTrial(Sheet, Indicator, Skill, (Difficulty)Diff);
-                if (res)
+                Lancer.Enabled = false;
+                if (Diff != null)
                 {
-                    result.Text = "Bravo tu as passer l'epreuve";
+                    bool res = Trial.ClosedTrial(Sheet, Indicator, Skill, (Difficulty)Diff);
+                    if (res)
+                    {
+                        text += "Bravo tu as passé l'epreuve" + Environment.NewLine; 
+                    }
+                    else
+                    {
+                        text += "Dommage tu n'as pas réussi l'épreuve :'( " + Environment.NewLine;
+                    }
                 }
                 else
                 {
-                    result.Text = "Dommage tu n'as pas réussi l'épreuve :'( ";
+                    Difficulty res = Trial.OpenTrial(Sheet, Indicator, Skill);
+                    text += "Bravo tu as réussi a atteindre la difficulté : " + Difficulty_Operations.Name(res) +""+ Environment.NewLine;
+
                 }
             }
-            else
-            {
-                Difficulty res = Trial.OpenTrial(Sheet, Indicator, Skill);
-                result.Text = "Bravo tu as réussi a atteindre la difficulté : " + Difficulty_Operations.Name(res);
-
-            }
-        }
+            MessageBox.Show(text);
+        }  
     }
 }
