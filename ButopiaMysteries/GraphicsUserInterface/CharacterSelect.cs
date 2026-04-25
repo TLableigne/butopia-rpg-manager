@@ -89,9 +89,6 @@ namespace ButopiaMysteries.GraphicsUserInterface
         }
         private void CreateButton_Click(object sender, EventArgs e)
         {
-            
-            
-            
             CreationDialog();
         }
 
