@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace ButopiaMysteries.GraphicsUserInterface
 {
-    /// <summary>
+    /// <summary> 
     /// A class to view/edit a Mystery Sheet
     /// </summary>
     public partial class SheetView : Form
@@ -19,7 +19,6 @@ namespace ButopiaMysteries.GraphicsUserInterface
         private MysterySheet Sheet { get; init; }
         private readonly Dictionary<Indicator, Label> indicatorLabels = [];
         private readonly Dictionary<Skill, Label> skillLabels = [];
-        private bool edit = false;
         private int indicatorPoints = 0;
         private int skillPoints = 0;
         /// <summary>
@@ -35,6 +34,7 @@ namespace ButopiaMysteries.GraphicsUserInterface
             indicatorLabels.Add(Indicator.Mind, indicLabel2);
             indicatorLabels.Add(Indicator.Sense, indicLabel3);
             indicatorLabels.Add(Indicator.Maximum, indicLabel4);
+            labelXP.Text = "Le nombre d'experience accumulé est de " + mysterySheet.xp;
             skillLabels.Add(Skill.Feat, skillLabel1);
             skillLabel2.Text = string.Empty;
             skillLabels.Add(Skill.Design, skillLabel3);
@@ -55,9 +55,9 @@ namespace ButopiaMysteries.GraphicsUserInterface
         }
         private void DisplayControls()
         {
-            if (edit)
+            if (!Sheet.estEnFormation)
             {
-                modeToolStripButton.Text = "Edit Mode";
+                modeToolStripButton.Text = "Mode Création";
                 indicatorPointsToolStripLabel.Visible = true;
                 indicatorPointsToolStripLabel.Text = "PI: " + indicatorPoints;
                 skillPointsToolStripLabel.Visible = true;
@@ -65,7 +65,7 @@ namespace ButopiaMysteries.GraphicsUserInterface
             }
             else
             {
-                modeToolStripButton.Text = "View Mode";
+                modeToolStripButton.Text = "Mode Formation";
                 indicatorPointsToolStripLabel.Visible = false;
                 skillPointsToolStripLabel.Visible = false;
             }
@@ -97,14 +97,17 @@ namespace ButopiaMysteries.GraphicsUserInterface
 
         private void ModeToolStripButton_Click(object sender, EventArgs e)
         {
-            edit = !edit;
+            Sheet.estEnFormation = true;
+            modeToolStripButton.Enabled= false;
+            
+
             DisplayControls();
         }
 
 
         private void Label_MouseClick(object sender, MouseEventArgs e)
         {
-            if (!edit)
+            if (!Sheet.estEnFormation)
             {
                 return;
             }

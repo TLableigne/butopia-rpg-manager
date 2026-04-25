@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "4+pvLw6HlFw=",
+  "dgSpecHash": "o7w4IST+mDg=",
   "success": true,
-  "projectFilePath": "Z:\\Documents\\R2.02 C#\\SAE\\ButopiaMysteries_stade0\\ButopiaMysteries_stade0\\ButopiaMysteries\\ButopiaMysteries_Test\\ButopiaMysteries_Test.csproj",
+  "projectFilePath": "Z:\\Documents\\R2.02 C#\\SAE\\sae-s2.01-devapp\\ButopiaMysteries_Test\\ButopiaMysteries_Test.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\antcarpentie\\.nuget\\packages\\coverlet.collector\\6.0.0\\coverlet.collector.6.0.0.nupkg.sha512",
     "C:\\Users\\antcarpentie\\.nuget\\packages\\microsoft.codecoverage\\17.8.0\\microsoft.codecoverage.17.8.0.nupkg.sha512",

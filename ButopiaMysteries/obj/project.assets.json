@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "Z:\\Documents\\R2.02 C#\\SAE\\ButopiaMysteries_stade0\\ButopiaMysteries_stade0\\ButopiaMysteries\\ButopiaMysteries\\ButopiaMysteries.csproj",
+      "projectUniqueName": "Z:\\Documents\\R2.02 C#\\SAE\\sae-s2.01-devapp\\ButopiaMysteries\\ButopiaMysteries.csproj",
       "projectName": "ButopiaMysteries",
-      "projectPath": "Z:\\Documents\\R2.02 C#\\SAE\\ButopiaMysteries_stade0\\ButopiaMysteries_stade0\\ButopiaMysteries\\ButopiaMysteries\\ButopiaMysteries.csproj",
+      "projectPath": "Z:\\Documents\\R2.02 C#\\SAE\\sae-s2.01-devapp\\ButopiaMysteries\\ButopiaMysteries.csproj",
       "packagesPath": "C:\\Users\\antcarpentie\\.nuget\\packages\\",
-      "outputPath": "Z:\\Documents\\R2.02 C#\\SAE\\ButopiaMysteries_stade0\\ButopiaMysteries_stade0\\ButopiaMysteries\\ButopiaMysteries\\obj\\",
+      "outputPath": "Z:\\Documents\\R2.02 C#\\SAE\\sae-s2.01-devapp\\ButopiaMysteries\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

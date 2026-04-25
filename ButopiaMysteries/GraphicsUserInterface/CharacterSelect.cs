@@ -143,6 +143,7 @@ namespace ButopiaMysteries.GraphicsUserInterface
                         break;
                     }
                 }
+
                 if (trouve == true)
                 {
                     if (e.Button == MouseButtons.Left)
@@ -151,6 +152,7 @@ namespace ButopiaMysteries.GraphicsUserInterface
                         {
                             ShowSheetViewFor(perso.Sheet.Name);
                             deplacement = false;
+                            
                         }
                         else
                         {
@@ -198,24 +200,51 @@ namespace ButopiaMysteries.GraphicsUserInterface
                 {
                     if (zoneAuto.Contains(e.Location))
                     {
-                        TrialForm tf = new TrialForm(persoDépacer.Sheet, s, i.Value, null);
-                        tf.afficherInfo();
-                        tf.ShowDialog();
+                        if (persoDépacer.Sheet.estEnFormation != true)
+                        {
+                            MessageBox.Show("Ce personnage dois étre en formation pour participer a une épreuve");
+                        }
+                        else
+                        {
+                            TrialForm page = new TrialForm(persoDépacer.Sheet, s, i.Value, null);
+                            page.afficherInfo();
+                            page.ShowDialog();
+                        }
                     }
+                
                     else if (zoneExamen.Contains(e.Location))
                     {
-                        if (!boxDifficulty.SelectedItem.Equals(Difficulty.None))
+                        if (persoDépacer.Sheet.estEnFormation != true)
                         {
-                            Difficulty d = (Difficulty)boxDifficulty.SelectedItem;
-                            TrialForm tf = new TrialForm(persoDépacer.Sheet, s, i.Value, d);
-                            tf.afficherInfo();
-                            tf.ShowDialog();
+                        MessageBox.Show("Ce personnage dois étre en formation pour participer a une épreuve");
                         }
-                        else {
+                        else{
+                            if (!boxDifficulty.SelectedItem.Equals(Difficulty.None))
+                            {
+                                Difficulty d = (Difficulty)boxDifficulty.SelectedItem;
+                                TrialForm tf = new TrialForm(persoDépacer.Sheet, s, i.Value, d);
+                                tf.afficherInfo();
+                                tf.ShowDialog();
+                            }
+                            else
+                            {
                             MessageBox.Show("Veuillez choisir une difficulté svp");
+                            }
                         }
                     }
-                }
+                    else if (zoneEntrainement.Contains(e.Location))
+                    {
+                        if (persoDépacer.Sheet.estEnFormation != true)
+                        {
+                            MessageBox.Show("Ce personnage doit être en formation pour pouvoir s'entraîner !");
+                        }
+                        else
+                        {
+                            TrainForm tf = new TrainForm(persoDépacer.Sheet);
+                            tf.ShowDialog();
+                        }
+                    }
+                }      
             }
             deplacement = false;
             persoDépacer = null;
