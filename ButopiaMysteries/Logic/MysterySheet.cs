@@ -28,6 +28,18 @@ namespace ButopiaMysteries.Logic
 
         public bool estEnFormation { get; set; }
         public int xp { get; set; }
+        public int SanteMentaleMax => Math.Min(Math.Min(Indicators[Indicator.Body], Indicators[Indicator.Mind]), Indicators[Indicator.Sense]) * 10;
+        public int SanteMentale { get; set; }
+        public int NbVictoirConsecutif { get; set; } = 0;
+        public bool EstEnCrise()
+        {
+            return SanteMentale <= 0;
+        }
+        public void InitSanteMentale()
+        {
+            SanteMentale = SanteMentaleMax;
+        } 
+
         /// <summary>
         /// Parametered constructor.
         /// </summary>

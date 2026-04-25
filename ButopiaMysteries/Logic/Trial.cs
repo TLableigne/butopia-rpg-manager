@@ -78,8 +78,15 @@ namespace ButopiaMysteries.Logic
             int skillLevel = character.Skills[skill];
             List<int> resDé = Cast(nbDé);
             int totalScore = NumericResult(resDé, skillLevel);
-            return Difficulty_Operations.GetMaximumDifficulty(totalScore);
+
+            Difficulty diffFinale = Difficulty_Operations.GetMaximumDifficulty(totalScore);
+            if (character.SanteMentale <= 0) 
+            {
+                diffFinale = diffFinale.LoseDfficulty(2);
+            }
+            return diffFinale;
         }
+
         public static bool ClosedTrial(MysterySheet character, Indicator indicator, Skill skill, Difficulty difficultéVisée)
         {
             bool res = false;

@@ -98,11 +98,11 @@ namespace ButopiaMysteries.GraphicsUserInterface
         private void ModeToolStripButton_Click(object sender, EventArgs e)
         {
             Sheet.estEnFormation = true;
-            modeToolStripButton.Enabled= false;
-            
-
+            modeToolStripButton.Enabled = false;
+            Sheet.InitSanteMentale();
             DisplayControls();
         }
+
 
 
         private void Label_MouseClick(object sender, MouseEventArgs e)
