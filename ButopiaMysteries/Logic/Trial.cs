@@ -12,17 +12,53 @@ namespace ButopiaMysteries.Logic
     public static class Trial
     {
         private static readonly Random random = new Random();
-        public static int NumericResult(List<int>? list, int skill=0)
+        public static int NumericResult(List<int>? listDé, int skill)
         {
-            if (skill == 0 || list == null || list.Count == 0)
+            if (skill == 0 || listDé == null || listDé.Count == 0)
             {
                 return 0;
             }
+
             int result = 0;
-            foreach (int item in list)
+            foreach (int item in listDé)
             {
-                result += item;
+                int valeurDe = item;
+                switch (skill)
+                {
+                    case 1:
+                        if (valeurDe == 1) 
+                        {
+                            valeurDe = 0; 
+                        }  
+                        break;
+                    case 3:
+                        if (valeurDe == 6)
+                        {
+                            valeurDe = 10;
+                        }
+                        break;
+                    case 4: 
+                        if (valeurDe == 5 || valeurDe == 6)
+                        { 
+                            valeurDe = 10;                        
+                        }
+                        break;
+                    case 5:
+                        if (valeurDe >= 4) 
+                        { 
+                            valeurDe = 10; 
+                        } 
+                        break;
+                    case 6:
+                        if (valeurDe >= 4) 
+                        { 
+                            valeurDe = 20; 
+                        }
+                        break;
+                }
+                result += valeurDe;
             }
+
             return result;
         }
         public static List<int> Cast(int nbDé)
