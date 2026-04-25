@@ -196,30 +196,32 @@ namespace ButopiaMysteries.GraphicsUserInterface
         {
             if (deplacement && persoDépacer != null && !BoxSkill.SelectedItem.Equals(Skill.None))
             {
-                    Skill s = (Skill)BoxSkill.SelectedItem;
+                Skill s = (Skill)BoxSkill.SelectedItem;
 
-                    Indicator? i = s.GetIndicator();
-                    if (i.HasValue)
+                Indicator? i = s.GetIndicator();
+                if (i.HasValue)
+                {
+                    if (zoneAuto.Contains(e.Location))
                     {
-                        if (zoneAuto.Contains(e.Location))
-                        {
                         if (persoDépacer.Sheet.estEnFormation != true)
                         {
                             MessageBox.Show("Ce personnage dois étre en formation pour participer a une épreuve");
                         }
-                        else {
-                            TrialForm tf = new TrialForm(persoDépacer.Sheet, s, i.Value, null);
-                            tf.afficherInfo();
-                            tf.ShowDialog(); }
-
-                        }
-                        else if (zoneExamen.Contains(e.Location))
+                        else
                         {
-                            if (persoDépacer.Sheet.estEnFormation != true)
-                            {
-                                MessageBox.Show("Ce personnage dois étre en formation pour participer a une épreuve");
-                            }
-                        else {                             
+                            TrialForm page = new TrialForm(persoDépacer.Sheet, s, i.Value, null);
+                            page.afficherInfo();
+                            page.ShowDialog();
+                        }
+                    }
+                
+                    else if (zoneExamen.Contains(e.Location))
+                    {
+                        if (persoDépacer.Sheet.estEnFormation != true)
+                        {
+                        MessageBox.Show("Ce personnage dois étre en formation pour participer a une épreuve");
+                        }
+                        else{
                             if (!boxDifficulty.SelectedItem.Equals(Difficulty.None))
                             {
                                 Difficulty d = (Difficulty)boxDifficulty.SelectedItem;
@@ -229,12 +231,23 @@ namespace ButopiaMysteries.GraphicsUserInterface
                             }
                             else
                             {
-                                MessageBox.Show("Veuillez choisir une difficulté svp");
+                            MessageBox.Show("Veuillez choisir une difficulté svp");
                             }
                         }
-
+                    }
+                    else if (zoneEntrainement.Contains(e.Location))
+                    {
+                        if (persoDépacer.Sheet.estEnFormation != true)
+                        {
+                            MessageBox.Show("Ce personnage doit être en formation pour pouvoir s'entraîner !");
                         }
-                    } 
+                        else
+                        {
+                            TrainForm tf = new TrainForm(persoDépacer.Sheet);
+                            tf.ShowDialog();
+                        }
+                    }
+                }      
             }
             deplacement = false;
             persoDépacer = null;
