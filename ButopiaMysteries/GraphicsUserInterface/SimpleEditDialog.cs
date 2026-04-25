@@ -84,27 +84,7 @@ namespace ButopiaMysteries.GraphicsUserInterface
             currentValueLabel.Text = "Valeur actuelle : " + Value;
             pointsLabel.Text = "Points disponibles : " + Points;
         }
-        /*private void MinusClick(object sender, EventArgs e)
-        {
-            Points += indicator ? Indicator_Operations.IndicatorPointsAtLevel(Value) : Skill_Operations.SkillPointsAtLevel(Value);
-            Value--;
-            if (Value <= (indicator?Indicator_Operations.MinValue:Skill_Operations.MinValue))
-            {
-                minusButton.Enabled=false;
-            }
-            
-            plusButton.Enabled=false;
-            CurrentValues();
-        }
-        private void PlusClick(object sender, EventArgs e)
-        {
-            Points -= indicator ? Indicator_Operations.IndicatorPointsAtLevel(Value+1) : Skill_Operations.SkillPointsAtLevel(Value+1);
-            Value++;
-            if (Value <= (indicator ? Indicator_Operations.MaxValue : Skill_Operations.MaxValue))
-                plusButton.Enabled=false;
-            minusButton.Enabled=false;
-            CurrentValues();
-        }*/
+
 
 
         private void MinusClick(object sender, EventArgs e)
