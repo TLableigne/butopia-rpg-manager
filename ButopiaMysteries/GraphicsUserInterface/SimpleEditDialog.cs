@@ -84,24 +84,40 @@ namespace ButopiaMysteries.GraphicsUserInterface
             currentValueLabel.Text = "Valeur actuelle : " + Value;
             pointsLabel.Text = "Points disponibles : " + Points;
         }
+
+
+
         private void MinusClick(object sender, EventArgs e)
         {
             Points += indicator ? Indicator_Operations.IndicatorPointsAtLevel(Value) : Skill_Operations.SkillPointsAtLevel(Value);
             Value--;
-            if (Value <= (indicator?Indicator_Operations.MinValue:Skill_Operations.MinValue))
-            {
-                minusButton.Enabled=false;
-            }
-            plusButton.Enabled=false;
+            UpdateButtonsState();
             CurrentValues();
         }
+
         private void PlusClick(object sender, EventArgs e)
         {
-            Points -= indicator ? Indicator_Operations.IndicatorPointsAtLevel(Value+1) : Skill_Operations.SkillPointsAtLevel(Value+1);
+            Points -= indicator ? Indicator_Operations.IndicatorPointsAtLevel(Value + 1) : Skill_Operations.SkillPointsAtLevel(Value + 1);
             Value++;
-            plusButton.Enabled=false;
-            minusButton.Enabled=false;
+            UpdateButtonsState();
             CurrentValues();
+        }
+
+        private void UpdateButtonsState()
+        {
+            int minValue = indicator ? Indicator_Operations.MinValue : Skill_Operations.MinValue;
+            int maxValue = indicator ? Indicator_Operations.MaxValue : Skill_Operations.MaxValue;
+            minusButton.Enabled = (Value > minValue);
+
+            if (Value < maxValue)
+            {
+                int nextCost = indicator ? Indicator_Operations.IndicatorPointsAtLevel(Value + 1) : Skill_Operations.SkillPointsAtLevel(Value + 1);
+                plusButton.Enabled = (Points >= nextCost);
+            }
+            else
+            {
+                plusButton.Enabled = false;
+            }
         }
     }
 }
