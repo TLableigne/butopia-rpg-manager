@@ -95,6 +95,25 @@ namespace ButopiaMysteries.Logic
             {
                res = true;
             }
+            if (res == true) 
+            {
+                character.NbVictoirConsecutif++; 
+                if (character.NbVictoirConsecutif >= 2 && character.SanteMentale < character.SanteMentaleMax)
+                {
+                    character.SanteMentale++; 
+                    character.NbVictoirConsecutif = 0;
+                }
+            }
+            else 
+            {
+                character.SanteMentale--; 
+                character.NbVictoirConsecutif = 0;
+                if (character.SanteMentale < 0)
+                {
+                    character.SanteMentale = 0;
+                }
+            }
+
             return res;
         }
     }
