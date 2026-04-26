@@ -16,12 +16,12 @@ namespace ButopiaMysteries.GraphicsUserInterface
     /// </summary>
     public partial class NewCharacterDialog : Form
     {
+       
+        public Rules SelectedRules;
         /// <summary>
         /// The name of the character.
         /// </summary>
         /// 
-
-        public Rules SelectedRules;
         public string CharacterName { get { return nameTextBox.Text; } }
         /// <summary>
         /// The fact that this character is randomly created or not.
@@ -29,6 +29,9 @@ namespace ButopiaMysteries.GraphicsUserInterface
         public bool RandomGeneration { get { return randomCreationCheckBox.Checked; } }
 
         public bool FixePoint { get { return fixePointCheckBox.Checked; } }
+
+        public Plan SelectedPlan => (Plan)boxPlan.SelectedItem;
+        public Sphere SelectedSphere => (Sphere)boxSphere.SelectedItem;
         /// <summary>
         /// Empty constructor.
         /// </summary>
@@ -52,8 +55,9 @@ namespace ButopiaMysteries.GraphicsUserInterface
 
 
         private void NewCharacterDialog_Load(object sender, EventArgs e)
-        {
-
+        {       
+            boxSphere.DataSource = Enum.GetValues(typeof(Sphere));
+            boxPlan.DataSource = Enum.GetValues(typeof(Plan));
         }
 
         private void randomCreationCheckBox_CheckedChanged(object sender, EventArgs e)

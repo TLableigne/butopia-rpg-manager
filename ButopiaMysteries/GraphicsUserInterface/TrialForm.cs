@@ -17,7 +17,9 @@ namespace ButopiaMysteries.Logic
         private Skill Skill;
         private Indicator Indicator;
         private Difficulty? Diff;
-        public TrialForm(MysterySheet sheet, Skill skill, Indicator indicator, Difficulty? diff)
+        private int Malus;
+
+        public TrialForm(MysterySheet sheet, Skill skill, Indicator indicator, Difficulty? diff, int malus=0)
         {
             InitializeComponent();
             Sheet = sheet;
@@ -25,21 +27,29 @@ namespace ButopiaMysteries.Logic
             Indicator = indicator;
             Diff = diff;
             result.Text = "";
+            Malus = malus;
         }
         public void afficherInfo()
         {
             Nom.Text = "Personnage : " + Sheet.Name;
-            Competance.Text = $"Compétence : " + Skill.Name() + " - Niveau : " + Sheet.Skills[Skill];
+            if (Malus > 0)
+            {
+                Competence.Text = $"Compétence : " + Skill.Name() + " - Niveau : " + Sheet.Skills[Skill] + " (Substitution -> Malus -2)";
+            }
+            else
+            {
+                Competence.Text = $"Compétence : " + Skill.Name() + " - Niveau : " + Sheet.Skills[Skill];
+            }
             Indicateur.Text = $"Indicateur : " + Indicator + " - Niveau : " + Sheet.Indicators[Indicator];
             if (Diff != null)
             {
                 Difficulte.Text = "Difficulté visée : " + Diff.Value.Name();
+                Type.Text = "Épreuve Fermée";
             }
             else
             {
-                Difficulte.Text = "Type : Épreuve Ouverte";
+                Type.Text = "Épreuve Ouverte";
             }
-            result.Text = " Le résultat sera ici lance l'épreuve pour le découvrir ";
         }
 
         private void Lancer_Click(object sender, EventArgs e)
@@ -47,19 +57,19 @@ namespace ButopiaMysteries.Logic
             Lancer.Enabled = false;
             if (Diff != null)
             {
-                bool res = Trial.ClosedTrial(Sheet, Indicator, Skill, (Difficulty)Diff);
+                bool res = Trial.ClosedTrial(Sheet, Indicator, Skill, (Difficulty)Diff, Malus);
                 if (res)
                 {
-                    result.Text = "Bravo tu as passer l'epreuve";
+                    result.Text = "Bravo, tu as passé l'épreuve !";
                 }
                 else
                 {
-                    result.Text = "Dommage tu n'as pas réussi l'épreuve :'( ";
+                    result.Text = "Dommage, tu n'as pas réussi l'épreuve...";
                 }
             }
             else
             {
-                Difficulty res = Trial.OpenTrial(Sheet, Indicator, Skill);
+                Difficulty res = Trial.OpenTrial(Sheet, Indicator, Skill, Malus);
                 result.Text = "Bravo tu as réussi a atteindre la difficulté : " + Difficulty_Operations.Name(res);
 
             }

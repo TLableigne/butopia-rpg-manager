@@ -34,6 +34,8 @@
             nameLabel = new Label();
             randomCreationCheckBox = new CheckBox();
             fixePointCheckBox = new CheckBox();
+            boxSphere = new ComboBox();
+            boxPlan = new ComboBox();
             SuspendLayout();
             // 
             // okButton
@@ -97,11 +99,29 @@
             fixePointCheckBox.UseVisualStyleBackColor = true;
             fixePointCheckBox.CheckedChanged += fixePointCheckBox_CheckedChanged;
             // 
+            // boxSphere
+            // 
+            boxSphere.FormattingEnabled = true;
+            boxSphere.Location = new Point(204, 120);
+            boxSphere.Name = "boxSphere";
+            boxSphere.Size = new Size(121, 23);
+            boxSphere.TabIndex = 6;
+            // 
+            // boxPlan
+            // 
+            boxPlan.FormattingEnabled = true;
+            boxPlan.Location = new Point(60, 120);
+            boxPlan.Name = "boxPlan";
+            boxPlan.Size = new Size(121, 23);
+            boxPlan.TabIndex = 7;
+            // 
             // NewCharacterDialog
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(467, 131);
+            ClientSize = new Size(467, 155);
+            Controls.Add(boxPlan);
+            Controls.Add(boxSphere);
             Controls.Add(fixePointCheckBox);
             Controls.Add(randomCreationCheckBox);
             Controls.Add(nameLabel);
@@ -123,5 +143,7 @@
         private Label nameLabel;
         private CheckBox randomCreationCheckBox;
         private CheckBox fixePointCheckBox;
+        private ComboBox boxSphere;
+        private ComboBox boxPlan;
     }
 }

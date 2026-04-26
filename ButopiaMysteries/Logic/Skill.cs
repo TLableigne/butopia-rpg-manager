@@ -13,14 +13,28 @@ namespace ButopiaMysteries.Logic
     public enum Skill
     {
         None,
-        Feat,
-        Dodge,
-        Design,
-        Synthesis,
-        Analysis,
-        Expression,
-        Survival,
-        Seduction
+        // global
+        Feat, Dodge, Design, Synthesis, Analysis, Expression, Survival, Seduction,
+        // thinkers
+        Concentration, Abstraction, Visualization, Modeling,
+        // legates
+        Durability, Perception, Details, Memoization,
+        // makers
+        Skillfulness, Architecture, Organization, Reification,
+        // integratos
+        Proprioception, Liaison, Synesthesia, Compilation,
+        // merchants
+        Endurance, Finance, Expertise, Communication,
+        // algebra
+        Junction, Induction, Equation, Functional,
+        // verb
+        Injunction, Formulation, Poetics, Object,
+        // transition
+        Deconstruction, Anticipation, Argumentation, Optimization,
+        // creation
+        Adjustment, Drafting, Narration, Data,
+        // valorization
+        Destruction, Stewardship, Conviction, Testing
     }
     /// <summary>
     /// Companion class for the enum above.
@@ -36,6 +50,7 @@ namespace ButopiaMysteries.Logic
         {
             return skill switch
             {
+                // common
                 Skill.Feat => "Prouesse",
                 Skill.Dodge => "Esquive",
                 Skill.Design => "Conception",
@@ -44,6 +59,48 @@ namespace ButopiaMysteries.Logic
                 Skill.Expression => "Expression",
                 Skill.Survival => "Survie",
                 Skill.Seduction => "Séduction",
+                // plans
+                Skill.Concentration => "Concentration",
+                Skill.Abstraction => "Abstraction",
+                Skill.Visualization => "Visualisation",
+                Skill.Modeling => "Modélisation",
+                Skill.Durability => "Pérennité",
+                Skill.Perception => "Perception",
+                Skill.Details => "Détails",
+                Skill.Memoization => "Mémoïsation",
+                Skill.Skillfulness => "Habileté",
+                Skill.Architecture => "Architecture",
+                Skill.Organization => "Organisation",
+                Skill.Reification => "Réification",
+                Skill.Proprioception => "Proprioception",
+                Skill.Liaison => "Liaison",
+                Skill.Synesthesia => "Synesthésie",
+                Skill.Compilation => "Compilation",
+                Skill.Endurance => "Endurance",
+                Skill.Finance => "Finance",
+                Skill.Expertise => "Expertise",
+                Skill.Communication => "Communication",
+                // spheres
+                Skill.Junction => "Jonction",
+                Skill.Induction => "Induction",
+                Skill.Equation => "Équation",
+                Skill.Functional => "Fonctionnel",
+                Skill.Injunction => "Injonction",
+                Skill.Formulation => "Formulation",
+                Skill.Poetics => "Poétique",
+                Skill.Object => "Objet",
+                Skill.Deconstruction => "Déconstruction",
+                Skill.Anticipation => "Anticipation",
+                Skill.Argumentation => "Argumentation",
+                Skill.Optimization => "Optimisation",
+                Skill.Adjustment => "Ajustement",
+                Skill.Drafting => "Conception (Sphère)",
+                Skill.Narration => "Narration",
+                Skill.Data => "Données",
+                Skill.Destruction => "Destruction",
+                Skill.Stewardship => "Intendance",
+                Skill.Conviction => "Conviction",
+                Skill.Testing => "Tests",
                 _ => string.Empty
             };
         }
@@ -57,14 +114,27 @@ namespace ButopiaMysteries.Logic
         {
             return skill switch
             {
-                Skill.Feat => Indicator.Body,
-                Skill.Dodge => Indicator.Body,
-                Skill.Design => Indicator.Mind,
-                Skill.Synthesis => Indicator.Mind,
-                Skill.Analysis => Indicator.Sense,
-                Skill.Expression => Indicator.Sense,
-                Skill.Survival => Indicator.Maximum,
-                Skill.Seduction => Indicator.Maximum,
+                //body
+                Skill.Feat or Skill.Dodge or Skill.Skillfulness or Skill.Proprioception or
+                Skill.Endurance or Skill.Junction or Skill.Injunction or Skill.Deconstruction or
+                Skill.Adjustment or Skill.Destruction => Indicator.Body,
+
+                // mind
+                Skill.Design or Skill.Synthesis or Skill.Concentration or Skill.Abstraction or
+                Skill.Visualization or Skill.Modeling or Skill.Induction or Skill.Equation or
+                Skill.Formulation or Skill.Drafting => Indicator.Mind,
+
+                // sense
+                Skill.Analysis or Skill.Expression or Skill.Perception or Skill.Details or
+                Skill.Synesthesia or Skill.Communication or Skill.Poetics or Skill.Anticipation or
+                Skill.Narration or Skill.Conviction => Indicator.Sense,
+                // maximum
+                Skill.Survival or Skill.Seduction or Skill.Durability or Skill.Memoization or
+                Skill.Architecture or Skill.Organization or Skill.Reification or Skill.Liaison or
+                Skill.Compilation or Skill.Finance or Skill.Expertise or Skill.Functional or
+                Skill.Object or Skill.Argumentation or Skill.Optimization or Skill.Data or
+                Skill.Stewardship or Skill.Testing => Indicator.Maximum,
+
                 _ => null,
             };
         }
@@ -90,8 +160,11 @@ namespace ButopiaMysteries.Logic
         /// <returns>the constructed list</returns>
         public static List<Skill> AllSkillsSuchAs(Predicate<Skill> predicate)
         {
-            List<Skill> allSkills = [Skill.Feat, Skill.Dodge, Skill.Design, Skill.Synthesis,
-                Skill.Analysis, Skill.Expression, Skill.Survival, Skill.Seduction];
+            List<Skill> allSkills = new List<Skill>();
+            foreach (Skill s in Enum.GetValues(typeof(Skill)))
+            {
+                allSkills.Add(s);
+            }
             return allSkills.FindAll(predicate);
         }
         /// <summary>

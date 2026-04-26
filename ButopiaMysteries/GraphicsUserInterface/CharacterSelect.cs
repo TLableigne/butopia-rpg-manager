@@ -24,20 +24,19 @@ namespace ButopiaMysteries.GraphicsUserInterface
         {
             InitializeComponent();
             Roster = new();
-            MysterySheet charOne = new(Names.RandomName);
+            MysterySheet charOne = new(Names.RandomName, Plan.Thinkers, Sphere.Algebra);
             charOne.RandomGeneration();
             Roster.Sheets.Add(charOne.Name, charOne);
             referencePoint = new Point(10, 10);
-            CreateCharacterViews();
-
             this.BackColor = ViewSettings.BackgroundColor;
             this.Text = "Sélection des personnages"; 
 
             for (int i = 0; i < ViewSettings.InitialCharacterCount-1; i++)
             {
                 String name = Names.RandomName;
-                CreateCharacter(name , Rules.None);
+                CreateCharacter(name , Rules.None, Plan.Thinkers, Sphere.Algebra);
             }
+            CreateCharacterViews();
         }
 
 
@@ -89,9 +88,6 @@ namespace ButopiaMysteries.GraphicsUserInterface
         }
         private void CreateButton_Click(object sender, EventArgs e)
         {
-            
-            
-            
             CreationDialog();
         }
 
@@ -103,14 +99,16 @@ namespace ButopiaMysteries.GraphicsUserInterface
             {
                 Rules regleChoisie = dialog.SelectedRules;
                 string nomChoisi = dialog.CharacterName;
+                Plan planChoisi = dialog.SelectedPlan;
+                Sphere sphereChoisie = dialog.SelectedSphere;
                 if (string.IsNullOrWhiteSpace(nomChoisi))
                 {
                     nomChoisi = Names.RandomName;
                 }
-                CreateCharacter(nomChoisi, regleChoisie);
+                CreateCharacter(nomChoisi, regleChoisie, planChoisi, sphereChoisie);
             }
         }
-        private void CreateCharacter(string name, Rules rule)
+        private void CreateCharacter(string name, Rules rule, Plan plan, Sphere sphere)
         {
             if (Roster.Sheets.ContainsKey(name))
             {
@@ -118,14 +116,14 @@ namespace ButopiaMysteries.GraphicsUserInterface
             }
             else
             {
-                MysterySheet sheet = new(name);
+                // Utilisation du constructeur complet
+                MysterySheet sheet = new MysterySheet(name, plan, sphere);
                 sheet.RandomGeneration(rule);
                 Roster.Sheets.Add(sheet.Name, sheet);
                 CreateCharacterViews();
                 Refresh();
             }
         }
-
         private void QuitButton_Click(object sender, EventArgs e)
         {
             Dispose();
@@ -192,30 +190,48 @@ namespace ButopiaMysteries.GraphicsUserInterface
 
         private void CharacterSelect_MouseUp(object sender, MouseEventArgs e)
         {
-            if (deplacement && persoDépacer != null && !BoxSkill.SelectedItem.Equals(Skill.None))
+            if (deplacement && persoDépacer != null && !BoxSkill.SelectedValue.Equals(Skill.None))
             {
-                Skill s = (Skill)BoxSkill.SelectedItem;
-
+                Skill s = (Skill)BoxSkill.SelectedValue;
                 Indicator? i = s.GetIndicator();
+
                 if (i.HasValue)
                 {
-                    if (zoneAuto.Contains(e.Location))
+                    if (zoneAuto.Contains(e.Location) || zoneExamen.Contains(e.Location))
                     {
-                        TrialForm tf = new TrialForm(persoDépacer.Sheet, s, i.Value, null);
-                        tf.afficherInfo();
-                        tf.ShowDialog();
-                    }
-                    else if (zoneExamen.Contains(e.Location))
-                    {
-                        if (!boxDifficulty.SelectedItem.Equals(Difficulty.None))
+                        Skill finalSkill = s;
+                        int malus = 0;
+                        if (!persoDépacer.Sheet.Skills.ContainsKey(s) || persoDépacer.Sheet.Skills[s] == 0)
                         {
-                            Difficulty d = (Difficulty)boxDifficulty.SelectedItem;
-                            TrialForm tf = new TrialForm(persoDépacer.Sheet, s, i.Value, d);
+                            Skill sub = FindBestSubstitution(persoDépacer.Sheet, i.Value, s);
+                            if (sub == Skill.None)
+                            {
+                                MessageBox.Show(persoDépacer.Sheet.Name + "n'a aucune compétence pour cet indicateur.");
+                                CreateCharacterViews();
+                                deplacement = false; persoDépacer = null; Refresh(); return;
+                            }
+                            else
+                            {
+                                finalSkill = sub;
+                                malus = 2;
+                                MessageBox.Show("Substitution : " + sub.Name() + " utilisée avec un malus de -2.");
+                            }
+                        }
+                        if (zoneAuto.Contains(e.Location))
+                        {
+                            TrialForm tf = new TrialForm(persoDépacer.Sheet, finalSkill, i.Value, null, malus);
                             tf.afficherInfo();
                             tf.ShowDialog();
                         }
-                        else {
-                            MessageBox.Show("Veuillez choisir une difficulté svp");
+                        else if (zoneExamen.Contains(e.Location))
+                        {
+                            if (!boxDifficulty.SelectedItem.Equals(Difficulty.None))
+                            {
+                                Difficulty d = (Difficulty)boxDifficulty.SelectedItem;
+                                TrialForm tf = new TrialForm(persoDépacer.Sheet, finalSkill, i.Value, d, malus);
+                                tf.afficherInfo();
+                                tf.ShowDialog();
+                            }
                         }
                     }
                 }
@@ -225,12 +241,29 @@ namespace ButopiaMysteries.GraphicsUserInterface
             CreateCharacterViews();
             Refresh();
         }
-
         private void CharacterSelect_Load(object sender, EventArgs e)
         {
             boxDifficulty.DataSource = Enum.GetValues(typeof(Difficulty));
             BoxSkill.DataSource = Enum.GetValues(typeof(Skill));
         }
 
+        private Skill FindBestSubstitution(MysterySheet sheet, Indicator targetIndicator, Skill missingSkill)
+        {
+            Skill bestSkill = Skill.None;
+            int highestLevel = -1;
+            foreach (Skill s in sheet.Skills.Keys)
+            {
+                if (s.GetIndicator() == targetIndicator && s != missingSkill)
+                {
+                    int currentLevel = sheet.Skills[s];
+                    if (currentLevel > 0 && currentLevel > highestLevel)
+                    {
+                        highestLevel = currentLevel;
+                        bestSkill = s;
+                    }
+                }
+            }
+            return bestSkill;
+        }
     }
 }

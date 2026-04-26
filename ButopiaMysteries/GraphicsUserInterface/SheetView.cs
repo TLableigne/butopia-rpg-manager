@@ -31,26 +31,46 @@ namespace ButopiaMysteries.GraphicsUserInterface
             InitializeComponent();
             Sheet = mysterySheet;
             nameLabel.Text = Sheet.Name;
+            sphereLabel.Text += Sheet.MySphere.Name();
+            planLabel.Text += Sheet.MyPlan.Name();
+            indicatorLabels.Clear();
+            skillLabels.Clear();
             indicatorLabels.Add(Indicator.Body, indicLabel1);
             indicatorLabels.Add(Indicator.Mind, indicLabel2);
             indicatorLabels.Add(Indicator.Sense, indicLabel3);
             indicatorLabels.Add(Indicator.Maximum, indicLabel4);
-            skillLabels.Add(Skill.Feat, skillLabel1);
-            skillLabel2.Text = string.Empty;
-            skillLabels.Add(Skill.Design, skillLabel3);
-            skillLabel4.Text = string.Empty;
-            skillLabels.Add(Skill.Analysis, skillLabel5);
-            skillLabel6.Text = string.Empty;
-            skillLabels.Add(Skill.Survival, skillLabel7);
-            skillLabel8.Text = string.Empty;
-            skillLabels.Add(Skill.Dodge, skillLabel9);
-            skillLabel10.Text = string.Empty;
-            skillLabels.Add(Skill.Synthesis, skillLabel11);
-            skillLabel12.Text = string.Empty;
-            skillLabels.Add(Skill.Expression, skillLabel13);
-            skillLabel14.Text = string.Empty;
-            skillLabels.Add(Skill.Seduction, skillLabel15);
-            skillLabel16.Text = string.Empty;
+            Label[] tousLesLabels = {
+        skillLabel1, skillLabel2, skillLabel3, skillLabel4,
+        skillLabel5, skillLabel6, skillLabel7, skillLabel8,
+        skillLabel9, skillLabel10, skillLabel11, skillLabel12,
+        skillLabel13, skillLabel14, skillLabel15, skillLabel16
+    };
+            foreach (Label l in tousLesLabels)
+            {
+                l.Text = string.Empty;
+            }
+            int index = 0;
+            Indicator[] ordre = { Indicator.Body, Indicator.Mind, Indicator.Sense, Indicator.Maximum };
+
+            foreach (Indicator i in ordre)
+            {
+                foreach (Skill s in Sheet.Skills.Keys)
+                {
+                    if (s.GetIndicator() == i && index < tousLesLabels.Length)
+                    {
+                        skillLabels.Add(s, tousLesLabels[index]);
+                        index++;
+                    }
+                }
+            }
+            foreach (Skill s in Sheet.Skills.Keys)
+            {
+                if (!skillLabels.ContainsKey(s) && index < tousLesLabels.Length)
+                {
+                    skillLabels.Add(s, tousLesLabels[index]);
+                    index++;
+                }
+            }
             DisplayControls();
         }
         private void DisplayControls()
