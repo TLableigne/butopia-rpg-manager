@@ -1001,23 +1001,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\antcarpentie\\.nuget\\packages\\": {},
+    "C:\\Users\\anton\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "Z:\\Documents\\R2.02 C#\\SAE\\sae-s2.01-devapp\\ButopiaMysteries_Test\\ButopiaMysteries_Test.csproj",
+      "projectUniqueName": "C:\\Users\\anton\\Documents\\Cours\\S2.01 IHM\\Code\\ButopiaMysteries_Test\\ButopiaMysteries_Test.csproj",
       "projectName": "ButopiaMysteries_Test",
-      "projectPath": "Z:\\Documents\\R2.02 C#\\SAE\\sae-s2.01-devapp\\ButopiaMysteries_Test\\ButopiaMysteries_Test.csproj",
-      "packagesPath": "C:\\Users\\antcarpentie\\.nuget\\packages\\",
-      "outputPath": "Z:\\Documents\\R2.02 C#\\SAE\\sae-s2.01-devapp\\ButopiaMysteries_Test\\obj\\",
+      "projectPath": "C:\\Users\\anton\\Documents\\Cours\\S2.01 IHM\\Code\\ButopiaMysteries_Test\\ButopiaMysteries_Test.csproj",
+      "packagesPath": "C:\\Users\\anton\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\anton\\Documents\\Cours\\S2.01 IHM\\Code\\ButopiaMysteries_Test\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "\\\\iut.bx\\Etudiants\\Home\\antcarpentie\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\anton\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -1026,14 +1026,16 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net8.0-windows7.0": {
+          "framework": "net8.0-windows7.0",
           "targetAlias": "net8.0-windows",
           "projectReferences": {
-            "Z:\\Documents\\R2.02 C#\\SAE\\sae-s2.01-devapp\\ButopiaMysteries\\ButopiaMysteries.csproj": {
-              "projectPath": "Z:\\Documents\\R2.02 C#\\SAE\\sae-s2.01-devapp\\ButopiaMysteries\\ButopiaMysteries.csproj"
+            "C:\\Users\\anton\\Documents\\Cours\\S2.01 IHM\\Code\\ButopiaMysteries\\ButopiaMysteries.csproj": {
+              "projectPath": "C:\\Users\\anton\\Documents\\Cours\\S2.01 IHM\\Code\\ButopiaMysteries\\ButopiaMysteries.csproj"
             }
           }
         }
@@ -1048,10 +1050,11 @@
         "auditLevel": "low",
         "auditMode": "direct"
       },
-      "SdkAnalysisLevel": "9.0.300"
+      "SdkAnalysisLevel": "10.0.200"
     },
     "frameworks": {
       "net8.0-windows7.0": {
+        "framework": "net8.0-windows7.0",
         "targetAlias": "net8.0-windows",
         "dependencies": {
           "Microsoft.NET.Test.Sdk": {
@@ -1091,7 +1094,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.301/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.202/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
