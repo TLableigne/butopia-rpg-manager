@@ -28,6 +28,7 @@ namespace ButopiaMysteries.Logic
             Diff = diff;
             result.Text = "";
             Malus = malus;
+            MettreAJourAffichageSante();
         }
         public void afficherInfo()
         {
@@ -76,7 +77,6 @@ namespace ButopiaMysteries.Logic
                     }
                 }
 
-                // On met à jour le label de la fenêtre
                 result.Text = "Épreuves fermées terminées.";
             }
 
@@ -90,7 +90,21 @@ namespace ButopiaMysteries.Logic
                 }
                 result.Text = "Épreuves ouvertes terminées.";
             }
+            MettreAJourAffichageSante();
             MessageBox.Show(text, "Résultats");
+        }
+
+        private void MettreAJourAffichageSante()
+        {
+            string etat;
+            if (Sheet.EstEnCrise()) {
+                etat = Sheet.Name + "  - En crise "; 
+            }
+            else
+            {
+                etat = Sheet.Name + " - Stable ";
+            }
+            labelSanteMentale.Text = "Santé Mentale :"+ Sheet.SanteMentale+" / "+Sheet.SanteMentaleMax + etat;
         }
     }
 }
