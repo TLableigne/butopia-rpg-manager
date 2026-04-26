@@ -18,7 +18,13 @@ namespace ButopiaMysteries.Logic
         /// The name of the character.
         /// </summary>
         public string Name { get; init; }
+        /// <summary>
+        /// The philosophical plan associated with the character.
+        /// </summary>
         public Plan MyPlan { get; init; }
+        /// <summary>
+        /// The domain sphere associated with the character.
+        /// </summary>
         public Sphere MySphere { get; init; }
         /// <summary>
         /// Mapping: indicators to numeric level.
@@ -28,16 +34,37 @@ namespace ButopiaMysteries.Logic
         /// Mapping: skills to numeric level.
         /// </summary>
         public Dictionary<Skill, int> Skills { get; init; }
-
+        /// <summary>
+        /// Indicates whether the character is currently in training mode, which locks the free creation editing.
+        /// </summary>
         public bool estEnFormation { get; set; }
+        /// <summary>
+        /// The accumulated experience points of the character.
+        /// </summary>
         public int xp { get; set; }
+        /// <summary>
+        /// The maximum mental health of the character, derived from the lowest value among Body, Mind, and Sense, multiplied by 10.
+        /// </summary>
         public int SanteMentaleMax => Math.Min(Math.Min(Indicators[Indicator.Body], Indicators[Indicator.Mind]), Indicators[Indicator.Sense]) * 10;
+        /// <summary>
+        /// The current mental health points of the character.
+        /// </summary>
         public int SanteMentale { get; set; }
+        /// <summary>
+        /// The number of consecutive trial victories achieved by the character.
+        /// </summary>
         public int NbVictoirConsecutif { get; set; } = 0;
+        /// <summary>
+        /// Checks if the character's mental health has dropped to 0 or below.
+        /// </summary>
+        /// <returns>True if the character is in crisis, false otherwise.</returns>
         public bool EstEnCrise()
         {
             return SanteMentale <= 0;
         }
+        /// <summary>
+        /// Initializes the character's current mental health to its maximum capacity.
+        /// </summary>
         public void InitSanteMentale()
         {
             SanteMentale = SanteMentaleMax;
@@ -142,10 +169,21 @@ namespace ButopiaMysteries.Logic
             }
         }
 
+        /// <summary>
+        /// Generates a random integer within the specified inclusive bounds.
+        /// </summary>
+        /// <param name="min">The minimum value (default is 0).</param>
+        /// <param name="max">The maximum value (default is 6).</param>
+        /// <returns>A random integer.</returns>
         private int GenRandNum(int min = 0, int max=6)
         {
             return random.Next(min, max+1);
         }
+
+        /// <summary>
+        /// Ensures the specified skills are added to the character's skill dictionary with a base value of 0.
+        /// </summary>
+        /// <param name="skills">A parameter array of skills to add.</param>
         private void AddSkills(params Skill[] skills)
         {
             foreach (Skill s in skills)

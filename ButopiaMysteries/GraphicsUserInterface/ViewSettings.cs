@@ -23,9 +23,17 @@ namespace ButopiaMysteries.GraphicsUserInterface
         /// The font used to draw the names.
         /// </summary>
         public static Font CharacterFont { get; } = SystemFonts.DefaultFont;
-
+        /// <summary>
+        /// The global background color for the application's forms.
+        /// </summary>
         public static Color BackgroundColor { get; set; } = Color.White;
+        /// <summary>
+        /// The default thematic color associated with characters.
+        /// </summary>
         public static Color CharacterColor { get; set; } = Color.Teal;
+        /// <summary>
+        /// The number of characters to generate automatically upon starting the application.
+        /// </summary>
         public static int InitialCharacterCount { get; set; } = 1;
     }
 }

@@ -11,9 +11,19 @@ using System.Windows.Forms;
 
 namespace ButopiaMysteries.GraphicsUserInterface
 {
+    /// <summary>
+    /// A dedicated form for character training, allowing the expenditure of XP to level up skills and indicators, or to recover mental health.
+    /// </summary>
     public partial class TrainForm : Form
     {
+        /// <summary>
+        /// The character sheet currently being trained.
+        /// </summary>
         private MysterySheet Sheet { get; }
+        /// <summary>
+        /// Initializes a new instance of the TrainForm for a specific character.
+        /// </summary>
+        /// <param name="character">The target character sheet.</param>
         public TrainForm(MysterySheet character)
         {
             InitializeComponent();
@@ -23,6 +33,10 @@ namespace ButopiaMysteries.GraphicsUserInterface
             IndicateurComboBox.DataSource = Enum.GetValues(typeof(Indicator));
             UpdateDisplay();
         }
+
+        /// <summary>
+        /// Refreshes the labels displaying the character's name, XP, and feedback messages.
+        /// </summary>
         public void UpdateDisplay()
         {
             NameLabel.Text = "Entraînement de : " + Sheet.Name;
@@ -30,6 +44,9 @@ namespace ButopiaMysteries.GraphicsUserInterface
             labelResSoigner.Text = "";
         }
 
+        /// <summary>
+        /// Attempts to level up the selected skill if the character has sufficient XP.
+        /// </summary>
         private void TrainSkill_Click(object sender, EventArgs e)
         {
             Skill selectedSkill = (Skill)SkillComboBox.SelectedItem;
@@ -57,6 +74,9 @@ namespace ButopiaMysteries.GraphicsUserInterface
             }
         }
 
+        /// <summary>
+        /// Attempts to level up the selected indicator if the character has sufficient XP.
+        /// </summary>
         private void TrainIndicateur_Click(object sender, EventArgs e)
         {
             Indicator selectedInd = (Indicator)IndicateurComboBox.SelectedItem;
@@ -84,6 +104,9 @@ namespace ButopiaMysteries.GraphicsUserInterface
             }
         }
 
+        /// <summary>
+        /// Spends XP to recover 1 point of mental health, provided the character is not in crisis and is not already at max health.
+        /// </summary>
         private void soignerButton_Click(object sender, EventArgs e)
         {
             if (Sheet.EstEnCrise())

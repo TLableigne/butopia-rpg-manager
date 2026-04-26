@@ -17,8 +17,16 @@ namespace ButopiaMysteries.Logic
         Integrators,
         Traders,
     }
+    /// <summary>
+    /// Provides extension methods for the Plan enum.
+    /// </summary>
     public static class Plan_Operations
     {
+        /// <summary>
+        /// Returns the French display name of the specified plan.
+        /// </summary>
+        /// <param name="plan">The plan to evaluate.</param>
+        /// <returns>The localized name.</returns>
         public static string Name(this Plan plan)
         {
             return plan switch

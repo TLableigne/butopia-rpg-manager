@@ -17,6 +17,9 @@ namespace ButopiaMysteries.GraphicsUserInterface
     /// </summary>
     public partial class SimpleEditDialog : Form
     {
+        /// <summary>
+        /// The name of the stat being edited.
+        /// </summary>
         private string name=string.Empty;
         /// <summary>
         /// The value (start & end) = level.
@@ -26,7 +29,13 @@ namespace ButopiaMysteries.GraphicsUserInterface
         /// The points available.
         /// </summary>
         public int Points { get; private set; }
+        /// <summary>
+        /// Indicates whether the edited stat is a Skill.
+        /// </summary>
         private readonly bool skill;
+        /// <summary>
+        /// Indicates whether the edited stat is an Indicator.
+        /// </summary>
         private readonly bool indicator;
         /// <summary>
         /// Constructor: skill version
@@ -70,6 +79,10 @@ namespace ButopiaMysteries.GraphicsUserInterface
                 minusButton.Enabled = false;
             }
         }
+
+        /// <summary>
+        /// Initializes the common UI elements and sets the starting values.
+        /// </summary>
         private void Construct(string name, int value, int points)
         {
             InitializeComponent();
@@ -79,6 +92,10 @@ namespace ButopiaMysteries.GraphicsUserInterface
             nameLabel.Text = name;
             CurrentValues();
         }
+
+        /// <summary>
+        /// Updates the displayed labels for the current value and remaining points.
+        /// </summary>
         private void CurrentValues()
         {
             currentValueLabel.Text = "Valeur actuelle : " + Value;
@@ -103,6 +120,9 @@ namespace ButopiaMysteries.GraphicsUserInterface
             CurrentValues();
         }
 
+        /// <summary>
+        /// Evaluates the current state to enable or disable the plus/minus buttons based on limits and available points.
+        /// </summary>
         private void UpdateButtonsState()
         {
             int minValue = indicator ? Indicator_Operations.MinValue : Skill_Operations.MinValue;

@@ -17,8 +17,16 @@ namespace ButopiaMysteries.Logic
         Creation,
         Valorization,
     }
+    /// <summary>
+    /// Provides extension methods for the Sphere enum.
+    /// </summary>
     public static class Sphere_Operations
     {
+        /// <summary>
+        /// Returns the French display name of the specified sphere.
+        /// </summary>
+        /// <param name="sphere">The sphere to evaluate.</param>
+        /// <returns>The localized name.</returns>
         public static string Name(this Sphere sphere)
         {
             return sphere switch

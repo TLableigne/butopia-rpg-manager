@@ -76,6 +76,10 @@ namespace ButopiaMysteries.GraphicsUserInterface
 
             DisplayControls();
         }
+
+        /// <summary>
+        /// Refresh the display of points and toggles interface elements based on whether the character is in creation or training mode.
+        /// </summary>
         private void DisplayControls()
         {
             if (!Sheet.estEnFormation)
@@ -101,6 +105,12 @@ namespace ButopiaMysteries.GraphicsUserInterface
                 indicatorLabels[indicator].Text = DisplayIndicator(indicator);
             }
         }
+
+        /// <summary>
+        /// Formats a skill and its textual level representation for display.
+        /// </summary>
+        /// <param name="skill">The skill to display.</param>
+        /// <returns>A formatted string indicating the skill's name and current level.</returns>
         private string DisplaySkill(Skill skill)
         {
             int level = Sheet.Skills[skill];
@@ -108,6 +118,11 @@ namespace ButopiaMysteries.GraphicsUserInterface
             return skill.Name() + " : " + levelText;
         }
 
+        /// <summary>
+        /// Formats an indicator and its numeric value for display.
+        /// </summary>
+        /// <param name="indicator">The indicator to display.</param>
+        /// <returns>A formatted string indicating the indicator's name and value.</returns>
         private string DisplayIndicator(Indicator indicator)
         {
             return indicator.Name() + " : " + Sheet.Indicators[indicator];
@@ -155,6 +170,11 @@ namespace ButopiaMysteries.GraphicsUserInterface
                 }
             }
         }
+
+        /// <summary>
+        /// Opens the edition dialog to modify a specific skill's level.
+        /// </summary>
+        /// <param name="skill">The skill to edit.</param>
         private void SkillEdit(Skill skill)
         {
             SimpleEditDialog dialog = new(skill, Sheet.Skills[skill], skillPoints);
@@ -166,6 +186,10 @@ namespace ButopiaMysteries.GraphicsUserInterface
             }
         }
 
+        /// <summary>
+        /// Opens the edition dialog to modify a specific indicator's level and recalculates the Maximum indicator if necessary.
+        /// </summary>
+        /// <param name="indicator">The indicator to edit.</param>
         private void IndicatorEdit(Indicator indicator)
         {
             SimpleEditDialog dialog = new(indicator, Sheet.Indicators[indicator], indicatorPoints);

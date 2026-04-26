@@ -11,6 +11,9 @@ using System.Xml;
 
 namespace ButopiaMysteries.Logic
 {
+    /// <summary>
+    /// A form representing a trial (either open or closed) for a character.
+    /// </summary>
     public partial class TrialForm : Form
     {
         private MysterySheet Sheet;
@@ -19,6 +22,14 @@ namespace ButopiaMysteries.Logic
         private Difficulty? Diff;
         private int Malus;
 
+        /// <summary>
+        /// Initializes a new instance of the TrialForm.
+        /// </summary>
+        /// <param name="sheet">The character sheet taking the trial.</param>
+        /// <param name="skill">The skill used for the trial.</param>
+        /// <param name="indicator">The indicator used for the trial.</param>
+        /// <param name="diff">The target difficulty (null for open trials).</param>
+        /// <param name="malus">The malus applied, typically from skill substitution (default is 0).</param>
         public TrialForm(MysterySheet sheet, Skill skill, Indicator indicator, Difficulty? diff, int malus=0)
         {
             InitializeComponent();
@@ -30,6 +41,9 @@ namespace ButopiaMysteries.Logic
             Malus = malus;
             MettreAJourAffichageSante();
         }
+        /// <summary>
+        /// Updates the UI labels with the character's information, trial parameters, and any applied malus.
+        /// </summary>
         public void afficherInfo()
         {
             Nom.Text = "Personnage : " + Sheet.Name;
@@ -53,6 +67,9 @@ namespace ButopiaMysteries.Logic
             }
         }
 
+        /// <summary>
+        /// Executes the trial(s) based on the selected parameters and displays the results.
+        /// </summary>
         private void Lancer_Click(object sender, EventArgs e)
         {
             Lancer.Enabled = false;
@@ -94,6 +111,9 @@ namespace ButopiaMysteries.Logic
             MessageBox.Show(text, "Résultats");
         }
 
+        /// <summary>
+        /// Updates the mental health display and indicates if the character is currently in a state of crisis.
+        /// </summary>
         private void MettreAJourAffichageSante()
         {
             string etat;
@@ -104,7 +124,7 @@ namespace ButopiaMysteries.Logic
             {
                 etat =  " - Stable ";
             }
-            labelSanteMentale.Text = "Santé Mentale :"+ Sheet.SanteMentale+" / "+Sheet.SanteMentaleMax + etat;
+            labelMentalHealth.Text = "Santé Mentale :"+ Sheet.SanteMentale+" / "+Sheet.SanteMentaleMax + etat;
         }
     }
 }

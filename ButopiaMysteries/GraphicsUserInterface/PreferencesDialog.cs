@@ -10,48 +10,59 @@ using System.Windows.Forms;
 
 namespace ButopiaMysteries.GraphicsUserInterface
 {
+    /// <summary>
+    /// A dialog window allowing the user to configure global visual settings and initial roster parameters.
+    /// </summary>
     public partial class PreferencesDialog : Form
     {
         public PreferencesDialog()
         {
             InitializeComponent();
+            ChooseColorBGLabel.BackColor = ViewSettings.BackgroundColor;
+            ChooseColorBGLabel.ForeColor = ViewSettings.BackgroundColor;
+            ChooseColorCharLabel.BackColor = ViewSettings.DefaultPawnColour;
+            ChooseColorCharLabel.ForeColor = ViewSettings.DefaultPawnColour;
         }
 
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label5_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Opens a color dialog to set the default character pawn color.
+        /// </summary>
+        private void ChooseColorCharLabel_Click(object sender, EventArgs e)
         {
             using (ColorDialog colorDialog = new ColorDialog())
             {
                 if (colorDialog.ShowDialog() == DialogResult.OK)
                 {
                     ViewSettings.CharacterColor = colorDialog.Color;
-                    label5.BackColor = colorDialog.Color;
-                    label5.ForeColor = colorDialog.Color;
+                    ChooseColorCharLabel.BackColor = colorDialog.Color;
+                    ChooseColorCharLabel.ForeColor = colorDialog.Color;
                     ViewSettings.DefaultPawnColour = colorDialog.Color;
                     Refresh();
                 }
             }
         }
 
-        private void label4_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Opens a color dialog to set the main background color.
+        /// </summary>
+        private void ChooseColorBGLabel_Click(object sender, EventArgs e)
         {
             using (ColorDialog colorDialog = new ColorDialog())
             {
                 if (colorDialog.ShowDialog() == DialogResult.OK)
                 {
                     ViewSettings.BackgroundColor = colorDialog.Color;
-                    label4.BackColor = colorDialog.Color;
-                    label4.ForeColor = colorDialog.Color;
+                    ChooseColorBGLabel.BackColor = colorDialog.Color;
+                    ChooseColorBGLabel.ForeColor = colorDialog.Color;
                     Refresh();
                 }
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        /// <summary>
+/// Validates the preferences and updates the global application settings.
+/// </summary>
+        private void buttonOk_Click(object sender, EventArgs e)
         {
             ViewSettings.InitialCharacterCount = (int)numericUpDown1.Value;
             DialogResult = DialogResult.OK;
