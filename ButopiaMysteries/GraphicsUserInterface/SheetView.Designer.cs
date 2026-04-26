@@ -57,6 +57,7 @@
             planLabel = new Label();
             sphereLabel = new Label();
             labelXP = new Label();
+            labelSanteMental = new Label();
             theToolStrip.SuspendLayout();
             SuspendLayout();
             // 
@@ -337,11 +338,21 @@
             labelXP.TabIndex = 30;
             labelXP.Text = "labelXP                                                                     ";
             // 
+            // labelSanteMental
+            // 
+            labelSanteMental.AutoSize = true;
+            labelSanteMental.Location = new Point(343, 302);
+            labelSanteMental.Name = "labelSanteMental";
+            labelSanteMental.Size = new Size(98, 15);
+            labelSanteMental.TabIndex = 32;
+            labelSanteMental.Text = "labelSanteMental";
+            // 
             // SheetView
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(674, 337);
+            Controls.Add(labelSanteMental);
             Controls.Add(sphereLabel);
             Controls.Add(planLabel);
             Controls.Add(labelXP);
@@ -407,5 +418,6 @@
         private Label planLabel;
         private Label sphereLabel;
         private Label labelXP;
+        private Label labelSanteMental;
     }
 }

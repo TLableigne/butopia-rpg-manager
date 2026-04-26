@@ -29,6 +29,8 @@ namespace ButopiaMysteries.GraphicsUserInterface
         {
             InitializeComponent();
             Sheet = mysterySheet;
+            Sheet.InitSanteMentale();
+            labelSanteMental.Text = "Votre santé mental est  au niveau : " + Sheet.SanteMentale+" / " + Sheet.SanteMentaleMax;
             nameLabel.Text = Sheet.Name;
             sphereLabel.Text += Sheet.MySphere.Name();
             planLabel.Text += Sheet.MyPlan.Name();
@@ -39,11 +41,11 @@ namespace ButopiaMysteries.GraphicsUserInterface
             indicatorLabels.Add(Indicator.Sense, indicLabel3);
             indicatorLabels.Add(Indicator.Maximum, indicLabel4);
             Label[] tousLesLabels = {
-        skillLabel1, skillLabel2, skillLabel3, skillLabel4,
-        skillLabel5, skillLabel6, skillLabel7, skillLabel8,
-        skillLabel9, skillLabel10, skillLabel11, skillLabel12,
-        skillLabel13, skillLabel14, skillLabel15, skillLabel16
-    };
+            skillLabel1, skillLabel2, skillLabel3, skillLabel4,
+            skillLabel5, skillLabel6, skillLabel7, skillLabel8,
+            skillLabel9, skillLabel10, skillLabel11, skillLabel12,
+            skillLabel13, skillLabel14, skillLabel15, skillLabel16
+            };
             foreach (Label l in tousLesLabels)
             {
                 l.Text = string.Empty;
@@ -128,7 +130,7 @@ namespace ButopiaMysteries.GraphicsUserInterface
 
         private void Label_MouseClick(object sender, MouseEventArgs e)
         {
-            if (!Sheet.estEnFormation)
+            if (Sheet.estEnFormation)
             {
                 return;
             }
