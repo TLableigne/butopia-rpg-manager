@@ -88,18 +88,10 @@ namespace ButopiaMysteries.GraphicsUserInterface
         }
         private void CreateButton_Click(object sender, EventArgs e)
         {
-            NewCharactereCreation p = new NewCharactereCreation();
-            if (p.ShowDialog() == DialogResult.OK)
-            {
-                MysterySheet monPerso = p.NouveauPersonnage;
-                Roster.Sheets.Add(monPerso.Name, monPerso);
-                CreateCharacterViews();
-                Refresh();
-            }
-            //CreationDialog();
+            CreationDialog();
         }
 
-        /* 
+         
         private void CreationDialog()
         {
             NewCharacterDialog dialog = new();
@@ -133,7 +125,7 @@ namespace ButopiaMysteries.GraphicsUserInterface
                 Refresh();
             }
         }
-        */
+        
         private void QuitButton_Click(object sender, EventArgs e)
         {
             Dispose();
