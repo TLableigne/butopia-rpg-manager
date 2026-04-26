@@ -17,7 +17,9 @@ namespace ButopiaMysteries.Logic
         private Skill Skill;
         private Indicator Indicator;
         private Difficulty? Diff;
-        public TrialForm(MysterySheet sheet, Skill skill, Indicator indicator, Difficulty? diff)
+        private int Malus;
+
+        public TrialForm(MysterySheet sheet, Skill skill, Indicator indicator, Difficulty? diff, int malus=0)
         {
             InitializeComponent();
             Sheet = sheet;
@@ -25,51 +27,71 @@ namespace ButopiaMysteries.Logic
             Indicator = indicator;
             Diff = diff;
             result.Text = "";
+            Malus = malus;
         }
         public void afficherInfo()
         {
             Nom.Text = "Personnage : " + Sheet.Name;
-            Competance.Text = $"Compétence : " + Skill.Name() + " - Niveau : " + Sheet.Skills[Skill];
+            if (Malus > 0)
+            {
+                Competence.Text = $"Compétence : " + Skill.Name() + " - Niveau : " + Sheet.Skills[Skill] + " (Substitution -> Malus -2)";
+            }
+            else
+            {
+                Competence.Text = $"Compétence : " + Skill.Name() + " - Niveau : " + Sheet.Skills[Skill];
+            }
             Indicateur.Text = $"Indicateur : " + Indicator + " - Niveau : " + Sheet.Indicators[Indicator];
             if (Diff != null)
             {
                 Difficulte.Text = "Difficulté visée : " + Diff.Value.Name();
+                Type.Text = "Épreuve Fermée";
             }
             else
             {
-                Difficulte.Text = "Type : Épreuve Ouverte";
+                Type.Text = "Épreuve Ouverte";
             }
-            result.Text = " Le résultat sera ici lance l'épreuve pour le découvrir ";
         }
 
         private void Lancer_Click(object sender, EventArgs e)
         {
-            string text ="";
-            for (int i = 0; i <=numUpDownNbEpreuve.Value; i++)
+            Lancer.Enabled = false;
+
+            string text = "";
+            int nbEpreuves = (int)numUpDownNbEpreuve.Value;
+            if (Diff != null)
             {
-                Lancer.Enabled = false;
-                if (Diff != null)
+                for (int i = 1; i <= nbEpreuves; i++)
                 {
-                    bool res = Trial.ClosedTrial(Sheet, Indicator, Skill, (Difficulty)Diff);
+
+                    bool res = Trial.ClosedTrial(Sheet, Indicator, Skill, (Difficulty)Diff, Malus);
+
                     if (res)
                     {
-                        text +="Bravo tu as passé l'epreuve n°"+i + Environment.NewLine;
-                        Sheet.xp++;
+                        text += $"Bravo tu as passé l'épreuve n°{i}" + Environment.NewLine;
+                        Sheet.xp++; 
                     }
                     else
                     {
-                        text += "Dommage tu n'as pas réussi l'épreuve n°"+i + Environment.NewLine;
+                        text += $"Dommage tu n'as pas réussi l'épreuve n°{i}..." + Environment.NewLine;
                     }
                 }
-                else
-                {
-                    Difficulty res = Trial.OpenTrial(Sheet, Indicator, Skill);
-                    text += "Bravo tu as réussi a atteindre la difficulté : " + Difficulty_Operations.Name(res) +" pour l'épreuve n°"+i+ Environment.NewLine;
 
-                }
+                // On met à jour le label de la fenêtre
+                result.Text = "Épreuves fermées terminées.";
             }
-            MessageBox.Show(text);
-        }  
+
+            else
+            {
+                for (int i = 1; i <= nbEpreuves; i++)
+                {
+                    Difficulty res = Trial.OpenTrial(Sheet, Indicator, Skill, Malus);
+
+                    text += $"Bravo tu as atteint la difficulté : {Difficulty_Operations.Name(res)} pour l'épreuve n°{i}" + Environment.NewLine;
+                }
+                result.Text = "Épreuves ouvertes terminées.";
+            }
+            MessageBox.Show(text, "Résultats");
+        }
     }
 }
  

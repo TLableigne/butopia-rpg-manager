@@ -29,12 +29,13 @@
         private void InitializeComponent()
         {
             Nom = new Label();
-            Competance = new Label();
+            Competence = new Label();
             Indicateur = new Label();
             Difficulte = new Label();
             result = new Label();
             Lancer = new Button();
             Fermer = new Button();
+            Type = new Label();
             numUpDownNbEpreuve = new NumericUpDown();
             labelNumUpDown = new Label();
             ((System.ComponentModel.ISupportInitialize)numUpDownNbEpreuve).BeginInit();
@@ -43,42 +44,45 @@
             // Nom
             // 
             Nom.AutoSize = true;
-            Nom.Location = new Point(48, 75);
+            Nom.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            Nom.Location = new Point(48, 142);
             Nom.Name = "Nom";
-            Nom.Size = new Size(32, 15);
+            Nom.Size = new Size(63, 32);
             Nom.TabIndex = 0;
             Nom.Text = "nom";
             // 
-            // Competance
+            // Competence
             // 
-            Competance.AutoSize = true;
-            Competance.Location = new Point(48, 154);
-            Competance.Name = "Competance";
-            Competance.Size = new Size(73, 15);
-            Competance.TabIndex = 1;
-            Competance.Text = "compétance";
+            Competence.AutoSize = true;
+            Competence.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            Competence.Location = new Point(48, 18);
+            Competence.Name = "Competence";
+            Competence.Size = new Size(94, 21);
+            Competence.TabIndex = 1;
+            Competence.Text = "compétence";
             // 
             // Indicateur
             // 
             Indicateur.AutoSize = true;
-            Indicateur.Location = new Point(48, 247);
+            Indicateur.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            Indicateur.Location = new Point(48, 57);
             Indicateur.Name = "Indicateur";
-            Indicateur.Size = new Size(60, 15);
+            Indicateur.Size = new Size(79, 21);
             Indicateur.TabIndex = 2;
             Indicateur.Text = "indicateur";
             // 
             // Difficulte
             // 
             Difficulte.AutoSize = true;
-            Difficulte.Location = new Point(48, 356);
+            Difficulte.Location = new Point(48, 242);
             Difficulte.Name = "Difficulte";
-            Difficulte.Size = new Size(94, 15);
+            Difficulte.Size = new Size(0, 15);
             Difficulte.TabIndex = 4;
-            Difficulte.Text = "difficulté choisie";
             // 
             // result
             // 
-            result.Location = new Point(306, 247);
+            result.BackColor = SystemColors.ControlLightLight;
+            result.Location = new Point(360, 277);
             result.Name = "result";
             result.RightToLeft = RightToLeft.No;
             result.Size = new Size(376, 30);
@@ -86,9 +90,9 @@
             // 
             // Lancer
             // 
-            Lancer.Location = new Point(399, 144);
+            Lancer.Location = new Point(396, 126);
             Lancer.Name = "Lancer";
-            Lancer.Size = new Size(154, 35);
+            Lancer.Size = new Size(301, 118);
             Lancer.TabIndex = 6;
             Lancer.Text = "lancer l'épreuve";
             Lancer.UseVisualStyleBackColor = true;
@@ -97,9 +101,9 @@
             // Fermer
             // 
             Fermer.DialogResult = DialogResult.Cancel;
-            Fermer.Location = new Point(669, 379);
+            Fermer.Location = new Point(457, 335);
             Fermer.Name = "Fermer";
-            Fermer.Size = new Size(75, 23);
+            Fermer.Size = new Size(168, 38);
             Fermer.TabIndex = 7;
             Fermer.Text = "Fermer";
             Fermer.UseVisualStyleBackColor = true;
@@ -123,19 +127,30 @@
             labelNumUpDown.TabIndex = 9;
             labelNumUpDown.Text = "Nombre d'executions : ";
             // 
+            // Type
+            // 
+            Type.AutoSize = true;
+            Type.Font = new Font("Segoe UI Symbol", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            Type.Location = new Point(415, 57);
+            Type.Name = "Type";
+            Type.Size = new Size(86, 45);
+            Type.TabIndex = 8;
+            Type.Text = "type";
+            // 
             // TrialForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
             Controls.Add(labelNumUpDown);
             Controls.Add(numUpDownNbEpreuve);
+            ClientSize = new Size(820, 413);
+            Controls.Add(Type);
             Controls.Add(Fermer);
             Controls.Add(Lancer);
             Controls.Add(result);
             Controls.Add(Difficulte);
             Controls.Add(Indicateur);
-            Controls.Add(Competance);
+            Controls.Add(Competence);
             Controls.Add(Nom);
             Name = "TrialForm";
             Text = "TrialForm";
@@ -147,7 +162,7 @@
         #endregion
 
         private Label Nom;
-        private Label Competance;
+        private Label Competence;
         private Label Indicateur;
         private Label Difficulte;
         private Label result;
@@ -155,5 +170,6 @@
         private Button Fermer;
         private NumericUpDown numUpDownNbEpreuve;
         private Label labelNumUpDown;
+        private Label Type;
     }
 }

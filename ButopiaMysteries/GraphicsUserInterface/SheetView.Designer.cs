@@ -54,6 +54,8 @@
             modeToolStripButton = new ToolStripButton();
             indicatorPointsToolStripLabel = new ToolStripLabel();
             skillPointsToolStripLabel = new ToolStripLabel();
+            planLabel = new Label();
+            sphereLabel = new Label();
             labelXP = new Label();
             theToolStrip.SuspendLayout();
             SuspendLayout();
@@ -120,7 +122,7 @@
             // skillLabel3
             // 
             skillLabel3.AutoSize = true;
-            skillLabel3.Location = new Point(101, 121);
+            skillLabel3.Location = new Point(457, 62);
             skillLabel3.Name = "skillLabel3";
             skillLabel3.Size = new Size(44, 15);
             skillLabel3.TabIndex = 12;
@@ -130,7 +132,7 @@
             // skillLabel4
             // 
             skillLabel4.AutoSize = true;
-            skillLabel4.Location = new Point(101, 151);
+            skillLabel4.Location = new Point(101, 121);
             skillLabel4.Name = "skillLabel4";
             skillLabel4.Size = new Size(44, 15);
             skillLabel4.TabIndex = 13;
@@ -140,7 +142,7 @@
             // skillLabel5
             // 
             skillLabel5.AutoSize = true;
-            skillLabel5.Location = new Point(101, 181);
+            skillLabel5.Location = new Point(101, 149);
             skillLabel5.Name = "skillLabel5";
             skillLabel5.Size = new Size(44, 15);
             skillLabel5.TabIndex = 14;
@@ -150,7 +152,7 @@
             // skillLabel6
             // 
             skillLabel6.AutoSize = true;
-            skillLabel6.Location = new Point(101, 208);
+            skillLabel6.Location = new Point(262, 81);
             skillLabel6.Name = "skillLabel6";
             skillLabel6.Size = new Size(44, 15);
             skillLabel6.TabIndex = 15;
@@ -160,7 +162,7 @@
             // skillLabel7
             // 
             skillLabel7.AutoSize = true;
-            skillLabel7.Location = new Point(101, 233);
+            skillLabel7.Location = new Point(262, 137);
             skillLabel7.Name = "skillLabel7";
             skillLabel7.Size = new Size(44, 15);
             skillLabel7.TabIndex = 16;
@@ -170,7 +172,7 @@
             // skillLabel8
             // 
             skillLabel8.AutoSize = true;
-            skillLabel8.Location = new Point(101, 262);
+            skillLabel8.Location = new Point(262, 193);
             skillLabel8.Name = "skillLabel8";
             skillLabel8.Size = new Size(44, 15);
             skillLabel8.TabIndex = 17;
@@ -180,7 +182,7 @@
             // skillLabel9
             // 
             skillLabel9.AutoSize = true;
-            skillLabel9.Location = new Point(232, 62);
+            skillLabel9.Location = new Point(259, 248);
             skillLabel9.Name = "skillLabel9";
             skillLabel9.Size = new Size(44, 15);
             skillLabel9.TabIndex = 19;
@@ -190,7 +192,7 @@
             // skillLabel10
             // 
             skillLabel10.AutoSize = true;
-            skillLabel10.Location = new Point(232, 93);
+            skillLabel10.Location = new Point(457, 137);
             skillLabel10.Name = "skillLabel10";
             skillLabel10.Size = new Size(44, 15);
             skillLabel10.TabIndex = 20;
@@ -200,7 +202,7 @@
             // skillLabel11
             // 
             skillLabel11.AutoSize = true;
-            skillLabel11.Location = new Point(232, 121);
+            skillLabel11.Location = new Point(457, 193);
             skillLabel11.Name = "skillLabel11";
             skillLabel11.Size = new Size(44, 15);
             skillLabel11.TabIndex = 21;
@@ -210,7 +212,7 @@
             // skillLabel12
             // 
             skillLabel12.AutoSize = true;
-            skillLabel12.Location = new Point(232, 151);
+            skillLabel12.Location = new Point(101, 181);
             skillLabel12.Name = "skillLabel12";
             skillLabel12.Size = new Size(44, 15);
             skillLabel12.TabIndex = 22;
@@ -220,7 +222,7 @@
             // skillLabel13
             // 
             skillLabel13.AutoSize = true;
-            skillLabel13.Location = new Point(232, 181);
+            skillLabel13.Location = new Point(101, 206);
             skillLabel13.Name = "skillLabel13";
             skillLabel13.Size = new Size(44, 15);
             skillLabel13.TabIndex = 23;
@@ -230,7 +232,7 @@
             // skillLabel14
             // 
             skillLabel14.AutoSize = true;
-            skillLabel14.Location = new Point(232, 208);
+            skillLabel14.Location = new Point(101, 233);
             skillLabel14.Name = "skillLabel14";
             skillLabel14.Size = new Size(44, 15);
             skillLabel14.TabIndex = 24;
@@ -240,7 +242,7 @@
             // skillLabel15
             // 
             skillLabel15.AutoSize = true;
-            skillLabel15.Location = new Point(232, 233);
+            skillLabel15.Location = new Point(101, 259);
             skillLabel15.Name = "skillLabel15";
             skillLabel15.Size = new Size(44, 15);
             skillLabel15.TabIndex = 25;
@@ -250,7 +252,7 @@
             // skillLabel16
             // 
             skillLabel16.AutoSize = true;
-            skillLabel16.Location = new Point(232, 262);
+            skillLabel16.Location = new Point(457, 248);
             skillLabel16.Name = "skillLabel16";
             skillLabel16.Size = new Size(44, 15);
             skillLabel16.TabIndex = 26;
@@ -259,7 +261,7 @@
             // 
             // closeButton
             // 
-            closeButton.Location = new Point(342, 302);
+            closeButton.Location = new Point(587, 277);
             closeButton.Name = "closeButton";
             closeButton.Size = new Size(75, 23);
             closeButton.TabIndex = 28;
@@ -282,7 +284,7 @@
             theToolStrip.Items.AddRange(new ToolStripItem[] { modeToolStripButton, indicatorPointsToolStripLabel, skillPointsToolStripLabel });
             theToolStrip.Location = new Point(0, 0);
             theToolStrip.Name = "theToolStrip";
-            theToolStrip.Size = new Size(429, 25);
+            theToolStrip.Size = new Size(674, 25);
             theToolStrip.TabIndex = 29;
             theToolStrip.Text = "toolStrip1";
             // 
@@ -308,6 +310,24 @@
             skillPointsToolStripLabel.Size = new Size(86, 22);
             skillPointsToolStripLabel.Text = "toolStripLabel1";
             // 
+            // planLabel
+            // 
+            planLabel.AutoSize = true;
+            planLabel.Location = new Point(262, 33);
+            planLabel.Name = "planLabel";
+            planLabel.Size = new Size(41, 15);
+            planLabel.TabIndex = 30;
+            planLabel.Text = "Plan - ";
+            // 
+            // sphereLabel
+            // 
+            sphereLabel.AutoSize = true;
+            sphereLabel.Location = new Point(457, 33);
+            sphereLabel.Name = "sphereLabel";
+            sphereLabel.Size = new Size(54, 15);
+            sphereLabel.TabIndex = 31;
+            sphereLabel.Text = "Sphère - ";
+            // 
             // labelXP
             // 
             labelXP.AutoSize = true;
@@ -321,7 +341,9 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(429, 337);
+            ClientSize = new Size(674, 312);
+            Controls.Add(sphereLabel);
+            Controls.Add(planLabel);
             Controls.Add(labelXP);
             Controls.Add(theToolStrip);
             Controls.Add(closeButton);
@@ -382,6 +404,8 @@
         private ToolStripButton modeToolStripButton;
         private ToolStripLabel indicatorPointsToolStripLabel;
         private ToolStripLabel skillPointsToolStripLabel;
+        private Label planLabel;
+        private Label sphereLabel;
         private Label labelXP;
     }
 }
