@@ -46,13 +46,46 @@ namespace ButopiaMysteries.Logic
         }
         public static bool ClosedTrial(MysterySheet character, Indicator indicator, Skill skill, Difficulty difficultéVisée)
         {
-            bool res = false;
-            Difficulty difficulté = OpenTrial(character, indicator, skill);
-            if (difficulté.MinimumScore() >= difficultéVisée.MinimumScore())
+            if (difficultéVisée == Difficulty.None)
             {
-               res = true;
+                return true;
             }
-            return res;
+
+            int skillLevel = character.Skills[skill];
+
+            switch (skillLevel)
+            {
+                case 0:
+                    return false;
+
+                case 1:
+                    if (difficultéVisée >= Difficulty.Exploit) return false;
+                    break;
+
+                case 2:
+                    if (difficultéVisée <= Difficulty.Trivial) return true;
+                    if (difficultéVisée >= Difficulty.Surhumain) return false;
+                    break;
+
+                case 3:
+                    if (difficultéVisée <= Difficulty.Trivial) return true;
+                    if (difficultéVisée >= Difficulty.Impossible) return false;
+                    break;
+
+                case 4:
+                    if (difficultéVisée <= Difficulty.Facile) return true;
+                    break;
+
+                case 5:
+                    if (difficultéVisée <= Difficulty.Normal) return true;
+                    break;
+
+                case 6:
+                    if (difficultéVisée <= Difficulty.Complexe) return true;
+                    break;
+            }
+            Difficulty difficultéObtenue = OpenTrial(character, indicator, skill);
+            return difficultéObtenue.MinimumScore() >= difficultéVisée.MinimumScore();
         }
     }
 }

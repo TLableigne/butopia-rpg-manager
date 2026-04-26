@@ -83,6 +83,20 @@ namespace ButopiaMysteries.Logic
                 _ => "Inconnu"
             };
         }
+
+        public static int GetSkillValue(string skill)
+        {
+            return skill switch {
+                "Incompétent" => 0,
+                "Amateur" => 0,
+                "Apprenti" => 5,
+                "Compagnon" => 5,
+                "Maître" => 10,
+                "Agrégé" => 15,
+                "Ministre" => 20,
+                "Inconnu" => 0
+                }; 
+        }
         /// <summary>
         /// Gives all skills satisfying a specified condition.
         /// </summary>
