@@ -37,6 +37,9 @@
             Close = new Button();
             IndicateurBoxLabel = new Label();
             SkillComboBoxLabel = new Label();
+            soignerButton = new Button();
+            labelResSoigner = new Label();
+            labelRes = new Label();
             SuspendLayout();
             // 
             // NameLabel
@@ -121,11 +124,40 @@
             SkillComboBoxLabel.TabIndex = 8;
             SkillComboBoxLabel.Text = "Skill :";
             // 
+            // soignerButton
+            // 
+            soignerButton.Location = new Point(45, 234);
+            soignerButton.Name = "soignerButton";
+            soignerButton.Size = new Size(121, 23);
+            soignerButton.TabIndex = 9;
+            soignerButton.Text = "Soigner votre perso";
+            soignerButton.UseVisualStyleBackColor = true;
+            soignerButton.Click += soignerButton_Click;
+            // 
+            // labelResSoigner
+            // 
+            labelResSoigner.AutoSize = true;
+            labelResSoigner.Location = new Point(252, 242);
+            labelResSoigner.Name = "labelResSoigner";
+            labelResSoigner.Size = new Size(0, 15);
+            labelResSoigner.TabIndex = 10;
+            // 
+            // labelRes
+            // 
+            labelRes.AutoSize = true;
+            labelRes.Location = new Point(413, 171);
+            labelRes.Name = "labelRes";
+            labelRes.Size = new Size(0, 15);
+            labelRes.TabIndex = 11;
+            // 
             // TrainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(720, 287);
+            Controls.Add(labelRes);
+            Controls.Add(labelResSoigner);
+            Controls.Add(soignerButton);
             Controls.Add(SkillComboBoxLabel);
             Controls.Add(IndicateurBoxLabel);
             Controls.Add(Close);
@@ -152,5 +184,8 @@
         private Button Close;
         private Label IndicateurBoxLabel;
         private Label SkillComboBoxLabel;
+        private Button soignerButton;
+        private Label labelResSoigner;
+        private Label labelRes;
     }
 }
