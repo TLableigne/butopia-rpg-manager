@@ -96,12 +96,18 @@ namespace ButopiaMysteries.GraphicsUserInterface
             }
             createButton.Enabled = Roster.Sheets.Count < 12;
         }
+
+        /// <summary>
+        /// Triggers the character creation dialog when the create button is clicked.
+        /// </summary>
         private void CreateButton_Click(object sender, EventArgs e)
         {
             CreationDialog();
         }
 
-         
+        /// <summary>
+        /// Opens the dialog window to configure and create a new character.
+        /// </summary>
         private void CreationDialog()
         {
             NewCharacterDialog dialog = new();
@@ -143,12 +149,18 @@ namespace ButopiaMysteries.GraphicsUserInterface
                 Refresh();
             }
         }
-        
+
+        /// <summary>
+        /// Closes the selection window.
+        /// </summary>
         private void QuitButton_Click(object sender, EventArgs e)
         {
             Dispose();
         }
-        
+
+        /// <summary>
+        /// Handles mouse clicks to start dragging a character, open their sheet, or delete them.
+        /// </summary>
         private void CharacterSelect_MouseDown(object sender, MouseEventArgs e)
         {
 
@@ -196,6 +208,10 @@ namespace ButopiaMysteries.GraphicsUserInterface
                 }
 
         }
+
+        /// <summary>
+        /// Updates the character's position while being dragged by the mouse.
+        /// </summary>
         private void CharacterSelect_MouseMove(object sender, MouseEventArgs e)
         {
             if (deplacement && persoDépacer != null)
@@ -210,6 +226,9 @@ namespace ButopiaMysteries.GraphicsUserInterface
             }
         }
 
+        /// <summary>
+        /// Handles dropping a character into a training or trial zone and triggering the relevant events.
+        /// </summary>
         private void CharacterSelect_MouseUp(object sender, MouseEventArgs e)
         {
             if (deplacement && persoDépacer != null && !BoxSkill.SelectedValue.Equals(Skill.None))
@@ -294,6 +313,10 @@ namespace ButopiaMysteries.GraphicsUserInterface
             CreateCharacterViews();
             Refresh();
         }
+
+        /// <summary>
+        /// Initializes the dropdown data sources for difficulty and skills when the form loads.
+        /// </summary>
         private void CharacterSelect_Load(object sender, EventArgs e)
         {
             boxDifficulty.DataSource = Enum.GetValues(typeof(Difficulty));

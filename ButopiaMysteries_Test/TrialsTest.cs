@@ -1,41 +1,61 @@
-﻿using ButopiaMysteries.Logic;
-using System;
+﻿using NUnit.Framework;
+using ButopiaMysteries.Logic;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace ButopiaMysteries_Test
+namespace ButopiaMysteries.Tests
 {
-    public class TrialsTest
+    [TestFixture]
+    public class TrialTests
     {
+        [Test]
+        public void Cast_Test()
+        {
+            List<int> roll = Trial.Cast(4);
+
+            Assert.That(roll.Count, Is.EqualTo(4));
+            foreach (int diceResult in roll)
+            {
+                Assert.That(diceResult, Is.GreaterThanOrEqualTo(1));
+                Assert.That(diceResult, Is.LessThanOrEqualTo(6));
+            }
+        }
+
         [Test]
         public void NumericalResult_Test()
         {
-            NumericalResult_TestMethod(null, 2, 0);
-            NumericalResult_TestMethod(new List<int>(), 2, 0);
-            NumericalResult_TestMethod(new List<int> { 2, 4, 6 }, 0, 0);
-            NumericalResult_TestMethod(new List<int> { 2, 4, 6 }, 3, 12);
+            Assert.That(Trial.NumericResult(null, 3), Is.EqualTo(0));
+            Assert.That(Trial.NumericResult(new List<int>(), 3), Is.EqualTo(0));
+            Assert.That(Trial.NumericResult(new List<int> { 3, 5, 6 }, 0), Is.EqualTo(0));
+            Assert.That(Trial.NumericResult(new List<int> { 1, 4 }, 1), Is.EqualTo(4));
+            Assert.That(Trial.NumericResult(new List<int> { 6, 2 }, 3), Is.EqualTo(17)); 
         }
-        private void NumericalResult_TestMethod(List<int> list, int skill=0, int sum = 0)
+
+        [Test]
+        public void OpenTrial_Test()
         {
-            if (list == null) // Case: null list
-            {
-                Assert.That(Trial.NumericResult(list, skill), Is.EqualTo(0));
-                return;
-            }
-            if (list.Count == 0) // Case: empty list
-            {
-                Assert.That(Trial.NumericResult(list, skill), Is.EqualTo(0));
-                return;
-            }
-            if (skill == 0) // Case: void skill
-            {
-                Assert.That(Trial.NumericResult(list, skill), Is.EqualTo(0));
-                return;
-            }
-            // Nominal case
-            Assert.That(Trial.NumericResult(list, skill), Is.EqualTo(sum));
+            MysterySheet sheet = new MysterySheet("TestChar", Plan.Thinkers, Sphere.Algebra);
+            sheet.RandomGeneration(Rules.Fixed); 
+            Difficulty resultat = Trial.OpenTrial(sheet, Indicator.Body, Skill.Feat);
+            Assert.That((int)resultat, Is.GreaterThanOrEqualTo(0));
+        }
+
+        [Test]
+        public void ClosedTrial_Test()
+        {
+            MysterySheet sheet = new MysterySheet("TestChar", Plan.Thinkers, Sphere.Algebra);
+            sheet.RandomGeneration(Rules.Fixed);
+
+            bool resultFail = Trial.ClosedTrial(sheet, Indicator.Body, Skill.Feat, Difficulty.Exploit);
+
+            Assert.That(resultFail, Is.False);
+            Assert.That(sheet.SanteMentale, Is.EqualTo(19));
+
+            sheet.Skills[Skill.Feat] = 4;
+
+            bool resultSuccess = Trial.ClosedTrial(sheet, Indicator.Body, Skill.Feat, Difficulty.Facile);
+
+            Assert.That(resultSuccess, Is.True);
+            Assert.That(sheet.NbVictoirConsecutif, Is.EqualTo(1));
         }
     }
 }

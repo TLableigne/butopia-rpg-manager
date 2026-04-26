@@ -136,11 +136,17 @@ namespace ButopiaMysteries.GraphicsUserInterface
             return indicator.Name() + " : " + Sheet.Indicators[indicator];
         }
 
+        /// <summary>
+        /// Closes the character sheet window.
+        /// </summary>
         private void CloseButton_Click(object sender, EventArgs e)
         {
             Dispose();
         }
 
+        /// <summary>
+        /// Switches the character sheet into Training mode, locking base stat modifications.
+        /// </summary>
         private void ModeToolStripButton_Click(object sender, EventArgs e)
         {
             Sheet.estEnFormation = true;
@@ -149,7 +155,9 @@ namespace ButopiaMysteries.GraphicsUserInterface
         }
 
 
-
+        /// <summary>
+        /// Opens the edit dialog for the clicked indicator or skill label if the character is in Creation mode.
+        /// </summary>
         private void Label_MouseClick(object sender, MouseEventArgs e)
         {
             if (Sheet.estEnFormation)
@@ -220,6 +228,9 @@ namespace ButopiaMysteries.GraphicsUserInterface
             }
         }
 
+        /// <summary>
+        /// Add an item to the inventory.
+        /// </summary>
         private void addButton_Click(object sender, EventArgs e)
         {
             if (!string.IsNullOrWhiteSpace(textObject.Text))

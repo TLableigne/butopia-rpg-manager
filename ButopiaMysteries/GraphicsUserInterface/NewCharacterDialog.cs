@@ -51,11 +51,18 @@ namespace ButopiaMysteries.GraphicsUserInterface
             okButton.Enabled = false;
             SelectedRules = Rules.None;
         }
+
+        /// <summary>
+        /// Fills the text box with a randomly generated name when double-clicked.
+        /// </summary>
         private void NameTextBox_DoubleClick(object sender, EventArgs e)
         {
             nameTextBox.Text = Names.RandomName;
         }
 
+        /// <summary>
+        /// Enables the confirmation button only if a character name has been entered.
+        /// </summary>
         private void NameTextBox_TextChanged(object sender, EventArgs e)
         {
 
@@ -63,13 +70,18 @@ namespace ButopiaMysteries.GraphicsUserInterface
         }
 
 
-
+        /// <summary>
+        /// Populates the Sphere and Plan dropdown menus when the dialog opens.
+        /// </summary>
         private void NewCharacterDialog_Load(object sender, EventArgs e)
         {       
             boxSphere.DataSource = Enum.GetValues(typeof(Sphere));
             boxPlan.DataSource = Enum.GetValues(typeof(Plan));
         }
 
+        /// <summary>
+        /// Updates the selected rule to fully random and unchecks the fixed points option.
+        /// </summary>
         private void randomCreationCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             okButton.Enabled = true;
@@ -79,6 +91,10 @@ namespace ButopiaMysteries.GraphicsUserInterface
                 fixePointCheckBox.Checked = false;
             }
         }
+
+        /// <summary>
+        /// Updates the selected rule to fixed points and unchecks the random creation option.
+        /// </summary>
         private void fixePointCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             if (fixePointCheckBox.Checked)

@@ -145,7 +145,7 @@ namespace ButopiaMysteries.Logic
 
                         foreach (Skill skill in Skill_Operations.AllSkillsSuchAs(_ => true))
                         {
-                            Skills.Add(skill, 1);
+                            Skills[skill] = 1;
                         }
                         break;
                     }

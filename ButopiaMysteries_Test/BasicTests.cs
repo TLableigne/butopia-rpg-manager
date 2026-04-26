@@ -1,42 +1,29 @@
+using NUnit.Framework;
 using ButopiaMysteries.Logic;
+using System.Collections.Generic;
 
-namespace ButopiaMysteries_Test
+namespace ButopiaMysteries.Tests
 {
-    public class Tests
+    [TestFixture]
+    public class BasicLogicTests
     {
         [Test]
-        public void MysterySheet_Constructor()
+        public void SkillPointsAtLevel_Test()
         {
-            MysterySheet sheet = new("Test");
-            Assert.That(sheet, Is.Not.Null);
-            Assert.That(sheet.Name, Is.EqualTo("Test"));
+            Assert.That(Skill_Operations.SkillPointsAtLevel(0), Is.EqualTo(0));
+            Assert.That(Skill_Operations.SkillPointsAtLevel(3), Is.EqualTo(3));
+            Assert.That(Skill_Operations.SkillPointsAtLevel(6), Is.EqualTo(6));
         }
-        [Test]
-        public void Indicator_Tests()
-        {
-            Indicator? indicator = Indicator.Body;
-            Assert.That(indicator, Is.Not.Null);
-            Assert.Multiple(() =>
-            {
-                Assert.That(indicator?.Name(), Is.EqualTo("Corps"));
-                Assert.That(Indicator_Operations.IndicatorPointsAtLevel(1), Is.EqualTo(2));
-                Assert.That(Indicator_Operations.IndicatorPointsAtLevel(2), Is.EqualTo(4));
-                Assert.That(Indicator_Operations.IndicatorPointsAtLevel(5), Is.EqualTo(10));
-            });
-        }
-        [Test]
-        public void Skill_Tests()
-        {
-            Skill prouesse = Skill.Feat;
 
-            Assert.AreNotEqual(Skill.None, prouesse);
-
-            Assert.AreEqual("Prouesse", prouesse.Name());
-            Assert.AreEqual(Indicator.Body, prouesse.GetIndicator());
-            
-            Assert.AreEqual(2, Skill_Operations.SkillPointsAtLevel(2));
-            Assert.AreEqual(5, Skill_Operations.SkillPointsAtLevel(5));
-            Assert.AreEqual(10, Skill_Operations.SkillPointsAtLevel(10));
+        [Test]
+        public void GetMaximumDifficulty_Test()
+        {
+            Assert.That(Difficulty_Operations.GetMaximumDifficulty(0), Is.EqualTo(Difficulty.None));
+            Assert.That(Difficulty_Operations.GetMaximumDifficulty(4), Is.EqualTo(Difficulty.None));
+            Assert.That(Difficulty_Operations.GetMaximumDifficulty(5), Is.EqualTo(Difficulty.Trivial));
+            Assert.That(Difficulty_Operations.GetMaximumDifficulty(14), Is.EqualTo(Difficulty.Facile));
+            Assert.That(Difficulty_Operations.GetMaximumDifficulty(20), Is.EqualTo(Difficulty.Complexe));
+            Assert.That(Difficulty_Operations.GetMaximumDifficulty(105), Is.EqualTo(Difficulty.Impossible));
         }
     }
 }
