@@ -45,11 +45,13 @@ namespace ButopiaMysteries.GraphicsUserInterface
         /// <summary>
         /// Empty constructor.
         /// </summary>
-        public NewCharacterDialog()
+        public Roster Roster;
+        public NewCharacterDialog(Roster roster)
         {
             InitializeComponent();
             okButton.Enabled = false;
             SelectedRules = Rules.None;
+            Roster = roster;
         }
 
         /// <summary>
@@ -57,7 +59,7 @@ namespace ButopiaMysteries.GraphicsUserInterface
         /// </summary>
         private void NameTextBox_DoubleClick(object sender, EventArgs e)
         {
-            nameTextBox.Text = Names.RandomName;
+            nameTextBox.Text = Names.RandomName(Roster);
         }
 
         /// <summary>

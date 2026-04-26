@@ -24,7 +24,7 @@ namespace ButopiaMysteries.GraphicsUserInterface
         {
             InitializeComponent();
             Roster = new();
-            MysterySheet charOne = new(Names.RandomName, Plan.Thinkers, Sphere.Algebra);
+            MysterySheet charOne = new(Names.RandomName(Roster), Plan.Thinkers, Sphere.Algebra);
             charOne.RandomGeneration();
             Roster.Sheets.Add(charOne.Name, charOne);
             referencePoint = new Point(10, 10);
@@ -33,7 +33,7 @@ namespace ButopiaMysteries.GraphicsUserInterface
 
             for (int i = 0; i < ViewSettings.InitialCharacterCount-1; i++)
             {
-                String name = Names.RandomName;
+                String name = Names.RandomName(Roster);
                 CreateCharacter(name , Rules.None, Plan.Thinkers, Sphere.Algebra);
             }
             CreateCharacterViews();
@@ -110,7 +110,7 @@ namespace ButopiaMysteries.GraphicsUserInterface
         /// </summary>
         private void CreationDialog()
         {
-            NewCharacterDialog dialog = new();
+            NewCharacterDialog dialog = new(Roster);
             if (dialog.ShowDialog() == DialogResult.OK)
             {
                 Rules regleChoisie = dialog.SelectedRules;
@@ -119,7 +119,7 @@ namespace ButopiaMysteries.GraphicsUserInterface
                 Sphere sphereChoisie = dialog.SelectedSphere;
                 if (string.IsNullOrWhiteSpace(nomChoisi))
                 {
-                    nomChoisi = Names.RandomName;
+                    nomChoisi = Names.RandomName(Roster);
                 }
                 CreateCharacter(nomChoisi, regleChoisie, planChoisi, sphereChoisie);
             }
@@ -231,80 +231,86 @@ namespace ButopiaMysteries.GraphicsUserInterface
         /// </summary>
         private void CharacterSelect_MouseUp(object sender, MouseEventArgs e)
         {
-            if (deplacement && persoDépacer != null && !BoxSkill.SelectedValue.Equals(Skill.None))
+            if (deplacement && persoDépacer != null)
             {
-                Skill s = (Skill)BoxSkill.SelectedValue;
-                Indicator? i = s.GetIndicator();
-
-                if (i.HasValue)
+                if (!BoxSkill.SelectedValue.Equals(Skill.None))
                 {
+                    Skill s = (Skill)BoxSkill.SelectedValue;
+                    Indicator? i = s.GetIndicator();
 
-                    if (zoneEntrainement.Contains(e.Location))
+                    if (i.HasValue)
                     {
-                        if (persoDépacer.Sheet.estEnFormation != true)
-                        {
-                            MessageBox.Show("Ce personnage doit être en formation pour pouvoir s'entraîner !");
-                        }
-                        else
-                        {
-                            TrainForm tf = new TrainForm(persoDépacer.Sheet);
-                            tf.ShowDialog();
-                        }
-                    }
 
-                    else if (zoneAuto.Contains(e.Location) || zoneExamen.Contains(e.Location))
-                    {
-                        if (persoDépacer.Sheet.estEnFormation != true)
+                        if (zoneEntrainement.Contains(e.Location))
                         {
-                            MessageBox.Show("Ce personnage doit être en formation pour participer à une épreuve.");
-                        }
-                        else
-                        {
-                            Skill finalSkill = s;
-                            int malus = 0;
-
-                            if (!persoDépacer.Sheet.Skills.ContainsKey(s) || persoDépacer.Sheet.Skills[s] == 0)
+                            if (persoDépacer.Sheet.estEnFormation != true)
                             {
-                                Skill sub = FindBestSubstitution(persoDépacer.Sheet, i.Value, s);
-                                if (sub == Skill.None)
-                                {
-                                    MessageBox.Show(persoDépacer.Sheet.Name + " n'a aucune compétence pour cet indicateur.");
-                                    CreateCharacterViews();
-                                    deplacement = false;
-                                    persoDépacer = null;
-                                    Refresh();
-                                    return;
-                                }
-                                else
-                                {
-                                    finalSkill = sub;
-                                    malus = 2;
-                                    MessageBox.Show("Substitution : " + sub.Name() + " utilisée avec un malus de -2.");
-                                }
+                                MessageBox.Show("Ce personnage doit être en formation pour pouvoir s'entraîner !");
                             }
-
-                            if (zoneAuto.Contains(e.Location))
+                            else
                             {
-                                TrialForm tf = new TrialForm(persoDépacer.Sheet, finalSkill, i.Value, null, malus);
-                                tf.afficherInfo();
+                                TrainForm tf = new TrainForm(persoDépacer.Sheet);
                                 tf.ShowDialog();
                             }
-                            else if (zoneExamen.Contains(e.Location))
+                        }
+
+                        else if (zoneAuto.Contains(e.Location) || zoneExamen.Contains(e.Location))
+                        {
+                            if (persoDépacer.Sheet.estEnFormation != true)
                             {
-                                if (!boxDifficulty.SelectedItem.Equals(Difficulty.None))
+                                MessageBox.Show("Ce personnage doit être en formation pour participer à une épreuve.");
+                            }
+                            else
+                            {
+                                Skill finalSkill = s;
+                                int malus = 0;
+
+                                if (!persoDépacer.Sheet.Skills.ContainsKey(s) || persoDépacer.Sheet.Skills[s] == 0)
                                 {
-                                    Difficulty d = (Difficulty)boxDifficulty.SelectedItem;
-                                    TrialForm tf = new TrialForm(persoDépacer.Sheet, finalSkill, i.Value, d, malus);
+                                    Skill sub = FindBestSubstitution(persoDépacer.Sheet, i.Value, s);
+                                    if (sub == Skill.None)
+                                    {
+                                        MessageBox.Show(persoDépacer.Sheet.Name + " n'a aucune compétence pour cet indicateur.");
+                                        CreateCharacterViews();
+                                        deplacement = false;
+                                        persoDépacer = null;
+                                        Refresh();
+                                        return;
+                                    }
+                                    else
+                                    {
+                                        finalSkill = sub;
+                                        malus = 2;
+                                        MessageBox.Show("Substitution : " + sub.Name() + " utilisée avec un malus de -2.");
+                                    }
+                                }
+
+                                if (zoneAuto.Contains(e.Location))
+                                {
+                                    TrialForm tf = new TrialForm(persoDépacer.Sheet, finalSkill, i.Value, null, malus);
                                     tf.afficherInfo();
                                     tf.ShowDialog();
                                 }
-                                else
+                                else if (zoneExamen.Contains(e.Location))
                                 {
-                                    MessageBox.Show("Veuillez choisir une difficulté svp");
+                                    if (!boxDifficulty.SelectedItem.Equals(Difficulty.None))
+                                    {
+                                        Difficulty d = (Difficulty)boxDifficulty.SelectedItem;
+                                        TrialForm tf = new TrialForm(persoDépacer.Sheet, finalSkill, i.Value, d, malus);
+                                        tf.afficherInfo();
+                                        tf.ShowDialog();
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show("Veuillez choisir une difficulté svp");
+                                    }
                                 }
                             }
                         }
                     }
+                }
+                else {
+                    MessageBox.Show("Veuillez choisir une compétance svp");
                 }
             }
 

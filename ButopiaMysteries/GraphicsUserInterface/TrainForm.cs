@@ -28,8 +28,16 @@ namespace ButopiaMysteries.GraphicsUserInterface
         {
             InitializeComponent();
             Sheet = character;
-            SkillComboBox.DataSource = Enum.GetValues(typeof(Skill));
-            IndicateurComboBox.DataSource = Enum.GetValues(typeof(Indicator));
+            SkillComboBox.DataSource = Sheet.Skills.Keys.ToList();
+            List<Indicator> l = new List<Indicator>();
+            foreach (Indicator ind in Sheet.Indicators.Keys)
+            {
+                if (ind != Indicator.Maximum)
+                {
+                    l.Add(ind);
+                }
+            }
+            IndicateurComboBox.DataSource = l;
             UpdateDisplay();
         }
 

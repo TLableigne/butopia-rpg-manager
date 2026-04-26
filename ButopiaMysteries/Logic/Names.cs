@@ -19,6 +19,17 @@ namespace ButopiaMysteries.Logic
         /// <summary>
         /// Get a single random name.
         /// </summary>
-        public static string RandomName => NameList[new Random().Next(NameList.Count)];
+        public static string RandomName(Roster roster)
+        {
+            string selectedName;
+            Random rnd = new Random();
+            do
+            {
+                selectedName = NameList[rnd.Next(NameList.Count)];
+            } while (roster.Sheets.Keys.Contains(selectedName));
+
+            return selectedName;
+
+        }
     }
 }
