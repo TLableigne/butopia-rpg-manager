@@ -29,11 +29,12 @@ namespace ButopiaMysteries.GraphicsUserInterface
         {
             InitializeComponent();
             Sheet = mysterySheet;
-            Sheet.InitSanteMentale();
-            labelSanteMental.Text = "Votre santé mental est  au niveau : " + Sheet.SanteMentale+" / " + Sheet.SanteMentaleMax;
+            labelSanteMental.Text = "Santé Mentale : " + Sheet.SanteMentale + " / " + Sheet.SanteMentaleMax;
             nameLabel.Text = Sheet.Name;
             sphereLabel.Text += Sheet.MySphere.Name();
             planLabel.Text += Sheet.MyPlan.Name();
+            labelAge.Text = "Âge : " + Sheet.Age;
+            labelWealth.Text = "Richesse : " + Sheet.Wealth + " rubis";
             indicatorLabels.Clear();
             skillLabels.Clear();
             indicatorLabels.Add(Indicator.Body, indicLabel1);
@@ -72,7 +73,7 @@ namespace ButopiaMysteries.GraphicsUserInterface
                     index++;
                 }
             }
-            labelXP.Text = "Le nombre d'experience accumulé est de " + mysterySheet.xp;
+            labelXP.Text = "XP " + mysterySheet.xp;
 
             DisplayControls();
         }
@@ -96,10 +97,17 @@ namespace ButopiaMysteries.GraphicsUserInterface
             {
                 skillLabels[skill].Text = DisplaySkill(skill);
             }
-            foreach(Indicator indicator in indicatorLabels.Keys)
+            foreach (Indicator indicator in indicatorLabels.Keys)
             {
                 indicatorLabels[indicator].Text = DisplayIndicator(indicator);
             }
+            listInventory.Items.Clear();
+            foreach (string objet in Sheet.Inventaire)
+            {
+                listInventory.Items.Add(objet);
+            }
+            textObject.Visible = !Sheet.estEnFormation;
+            addButton.Visible = !Sheet.estEnFormation;
         }
         private string DisplaySkill(Skill skill)
         {
@@ -122,7 +130,6 @@ namespace ButopiaMysteries.GraphicsUserInterface
         {
             Sheet.estEnFormation = true;
             modeToolStripButton.Enabled = false;
-            Sheet.InitSanteMentale();
             DisplayControls();
         }
 
@@ -139,7 +146,7 @@ namespace ButopiaMysteries.GraphicsUserInterface
                 Indicator indicator = indicatorLabels.Keys.FirstOrDefault(i => indicatorLabels[i].Equals(label), Indicator.None);
                 if (indicator == Indicator.Maximum)
                 {
-                    return; 
+                    return;
                 }
                 if (indicator != Indicator.None)
                 {
@@ -185,6 +192,16 @@ namespace ButopiaMysteries.GraphicsUserInterface
                 }
                 Sheet.Indicators[Indicator.Maximum] = max;
 
+                DisplayControls();
+            }
+        }
+
+        private void addButton_Click(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrWhiteSpace(textObject.Text))
+            {
+                Sheet.Inventaire.Add(textObject.Text);
+                textObject.Text = "";
                 DisplayControls();
             }
         }

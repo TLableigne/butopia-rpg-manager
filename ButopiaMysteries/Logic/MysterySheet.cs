@@ -20,6 +20,11 @@ namespace ButopiaMysteries.Logic
         public string Name { get; init; }
         public Plan MyPlan { get; init; }
         public Sphere MySphere { get; init; }
+        public int Age { get; set; } = 20;
+        public int Wealth { get; set; } = 200;
+
+        public List<string> Inventaire { get; init; } = new List<string>();
+
         /// <summary>
         /// Mapping: indicators to numeric level.
         /// </summary>
@@ -127,6 +132,7 @@ namespace ButopiaMysteries.Logic
             {
                 Indicators.Add(Indicator.Maximum, Math.Max(Math.Max(Indicators[Indicator.Body], Indicators[Indicator.Mind]), Indicators[Indicator.Sense]));
             }
+            InitSanteMentale();
         }
 
         private int GenRandNum(int min = 0, int max=6)

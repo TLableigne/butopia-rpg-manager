@@ -58,22 +58,29 @@
             sphereLabel = new Label();
             labelXP = new Label();
             labelSanteMental = new Label();
+            labelAge = new Label();
+            labelWealth = new Label();
+            listInventory = new ListBox();
+            labelInventory = new Label();
+            addButton = new Button();
+            textObject = new TextBox();
             theToolStrip.SuspendLayout();
             SuspendLayout();
             // 
             // nameLabel
             // 
             nameLabel.AutoSize = true;
-            nameLabel.Location = new Point(7, 33);
+            nameLabel.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            nameLabel.Location = new Point(12, 26);
             nameLabel.Name = "nameLabel";
-            nameLabel.Size = new Size(38, 15);
+            nameLabel.Size = new Size(83, 32);
             nameLabel.TabIndex = 0;
             nameLabel.Text = "label1";
             // 
             // indicLabel1
             // 
             indicLabel1.AutoSize = true;
-            indicLabel1.Location = new Point(7, 62);
+            indicLabel1.Location = new Point(204, 53);
             indicLabel1.Name = "indicLabel1";
             indicLabel1.Size = new Size(38, 15);
             indicLabel1.TabIndex = 1;
@@ -83,7 +90,7 @@
             // indicLabel3
             // 
             indicLabel3.AutoSize = true;
-            indicLabel3.Location = new Point(7, 181);
+            indicLabel3.Location = new Point(204, 172);
             indicLabel3.Name = "indicLabel3";
             indicLabel3.Size = new Size(38, 15);
             indicLabel3.TabIndex = 6;
@@ -93,7 +100,7 @@
             // indicLabel4
             // 
             indicLabel4.AutoSize = true;
-            indicLabel4.Location = new Point(7, 233);
+            indicLabel4.Location = new Point(204, 224);
             indicLabel4.Name = "indicLabel4";
             indicLabel4.Size = new Size(38, 15);
             indicLabel4.TabIndex = 8;
@@ -103,7 +110,7 @@
             // skillLabel1
             // 
             skillLabel1.AutoSize = true;
-            skillLabel1.Location = new Point(101, 62);
+            skillLabel1.Location = new Point(298, 53);
             skillLabel1.Name = "skillLabel1";
             skillLabel1.Size = new Size(44, 15);
             skillLabel1.TabIndex = 10;
@@ -113,7 +120,7 @@
             // skillLabel2
             // 
             skillLabel2.AutoSize = true;
-            skillLabel2.Location = new Point(101, 93);
+            skillLabel2.Location = new Point(298, 84);
             skillLabel2.Name = "skillLabel2";
             skillLabel2.Size = new Size(44, 15);
             skillLabel2.TabIndex = 11;
@@ -123,7 +130,7 @@
             // skillLabel3
             // 
             skillLabel3.AutoSize = true;
-            skillLabel3.Location = new Point(457, 62);
+            skillLabel3.Location = new Point(654, 72);
             skillLabel3.Name = "skillLabel3";
             skillLabel3.Size = new Size(44, 15);
             skillLabel3.TabIndex = 12;
@@ -133,7 +140,7 @@
             // skillLabel4
             // 
             skillLabel4.AutoSize = true;
-            skillLabel4.Location = new Point(101, 121);
+            skillLabel4.Location = new Point(298, 112);
             skillLabel4.Name = "skillLabel4";
             skillLabel4.Size = new Size(44, 15);
             skillLabel4.TabIndex = 13;
@@ -143,7 +150,7 @@
             // skillLabel5
             // 
             skillLabel5.AutoSize = true;
-            skillLabel5.Location = new Point(101, 149);
+            skillLabel5.Location = new Point(298, 140);
             skillLabel5.Name = "skillLabel5";
             skillLabel5.Size = new Size(44, 15);
             skillLabel5.TabIndex = 14;
@@ -153,7 +160,7 @@
             // skillLabel6
             // 
             skillLabel6.AutoSize = true;
-            skillLabel6.Location = new Point(262, 81);
+            skillLabel6.Location = new Point(459, 72);
             skillLabel6.Name = "skillLabel6";
             skillLabel6.Size = new Size(44, 15);
             skillLabel6.TabIndex = 15;
@@ -163,7 +170,7 @@
             // skillLabel7
             // 
             skillLabel7.AutoSize = true;
-            skillLabel7.Location = new Point(262, 137);
+            skillLabel7.Location = new Point(459, 128);
             skillLabel7.Name = "skillLabel7";
             skillLabel7.Size = new Size(44, 15);
             skillLabel7.TabIndex = 16;
@@ -173,7 +180,7 @@
             // skillLabel8
             // 
             skillLabel8.AutoSize = true;
-            skillLabel8.Location = new Point(262, 193);
+            skillLabel8.Location = new Point(459, 184);
             skillLabel8.Name = "skillLabel8";
             skillLabel8.Size = new Size(44, 15);
             skillLabel8.TabIndex = 17;
@@ -183,7 +190,7 @@
             // skillLabel9
             // 
             skillLabel9.AutoSize = true;
-            skillLabel9.Location = new Point(259, 248);
+            skillLabel9.Location = new Point(456, 239);
             skillLabel9.Name = "skillLabel9";
             skillLabel9.Size = new Size(44, 15);
             skillLabel9.TabIndex = 19;
@@ -193,7 +200,7 @@
             // skillLabel10
             // 
             skillLabel10.AutoSize = true;
-            skillLabel10.Location = new Point(457, 137);
+            skillLabel10.Location = new Point(654, 128);
             skillLabel10.Name = "skillLabel10";
             skillLabel10.Size = new Size(44, 15);
             skillLabel10.TabIndex = 20;
@@ -203,7 +210,7 @@
             // skillLabel11
             // 
             skillLabel11.AutoSize = true;
-            skillLabel11.Location = new Point(457, 193);
+            skillLabel11.Location = new Point(654, 184);
             skillLabel11.Name = "skillLabel11";
             skillLabel11.Size = new Size(44, 15);
             skillLabel11.TabIndex = 21;
@@ -213,7 +220,7 @@
             // skillLabel12
             // 
             skillLabel12.AutoSize = true;
-            skillLabel12.Location = new Point(101, 181);
+            skillLabel12.Location = new Point(298, 172);
             skillLabel12.Name = "skillLabel12";
             skillLabel12.Size = new Size(44, 15);
             skillLabel12.TabIndex = 22;
@@ -223,7 +230,7 @@
             // skillLabel13
             // 
             skillLabel13.AutoSize = true;
-            skillLabel13.Location = new Point(101, 206);
+            skillLabel13.Location = new Point(298, 197);
             skillLabel13.Name = "skillLabel13";
             skillLabel13.Size = new Size(44, 15);
             skillLabel13.TabIndex = 23;
@@ -233,7 +240,7 @@
             // skillLabel14
             // 
             skillLabel14.AutoSize = true;
-            skillLabel14.Location = new Point(101, 233);
+            skillLabel14.Location = new Point(298, 224);
             skillLabel14.Name = "skillLabel14";
             skillLabel14.Size = new Size(44, 15);
             skillLabel14.TabIndex = 24;
@@ -243,7 +250,7 @@
             // skillLabel15
             // 
             skillLabel15.AutoSize = true;
-            skillLabel15.Location = new Point(101, 259);
+            skillLabel15.Location = new Point(298, 250);
             skillLabel15.Name = "skillLabel15";
             skillLabel15.Size = new Size(44, 15);
             skillLabel15.TabIndex = 25;
@@ -253,7 +260,7 @@
             // skillLabel16
             // 
             skillLabel16.AutoSize = true;
-            skillLabel16.Location = new Point(457, 248);
+            skillLabel16.Location = new Point(654, 239);
             skillLabel16.Name = "skillLabel16";
             skillLabel16.Size = new Size(44, 15);
             skillLabel16.TabIndex = 26;
@@ -262,9 +269,9 @@
             // 
             // closeButton
             // 
-            closeButton.Location = new Point(587, 277);
+            closeButton.Location = new Point(932, 251);
             closeButton.Name = "closeButton";
-            closeButton.Size = new Size(75, 23);
+            closeButton.Size = new Size(114, 28);
             closeButton.TabIndex = 28;
             closeButton.Text = "Fermer";
             closeButton.UseVisualStyleBackColor = true;
@@ -273,7 +280,7 @@
             // indicLabel2
             // 
             indicLabel2.AutoSize = true;
-            indicLabel2.Location = new Point(7, 121);
+            indicLabel2.Location = new Point(204, 112);
             indicLabel2.Name = "indicLabel2";
             indicLabel2.Size = new Size(38, 15);
             indicLabel2.TabIndex = 3;
@@ -285,7 +292,7 @@
             theToolStrip.Items.AddRange(new ToolStripItem[] { modeToolStripButton, indicatorPointsToolStripLabel, skillPointsToolStripLabel });
             theToolStrip.Location = new Point(0, 0);
             theToolStrip.Name = "theToolStrip";
-            theToolStrip.Size = new Size(674, 25);
+            theToolStrip.Size = new Size(1058, 25);
             theToolStrip.TabIndex = 29;
             theToolStrip.Text = "toolStrip1";
             // 
@@ -314,7 +321,7 @@
             // planLabel
             // 
             planLabel.AutoSize = true;
-            planLabel.Location = new Point(262, 33);
+            planLabel.Location = new Point(462, 37);
             planLabel.Name = "planLabel";
             planLabel.Size = new Size(41, 15);
             planLabel.TabIndex = 30;
@@ -323,7 +330,7 @@
             // sphereLabel
             // 
             sphereLabel.AutoSize = true;
-            sphereLabel.Location = new Point(457, 33);
+            sphereLabel.Location = new Point(654, 37);
             sphereLabel.Name = "sphereLabel";
             sphereLabel.Size = new Size(54, 15);
             sphereLabel.TabIndex = 31;
@@ -332,7 +339,7 @@
             // labelXP
             // 
             labelXP.AutoSize = true;
-            labelXP.Location = new Point(39, 302);
+            labelXP.Location = new Point(12, 141);
             labelXP.Name = "labelXP";
             labelXP.Size = new Size(253, 15);
             labelXP.TabIndex = 30;
@@ -341,17 +348,76 @@
             // labelSanteMental
             // 
             labelSanteMental.AutoSize = true;
-            labelSanteMental.Location = new Point(343, 302);
+            labelSanteMental.Location = new Point(12, 225);
             labelSanteMental.Name = "labelSanteMental";
             labelSanteMental.Size = new Size(98, 15);
             labelSanteMental.TabIndex = 32;
             labelSanteMental.Text = "labelSanteMental";
             // 
+            // labelAge
+            // 
+            labelAge.AutoSize = true;
+            labelAge.Location = new Point(12, 99);
+            labelAge.Name = "labelAge";
+            labelAge.Size = new Size(53, 15);
+            labelAge.TabIndex = 33;
+            labelAge.Text = "labelAge";
+            // 
+            // labelWealth
+            // 
+            labelWealth.AutoSize = true;
+            labelWealth.Location = new Point(12, 182);
+            labelWealth.Name = "labelWealth";
+            labelWealth.Size = new Size(69, 15);
+            labelWealth.TabIndex = 34;
+            labelWealth.Text = "labelWealth";
+            // 
+            // listInventory
+            // 
+            listInventory.FormattingEnabled = true;
+            listInventory.ItemHeight = 15;
+            listInventory.Location = new Point(824, 73);
+            listInventory.Name = "listInventory";
+            listInventory.Size = new Size(195, 124);
+            listInventory.TabIndex = 35;
+            // 
+            // labelInventory
+            // 
+            labelInventory.AutoSize = true;
+            labelInventory.Location = new Point(824, 40);
+            labelInventory.Name = "labelInventory";
+            labelInventory.Size = new Size(59, 15);
+            labelInventory.TabIndex = 36;
+            labelInventory.Text = "Inventaire";
+            // 
+            // addButton
+            // 
+            addButton.Location = new Point(824, 203);
+            addButton.Name = "addButton";
+            addButton.Size = new Size(75, 23);
+            addButton.TabIndex = 37;
+            addButton.Text = "Ajouter";
+            addButton.UseVisualStyleBackColor = true;
+            addButton.Click += addButton_Click;
+            // 
+            // textObject
+            // 
+            textObject.Location = new Point(905, 203);
+            textObject.Name = "textObject";
+            textObject.Size = new Size(100, 23);
+            textObject.TabIndex = 38;
+            // 
             // SheetView
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(674, 337);
+            ClientSize = new Size(1058, 291);
+            Controls.Add(textObject);
+            Controls.Add(addButton);
+            Controls.Add(labelInventory);
+            Controls.Add(listInventory);
+            Controls.Add(labelWealth);
+            Controls.Add(labelAge);
             Controls.Add(labelSanteMental);
             Controls.Add(sphereLabel);
             Controls.Add(planLabel);
@@ -419,5 +485,11 @@
         private Label sphereLabel;
         private Label labelXP;
         private Label labelSanteMental;
+        private Label labelAge;
+        private Label labelWealth;
+        private ListBox listInventory;
+        private Label labelInventory;
+        private Button addButton;
+        private TextBox textObject;
     }
 }

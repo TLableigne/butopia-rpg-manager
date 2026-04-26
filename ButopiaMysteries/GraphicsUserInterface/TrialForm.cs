@@ -56,7 +56,7 @@ namespace ButopiaMysteries.Logic
         private void Lancer_Click(object sender, EventArgs e)
         {
             Lancer.Enabled = false;
-
+            Sheet.Age++;
             string text = "";
             int nbEpreuves = (int)numUpDownNbEpreuve.Value;
             if (Diff != null)
@@ -69,6 +69,7 @@ namespace ButopiaMysteries.Logic
                     if (res)
                     {
                         text += $"Bravo tu as passé l'épreuve n°{i}" + Environment.NewLine;
+                        Sheet.Wealth += 50;
                         Sheet.xp++; 
                     }
                     else

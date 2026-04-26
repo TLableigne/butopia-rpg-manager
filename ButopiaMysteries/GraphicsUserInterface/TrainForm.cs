@@ -18,7 +18,6 @@ namespace ButopiaMysteries.GraphicsUserInterface
         {
             InitializeComponent();
             Sheet = character;
-
             SkillComboBox.DataSource = Enum.GetValues(typeof(Skill));
             IndicateurComboBox.DataSource = Enum.GetValues(typeof(Indicator));
             UpdateDisplay();
@@ -36,7 +35,7 @@ namespace ButopiaMysteries.GraphicsUserInterface
             int level = Sheet.Skills[selectedSkill];
             int niveauSuivant = level + 1;
             int cost = niveauSuivant;
-
+            Sheet.Age++;
             if (level < 6)
             {
                 if (Sheet.xp >= cost)
@@ -63,7 +62,7 @@ namespace ButopiaMysteries.GraphicsUserInterface
             int level = Sheet.Indicators[selectedInd];
             int niveauSuivant = level + 1;
             int cout = niveauSuivant * 2;
-
+            Sheet.Age++;
             if (level < 7)
             {
                 if (Sheet.xp >= cout)
