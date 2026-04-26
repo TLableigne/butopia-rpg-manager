@@ -69,6 +69,10 @@ namespace ButopiaMysteries.GraphicsUserInterface
             graphics.FillRectangle(brush, new Rectangle(vOrigin, new Size(ViewSettings.DefaultPawnSide, ViewSettings.DefaultPawnSide * 2)));
         }
 
+        /// <summary>
+        /// Updates the pixel location of the character view, primarily used during drag-and-drop operations.
+        /// </summary>
+        /// <param name="nouvPosition">The new point coordinates.</param>
         public void Move(Point nouvPosition)
         {
             location = nouvPosition;

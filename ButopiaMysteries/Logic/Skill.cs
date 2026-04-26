@@ -139,6 +139,11 @@ namespace ButopiaMysteries.Logic
             };
         }
 
+        /// <summary>
+        /// Translates a numeric skill level into its corresponding mastery title.
+        /// </summary>
+        /// <param name="level">The numeric level of the skill.</param>
+        /// <returns>The localized text representation of the mastery level.</returns>
         public static string GetSkillText(int level)
         {
             return level switch
@@ -154,6 +159,11 @@ namespace ButopiaMysteries.Logic
             };
         }
 
+        /// <summary>
+        /// Converts a skill mastery title back into a base score value.
+        /// </summary>
+        /// <param name="skill">The textual mastery level.</param>
+        /// <returns>The base integer value associated with the title.</returns>
         public static int GetSkillValue(string skill)
         {
             return skill switch {

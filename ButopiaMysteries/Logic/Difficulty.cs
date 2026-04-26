@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace ButopiaMysteries.Logic
 {
+    /// <summary>
+    /// Represents the various levels of difficulty for a trial.
+    /// </summary>
     public enum Difficulty
     {
         None,
@@ -20,9 +23,16 @@ namespace ButopiaMysteries.Logic
         Impossible
     }
 
+    /// <summary>
+    /// Provides extension methods and utility operations related to the Difficulty enum.
+    /// </summary>
     public static class Difficulty_Operations
     {
-
+        /// <summary>
+        /// Returns the French display name for a specific difficulty level.
+        /// </summary>
+        /// <param name="difficulty">The difficulty to evaluate.</param>
+        /// <returns>The localized string of the difficulty.</returns>
         public static string Name(this Difficulty difficulty)
         {
             return difficulty switch
@@ -41,6 +51,11 @@ namespace ButopiaMysteries.Logic
             };
         }
 
+        /// <summary>
+        /// Gets the minimum score required to succeed at a specific difficulty level.
+        /// </summary>
+        /// <param name="difficulty">The target difficulty.</param>
+        /// <returns>The threshold score needed for success.</returns>
         public static int MinimumScore(this Difficulty difficulty)
         {
             return difficulty switch
@@ -59,6 +74,11 @@ namespace ButopiaMysteries.Logic
             };
         }
 
+        /// <summary>
+        /// Determines the highest difficulty achieved based on a given trial score.
+        /// </summary>
+        /// <param name="score">The score achieved (typically in an open trial).</param>
+        /// <returns>The corresponding maximum difficulty reached.</returns>
         public static Difficulty GetMaximumDifficulty(int score)
         {
             if (score >= 100)
@@ -99,6 +119,12 @@ namespace ButopiaMysteries.Logic
             return Difficulty.None;
         }
 
+        /// <summary>
+        /// Reduces a difficulty by a specified number of steps, stopping at Difficulty.None.
+        /// </summary>
+        /// <param name="difficulty">The starting difficulty level.</param>
+        /// <param name="crans">The number of steps to reduce.</param>
+        /// <returns>The lowered difficulty level.</returns>
         public static Difficulty LoseDfficulty(this Difficulty difficulty, int crans)
         {
             int numActuel = (int)difficulty;

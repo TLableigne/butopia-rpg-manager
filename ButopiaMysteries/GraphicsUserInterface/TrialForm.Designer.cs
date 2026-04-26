@@ -38,7 +38,7 @@
             numUpDownNbEpreuve = new NumericUpDown();
             labelNumUpDown = new Label();
             Type = new Label();
-            labelSanteMentale = new Label();
+            labelMentalHealth = new Label();
             ((System.ComponentModel.ISupportInitialize)numUpDownNbEpreuve).BeginInit();
             SuspendLayout();
             // 
@@ -138,21 +138,21 @@
             Type.TabIndex = 10;
             Type.Text = "type";
             // 
-            // labelSanteMentale
+            // labelMentalHealth
             // 
-            labelSanteMentale.AutoSize = true;
-            labelSanteMentale.Location = new Point(390, 411);
-            labelSanteMentale.Name = "labelSanteMentale";
-            labelSanteMentale.Size = new Size(104, 15);
-            labelSanteMentale.TabIndex = 11;
-            labelSanteMentale.Text = "labelSanteMentale";
+            labelMentalHealth.AutoSize = true;
+            labelMentalHealth.Location = new Point(390, 411);
+            labelMentalHealth.Name = "labelMentalHealth";
+            labelMentalHealth.Size = new Size(104, 15);
+            labelMentalHealth.TabIndex = 11;
+            labelMentalHealth.Text = "labelSanteMentale";
             // 
             // TrialForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(820, 450);
-            Controls.Add(labelSanteMentale);
+            Controls.Add(labelMentalHealth);
             Controls.Add(Type);
             Controls.Add(labelNumUpDown);
             Controls.Add(numUpDownNbEpreuve);
@@ -182,6 +182,6 @@
         private NumericUpDown numUpDownNbEpreuve;
         private Label labelNumUpDown;
         private Label Type;
-        private Label labelSanteMentale;
+        private Label labelMentalHealth;
     }
 }

@@ -39,12 +39,18 @@ namespace ButopiaMysteries.GraphicsUserInterface
             CreateCharacterViews();
         }
 
-
+        /// <summary>
+        /// Opens the detailed sheet view for a specific character by name.
+        /// </summary>
+        /// <param name="text">The name of the character to display.</param>
         private void ShowSheetViewFor(string text)
         {
             new SheetView(Roster.Sheets[text]).ShowDialog();
         }
 
+        /// <summary>
+        /// Handles the drawing of the main interface, including drop zones and character tokens.
+        /// </summary>
         private void CharacterSelect_Paint(object sender, PaintEventArgs e)
         {
             Graphics g = e.Graphics;
@@ -69,6 +75,10 @@ namespace ButopiaMysteries.GraphicsUserInterface
                 persoDépacer.Draw(e.Graphics);
             }
         }
+
+        /// <summary>
+        /// Rebuilds and visually positions all character views based on the current roster.
+        /// </summary>
         private void CreateCharacterViews()
         {
             views.Clear();
@@ -108,6 +118,14 @@ namespace ButopiaMysteries.GraphicsUserInterface
                 CreateCharacter(nomChoisi, regleChoisie, planChoisi, sphereChoisie);
             }
         }
+
+        /// <summary>
+        /// Instantiates a new character and adds it to the roster if the name is unique.
+        /// </summary>
+        /// <param name="name">The unique name of the character.</param>
+        /// <param name="rule">The rule set used for creation.</param>
+        /// <param name="plan">The selected plan.</param>
+        /// <param name="sphere">The selected sphere.</param>
         private void CreateCharacter(string name, Rules rule, Plan plan, Sphere sphere)
         {
 
@@ -282,6 +300,13 @@ namespace ButopiaMysteries.GraphicsUserInterface
             BoxSkill.DataSource = Enum.GetValues(typeof(Skill));
         }
 
+        /// <summary>
+        /// Finds the best alternative skill within the same indicator if the character lacks the required skill.
+        /// </summary>
+        /// <param name="sheet">The character's sheet.</param>
+        /// <param name="targetIndicator">The indicator category to search within.</param>
+        /// <param name="missingSkill">The skill the character is missing.</param>
+        /// <returns>The highest leveled alternative skill, or Skill.None if no substitution is possible.</returns>
         private Skill FindBestSubstitution(MysterySheet sheet, Indicator targetIndicator, Skill missingSkill)
         {
             Skill bestSkill = Skill.None;

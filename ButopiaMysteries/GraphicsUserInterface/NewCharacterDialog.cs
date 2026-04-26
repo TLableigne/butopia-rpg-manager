@@ -16,7 +16,10 @@ namespace ButopiaMysteries.GraphicsUserInterface
     /// </summary>
     public partial class NewCharacterDialog : Form
     {
-       
+
+        /// <summary>
+        /// The specific ruleset selected for character creation (e.g., None, Fixed).
+        /// </summary>
         public Rules SelectedRules;
         /// <summary>
         /// The name of the character.
@@ -27,10 +30,17 @@ namespace ButopiaMysteries.GraphicsUserInterface
         /// The fact that this character is randomly created or not.
         /// </summary>
         public bool RandomGeneration { get { return randomCreationCheckBox.Checked; } }
-
+        /// <summary>
+        /// Indicates if the user opted for a fixed points creation method.
+        /// </summary>
         public bool FixePoint { get { return fixePointCheckBox.Checked; } }
-
+        /// <summary>
+        /// The Plan chosen by the user from the dropdown menu.
+        /// </summary>
         public Plan SelectedPlan => (Plan)boxPlan.SelectedItem;
+        /// <summary>
+        /// The Sphere chosen by the user from the dropdown menu.
+        /// </summary>
         public Sphere SelectedSphere => (Sphere)boxSphere.SelectedItem;
         /// <summary>
         /// Empty constructor.
