@@ -98,5 +98,16 @@ namespace ButopiaMysteries.Logic
             }
             return Difficulty.None;
         }
+
+        public static Difficulty LoseDfficulty(this Difficulty difficulty, int crans)
+        {
+            int numActuel = (int)difficulty;
+            int nouveauNum = numActuel - crans;
+            if (nouveauNum < 0)
+            {
+                nouveauNum = 0;
+            }
+            return (Difficulty)nouveauNum;
+        }
     }
 }

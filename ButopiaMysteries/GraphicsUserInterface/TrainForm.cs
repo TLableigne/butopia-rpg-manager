@@ -25,8 +25,9 @@ namespace ButopiaMysteries.GraphicsUserInterface
         }
         public void UpdateDisplay()
         {
-            NameLabel.Text = $"Entraînement de : " + Sheet.Name;
-            XPLabel.Text = $"Points d'expérience (XP) : " + Sheet.xp;
+            NameLabel.Text = "Entraînement de : " + Sheet.Name;
+            XPLabel.Text = "Points d'expérience (XP) : " + Sheet.xp;
+            labelResSoigner.Text = "";
         }
 
         private void TrainSkill_Click(object sender, EventArgs e)
@@ -42,17 +43,17 @@ namespace ButopiaMysteries.GraphicsUserInterface
                 {
                     Sheet.xp = Sheet.xp - cost;
                     Sheet.Skills[selectedSkill] = niveauSuivant;
-                    MessageBox.Show(selectedSkill + " est maintenant au niveau " + niveauSuivant + " !");
+                    labelRes.Text = selectedSkill + " est maintenant au niveau " + niveauSuivant + " !";
                     UpdateDisplay();
                 }
                 else
                 {
-                    MessageBox.Show($"XP insuffisant ! Il vous faut" + cost + "XP pour le niveau " + niveauSuivant + ".");
+                    labelRes.Text = $"XP insuffisant ! Il vous faut" + cost + "XP pour le niveau " + niveauSuivant + ".";
                 }
             }
             else
             {
-                MessageBox.Show("Niveau maximum déjà atteint !");
+                labelRes.Text = "Niveau maximum déjà atteint !";
             }
         }
 
@@ -69,18 +70,43 @@ namespace ButopiaMysteries.GraphicsUserInterface
                 {
                     Sheet.xp = Sheet.xp - cout;
                     Sheet.Indicators[selectedInd] = niveauSuivant;
-                    MessageBox.Show(selectedInd+" est maintenant au niveau "+niveauSuivant);
+                    labelRes.Text = selectedInd + " est maintenant au niveau " + niveauSuivant;
                     UpdateDisplay();
                 }
                 else
                 {
-                    MessageBox.Show("XP insuffisant ! Il vous faut" + cout + " XP pour le niveau "+niveauSuivant);
+                    labelRes.Text = "XP insuffisant ! Il vous faut" + cout + " XP pour le niveau " + niveauSuivant;
                 }
             }
             else
             {
-                MessageBox.Show("Niveau maximum déjà atteint !");
+                labelRes.Text = "Niveau maximum déjà atteint !";
+            }
+        }
+
+        private void soignerButton_Click(object sender, EventArgs e)
+        {
+            if (Sheet.EstEnCrise())
+            {
+                labelResSoigner.Text = "Impossible de se soigner , le personnage est en crise ";
+                return; 
+            }
+            if (Sheet.SanteMentale >= Sheet.SanteMentaleMax)
+            {
+                labelResSoigner.Text = "La santé mentale est déjà à son maximum ";
+                return;
+            }
+            if (Sheet.xp >= 10)
+            {
+                Sheet.xp = Sheet.xp - 10;
+                Sheet.SanteMentale++;
+                labelResSoigner.Text = "Soin réussi ! Vous avez dépensé 10 XP pour récupérer 1 point de Santé Mentale.";
+            }
+            else
+            {
+                labelResSoigner.Text = "XP insuffisant ( il en faut 10 ) ";
             }
         }
     }
 }
+

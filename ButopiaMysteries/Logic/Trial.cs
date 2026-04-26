@@ -78,8 +78,14 @@ namespace ButopiaMysteries.Logic
             int skillLevel = character.Skills[skill];
             List<int> resDé = Cast(nbDé);
             int totalScore = NumericResult(resDé, skillLevel);
-            Difficulty baseDiff = Difficulty_Operations.GetMaximumDifficulty(totalScore);
-            int indexFinal = (int)baseDiff - malus;
+
+            Difficulty diffFinale = Difficulty_Operations.GetMaximumDifficulty(totalScore);
+            int malusTotal = malus;
+            if (character.SanteMentale <= 0)
+            {
+                malusTotal += 2;
+            }
+            int indexFinal = (int)diffFinale - malusTotal;
             if (indexFinal < 0)
             {
                 indexFinal = 0;
@@ -94,6 +100,25 @@ namespace ButopiaMysteries.Logic
             {
                res = true;
             }
+            if (res == true) 
+            {
+                character.NbVictoirConsecutif++; 
+                if (character.NbVictoirConsecutif >= 2 && character.SanteMentale < character.SanteMentaleMax)
+                {
+                    character.SanteMentale++; 
+                    character.NbVictoirConsecutif = 0;
+                }
+            }
+            else 
+            {
+                character.SanteMentale--; 
+                character.NbVictoirConsecutif = 0;
+                if (character.SanteMentale < 0)
+                {
+                    character.SanteMentale = 0;
+                }
+            }
+
             return res;
         }
     }
