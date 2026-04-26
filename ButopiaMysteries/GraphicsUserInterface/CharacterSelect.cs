@@ -88,10 +88,18 @@ namespace ButopiaMysteries.GraphicsUserInterface
         }
         private void CreateButton_Click(object sender, EventArgs e)
         {
-            CreationDialog();
+            NewCharactereCreation p = new NewCharactereCreation();
+            if (p.ShowDialog() == DialogResult.OK)
+            {
+                MysterySheet monPerso = p.NouveauPersonnage;
+                Roster.Sheets.Add(monPerso.Name, monPerso);
+                CreateCharacterViews();
+                Refresh();
+            }
+            //CreationDialog();
         }
 
-
+        /* 
         private void CreationDialog()
         {
             NewCharacterDialog dialog = new();
@@ -110,6 +118,7 @@ namespace ButopiaMysteries.GraphicsUserInterface
         }
         private void CreateCharacter(string name, Rules rule, Plan plan, Sphere sphere)
         {
+
             if (Roster.Sheets.ContainsKey(name))
             {
                 MessageBox.Show("Erreur : " + name + " déjà présent !");
@@ -124,6 +133,7 @@ namespace ButopiaMysteries.GraphicsUserInterface
                 Refresh();
             }
         }
+        */
         private void QuitButton_Click(object sender, EventArgs e)
         {
             Dispose();
