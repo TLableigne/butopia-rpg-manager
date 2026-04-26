@@ -35,11 +35,13 @@
             result = new Label();
             Lancer = new Button();
             Fermer = new Button();
-            Type = new Label();
             numUpDownNbEpreuve = new NumericUpDown();
             labelNumUpDown = new Label();
+            Type = new Label(); 
+
             ((System.ComponentModel.ISupportInitialize)numUpDownNbEpreuve).BeginInit();
             SuspendLayout();
+
             // 
             // Nom
             // 
@@ -134,17 +136,17 @@
             Type.Location = new Point(415, 57);
             Type.Name = "Type";
             Type.Size = new Size(86, 45);
-            Type.TabIndex = 8;
+            Type.TabIndex = 10;
             Type.Text = "type";
             // 
             // TrialForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(820, 450);
+            Controls.Add(Type);
             Controls.Add(labelNumUpDown);
             Controls.Add(numUpDownNbEpreuve);
-            ClientSize = new Size(820, 413);
-            Controls.Add(Type);
             Controls.Add(Fermer);
             Controls.Add(Lancer);
             Controls.Add(result);

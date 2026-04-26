@@ -116,7 +116,7 @@ namespace ButopiaMysteries.GraphicsUserInterface
             }
             else
             {
-                // Utilisation du constructeur complet
+
                 MysterySheet sheet = new MysterySheet(name, plan, sphere);
                 sheet.RandomGeneration(rule);
                 Roster.Sheets.Add(sheet.Name, sheet);
