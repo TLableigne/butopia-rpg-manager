@@ -98,11 +98,11 @@ namespace ButopiaMysteries.Logic
         {
             string etat;
             if (Sheet.EstEnCrise()) {
-                etat = Sheet.Name + "  - En crise "; 
+                etat = "  - En crise "; 
             }
             else
             {
-                etat = Sheet.Name + " - Stable ";
+                etat =  " - Stable ";
             }
             labelSanteMentale.Text = "Santé Mentale :"+ Sheet.SanteMentale+" / "+Sheet.SanteMentaleMax + etat;
         }

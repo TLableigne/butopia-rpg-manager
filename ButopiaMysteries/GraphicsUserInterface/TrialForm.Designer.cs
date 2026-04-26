@@ -111,7 +111,7 @@
             // 
             // numUpDownNbEpreuve
             // 
-            numUpDownNbEpreuve.Location = new Point(639, 30);
+            numUpDownNbEpreuve.Location = new Point(646, 47);
             numUpDownNbEpreuve.Maximum = new decimal(new int[] { 10, 0, 0, 0 });
             numUpDownNbEpreuve.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             numUpDownNbEpreuve.Name = "numUpDownNbEpreuve";
@@ -122,7 +122,7 @@
             // labelNumUpDown
             // 
             labelNumUpDown.AutoSize = true;
-            labelNumUpDown.Location = new Point(494, 32);
+            labelNumUpDown.Location = new Point(494, 49);
             labelNumUpDown.Name = "labelNumUpDown";
             labelNumUpDown.Size = new Size(129, 15);
             labelNumUpDown.TabIndex = 9;
@@ -132,7 +132,7 @@
             // 
             Type.AutoSize = true;
             Type.Font = new Font("Segoe UI Symbol", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            Type.Location = new Point(415, 57);
+            Type.Location = new Point(396, 78);
             Type.Name = "Type";
             Type.Size = new Size(86, 45);
             Type.TabIndex = 10;
