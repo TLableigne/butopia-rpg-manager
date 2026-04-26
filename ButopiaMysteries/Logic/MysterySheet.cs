@@ -106,18 +106,40 @@ namespace ButopiaMysteries.Logic
                     break;
 
                 case Rules.Fixed:
-                    Indicators[Indicator.Body] = 2;
-                    Indicators[Indicator.Mind] = 2;
-                    Indicators[Indicator.Sense] = 2;
-
-                    foreach (Skill skill in Skills.Keys.ToList())
                     {
-                        Skills[skill] = 1;
+                        Indicators.Add(Indicator.Body, 2);
+                        Indicators.Add(Indicator.Mind, 2);
+                        Indicators.Add(Indicator.Sense, 2);
+
+                        foreach (Skill skill in Skill_Operations.AllSkillsSuchAs(_ => true))
+                        {
+                            Skills.Add(skill, 1);
+                        }
+                        break;
                     }
-                    break;
+            }
+            foreach (KeyValuePair<Skill, int> skillEntry in this.Skills)
+            {
+                Skill currentSkill = skillEntry.Key;
+                int rawSkillLevel = skillEntry.Value;
+                string rankName = Skill_Operations.GetSkillText(rawSkillLevel);
+                int bonusPoints = Skill_Operations.GetSkillValue(rankName);
+                Indicator? linkedIndicator = Skill_Operations.GetIndicator(currentSkill);
+
+                if (linkedIndicator.HasValue && this.Indicators.ContainsKey(linkedIndicator.Value))
+                {
+                    this.Indicators[linkedIndicator.Value] += bonusPoints;
+                }
             }
 
-            Indicators[Indicator.Maximum] = Math.Max(Math.Max(Indicators[Indicator.Body], Indicators[Indicator.Mind]), Indicators[Indicator.Sense]);
+            if (Indicators.ContainsKey(Indicator.Maximum))
+            {
+                Indicators[Indicator.Maximum] = Math.Max(Math.Max(Indicators[Indicator.Body], Indicators[Indicator.Mind]), Indicators[Indicator.Sense]);
+            }
+            else
+            {
+                Indicators.Add(Indicator.Maximum, Math.Max(Math.Max(Indicators[Indicator.Body], Indicators[Indicator.Mind]), Indicators[Indicator.Sense]));
+            }
         }
 
         private int GenRandNum(int min = 0, int max=6)

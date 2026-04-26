@@ -12,6 +12,7 @@ namespace ButopiaMysteries.Logic
     public static class Trial
     {
         private static readonly Random random = new Random();
+
         public static int NumericResult(List<int>? listDé, int skill)
         {
             if (skill == 0 || listDé == null || listDé.Count == 0)
@@ -26,10 +27,10 @@ namespace ButopiaMysteries.Logic
                 switch (skill)
                 {
                     case 1:
-                        if (valeurDe == 1) 
+                        if (valeurDe == 1)
                         {
-                            valeurDe = 0; 
-                        }  
+                            valeurDe = 0;
+                        }
                         break;
                     case 3:
                         if (valeurDe == 6)
@@ -37,22 +38,22 @@ namespace ButopiaMysteries.Logic
                             valeurDe = 10;
                         }
                         break;
-                    case 4: 
+                    case 4:
                         if (valeurDe == 5 || valeurDe == 6)
-                        { 
-                            valeurDe = 10;                        
+                        {
+                            valeurDe = 10;
                         }
                         break;
                     case 5:
-                        if (valeurDe >= 4) 
-                        { 
-                            valeurDe = 10; 
-                        } 
+                        if (valeurDe >= 4)
+                        {
+                            valeurDe = 10;
+                        }
                         break;
                     case 6:
-                        if (valeurDe >= 4) 
-                        { 
-                            valeurDe = 20; 
+                        if (valeurDe >= 4)
+                        {
+                            valeurDe = 20;
                         }
                         break;
                 }
@@ -61,6 +62,7 @@ namespace ButopiaMysteries.Logic
 
             return result;
         }
+
         public static List<int> Cast(int nbDé)
         {
             List<int> results = new List<int>();
@@ -72,6 +74,7 @@ namespace ButopiaMysteries.Logic
 
             return results;
         }
+
         public static Difficulty OpenTrial(MysterySheet character, Indicator indicator, Skill skill, int malus = 0)
         {
             int nbDé = character.Indicators[indicator];
@@ -80,38 +83,86 @@ namespace ButopiaMysteries.Logic
             int totalScore = NumericResult(resDé, skillLevel);
 
             Difficulty diffFinale = Difficulty_Operations.GetMaximumDifficulty(totalScore);
+
             int malusTotal = malus;
             if (character.SanteMentale <= 0)
             {
                 malusTotal += 2;
             }
+
             int indexFinal = (int)diffFinale - malusTotal;
             if (indexFinal < 0)
             {
                 indexFinal = 0;
             }
+
             return (Difficulty)indexFinal;
         }
+
         public static bool ClosedTrial(MysterySheet character, Indicator indicator, Skill skill, Difficulty difficultéVisée, int malus = 0)
         {
-            bool res = false;
-            Difficulty difficulté = OpenTrial(character, indicator, skill,malus);
-            if (difficulté.MinimumScore() >= difficultéVisée.MinimumScore())
+            if (difficultéVisée == Difficulty.None)
             {
-               res = true;
+                return true;
             }
-            if (res == true) 
+
+            int skillLevel = character.Skills[skill];
+            bool? resultatAutomatique = null; // Permet de savoir si on a un résultat direct grâce au niveau
+
+            // --- 1. Vérification des réussites et échecs automatiques (Issu de la Version 1) ---
+            switch (skillLevel)
             {
-                character.NbVictoirConsecutif++; 
+                case 0:
+                    resultatAutomatique = false;
+                    break;
+                case 1:
+                    if (difficultéVisée >= Difficulty.Exploit) resultatAutomatique = false;
+                    break;
+                case 2:
+                    if (difficultéVisée <= Difficulty.Trivial) resultatAutomatique = true;
+                    if (difficultéVisée >= Difficulty.Surhumain) resultatAutomatique = false;
+                    break;
+                case 3:
+                    if (difficultéVisée <= Difficulty.Trivial) resultatAutomatique = true;
+                    if (difficultéVisée >= Difficulty.Impossible) resultatAutomatique = false;
+                    break;
+                case 4:
+                    if (difficultéVisée <= Difficulty.Facile) resultatAutomatique = true;
+                    break;
+                case 5:
+                    if (difficultéVisée <= Difficulty.Normal) resultatAutomatique = true;
+                    break;
+                case 6:
+                    if (difficultéVisée <= Difficulty.Complexe) resultatAutomatique = true;
+                    break;
+            }
+
+            bool res;
+
+            // --- 2. Lancement des dés uniquement si on n'a pas eu de résultat automatique ---
+            if (resultatAutomatique.HasValue)
+            {
+                res = resultatAutomatique.Value;
+            }
+            else
+            {
+                Difficulty difficultéObtenue = OpenTrial(character, indicator, skill, malus);
+                res = difficultéObtenue.MinimumScore() >= difficultéVisée.MinimumScore();
+            }
+
+            // --- 3. Conséquences sur la Santé Mentale (Issu de la Version 2) ---
+            if (res == true)
+            {
+                character.NbVictoirConsecutif++;
                 if (character.NbVictoirConsecutif >= 2 && character.SanteMentale < character.SanteMentaleMax)
                 {
-                    character.SanteMentale++; 
+                    character.SanteMentale++;
                     character.NbVictoirConsecutif = 0;
                 }
             }
-            else 
+            else
             {
-                character.SanteMentale--; 
+                character.SanteMentale--;
                 character.NbVictoirConsecutif = 0;
                 if (character.SanteMentale < 0)
                 {
