@@ -33,7 +33,7 @@ namespace ButopiaMysteries.Tests
         [Test]
         public void OpenTrial_Test()
         {
-            MysterySheet sheet = new MysterySheet("TestChar", Plan.Thinkers, Sphere.Algebra);
+            MysterySheet sheet = new MysterySheet("Test", Plan.Thinkers, Sphere.Algebra);
             sheet.RandomGeneration(Rules.Fixed); 
             Difficulty resultat = Trial.OpenTrial(sheet, Indicator.Body, Skill.Feat);
             Assert.That((int)resultat, Is.GreaterThanOrEqualTo(0));
@@ -42,7 +42,7 @@ namespace ButopiaMysteries.Tests
         [Test]
         public void ClosedTrial_Test()
         {
-            MysterySheet sheet = new MysterySheet("TestChar", Plan.Thinkers, Sphere.Algebra);
+            MysterySheet sheet = new MysterySheet("Test", Plan.Thinkers, Sphere.Algebra);
             sheet.RandomGeneration(Rules.Fixed);
 
             bool resultFail = Trial.ClosedTrial(sheet, Indicator.Body, Skill.Feat, Difficulty.Exploit);
