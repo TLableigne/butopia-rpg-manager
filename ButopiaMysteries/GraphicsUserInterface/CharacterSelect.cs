@@ -233,28 +233,26 @@ namespace ButopiaMysteries.GraphicsUserInterface
         {
             if (deplacement && persoDépacer != null)
             {
-                if (!BoxSkill.SelectedValue.Equals(Skill.None))
+                if (zoneEntrainement.Contains(e.Location))
                 {
-                    Skill s = (Skill)BoxSkill.SelectedValue;
-                    Indicator? i = s.GetIndicator();
-
-                    if (i.HasValue)
+                    if (persoDépacer.Sheet.estEnFormation != true)
                     {
+                        MessageBox.Show("Ce personnage doit être en formation pour pouvoir s'entraîner !");
+                    }
+                    else
+                    {
+                        TrainForm tf = new TrainForm(persoDépacer.Sheet);
+                        tf.ShowDialog();
+                    }
+                }
+                else if (zoneAuto.Contains(e.Location) || zoneExamen.Contains(e.Location))
+                {
+                    if (!BoxSkill.SelectedValue.Equals(Skill.None))
+                    {
+                        Skill s = (Skill)BoxSkill.SelectedValue;
+                        Indicator? i = s.GetIndicator();
 
-                        if (zoneEntrainement.Contains(e.Location))
-                        {
-                            if (persoDépacer.Sheet.estEnFormation != true)
-                            {
-                                MessageBox.Show("Ce personnage doit être en formation pour pouvoir s'entraîner !");
-                            }
-                            else
-                            {
-                                TrainForm tf = new TrainForm(persoDépacer.Sheet);
-                                tf.ShowDialog();
-                            }
-                        }
-
-                        else if (zoneAuto.Contains(e.Location) || zoneExamen.Contains(e.Location))
+                        if (i.HasValue)
                         {
                             if (persoDépacer.Sheet.estEnFormation != true)
                             {
@@ -271,9 +269,9 @@ namespace ButopiaMysteries.GraphicsUserInterface
                                     if (sub == Skill.None)
                                     {
                                         MessageBox.Show(persoDépacer.Sheet.Name + " n'a aucune compétence pour cet indicateur.");
-                                        CreateCharacterViews();
                                         deplacement = false;
                                         persoDépacer = null;
+                                        CreateCharacterViews();
                                         Refresh();
                                         return;
                                     }
@@ -308,12 +306,12 @@ namespace ButopiaMysteries.GraphicsUserInterface
                             }
                         }
                     }
-                }
-                else {
-                    MessageBox.Show("Veuillez choisir une compétance svp");
+                    else
+                    {
+                        MessageBox.Show("Veuillez choisir une compétence svp");
+                    }
                 }
             }
-
             deplacement = false;
             persoDépacer = null;
             CreateCharacterViews();
