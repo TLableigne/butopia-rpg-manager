@@ -118,19 +118,6 @@ namespace ButopiaMysteries.Logic
                         break;
                     }
             }
-            foreach (KeyValuePair<Skill, int> skillEntry in this.Skills)
-            {
-                Skill currentSkill = skillEntry.Key;
-                int rawSkillLevel = skillEntry.Value;
-                string rankName = Skill_Operations.GetSkillText(rawSkillLevel);
-                int bonusPoints = Skill_Operations.GetSkillValue(rankName);
-                Indicator? linkedIndicator = Skill_Operations.GetIndicator(currentSkill);
-
-                if (linkedIndicator.HasValue && this.Indicators.ContainsKey(linkedIndicator.Value))
-                {
-                    this.Indicators[linkedIndicator.Value] += bonusPoints;
-                }
-            }
 
             if (Indicators.ContainsKey(Indicator.Maximum))
             {

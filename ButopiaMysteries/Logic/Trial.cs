@@ -60,7 +60,10 @@ namespace ButopiaMysteries.Logic
                 result += valeurDe;
             }
 
-            return result;
+            string rankName = Skill_Operations.GetSkillText(skill);
+            int bonusModifier = Skill_Operations.GetSkillValue(rankName);
+
+            return result + bonusModifier;
         }
 
         public static List<int> Cast(int nbDé)
