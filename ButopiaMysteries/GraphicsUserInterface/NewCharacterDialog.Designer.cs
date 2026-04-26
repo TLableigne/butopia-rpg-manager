@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NewCharacterDialog));
             okButton = new Button();
             cancelButton = new Button();
             nameTextBox = new TextBox();
@@ -36,34 +37,38 @@
             fixePointCheckBox = new CheckBox();
             boxSphere = new ComboBox();
             boxPlan = new ComboBox();
+            label1 = new Label();
+            label2 = new Label();
             SuspendLayout();
             // 
             // okButton
             // 
+            okButton.BackColor = Color.SeaGreen;
             okButton.DialogResult = DialogResult.OK;
-            okButton.Location = new Point(379, 29);
+            okButton.Location = new Point(12, 135);
             okButton.Name = "okButton";
-            okButton.Size = new Size(75, 23);
+            okButton.Size = new Size(213, 39);
             okButton.TabIndex = 0;
             okButton.Text = "OK";
-            okButton.UseVisualStyleBackColor = true;
+            okButton.UseVisualStyleBackColor = false;
             // 
             // cancelButton
             // 
-            cancelButton.BackColor = SystemColors.ControlLightLight;
+            cancelButton.BackColor = Color.IndianRed;
             cancelButton.DialogResult = DialogResult.Cancel;
-            cancelButton.Location = new Point(380, 78);
+            cancelButton.Location = new Point(276, 135);
             cancelButton.Name = "cancelButton";
-            cancelButton.Size = new Size(75, 23);
+            cancelButton.Size = new Size(207, 39);
             cancelButton.TabIndex = 1;
-            cancelButton.Text = "Cancel";
+            cancelButton.Text = "Annuler";
             cancelButton.UseVisualStyleBackColor = false;
             // 
             // nameTextBox
             // 
-            nameTextBox.Location = new Point(60, 34);
+            nameTextBox.Location = new Point(12, 34);
+            nameTextBox.MaxLength = 15;
             nameTextBox.Name = "nameTextBox";
-            nameTextBox.Size = new Size(100, 23);
+            nameTextBox.Size = new Size(124, 23);
             nameTextBox.TabIndex = 2;
             nameTextBox.TextChanged += NameTextBox_TextChanged;
             nameTextBox.DoubleClick += NameTextBox_DoubleClick;
@@ -71,38 +76,44 @@
             // nameLabel
             // 
             nameLabel.AutoSize = true;
-            nameLabel.Location = new Point(12, 37);
+            nameLabel.Location = new Point(14, 9);
             nameLabel.Name = "nameLabel";
-            nameLabel.Size = new Size(42, 15);
+            nameLabel.Size = new Size(34, 15);
             nameLabel.TabIndex = 3;
-            nameLabel.Text = "Name:";
+            nameLabel.Text = "Nom";
             // 
             // randomCreationCheckBox
             // 
             randomCreationCheckBox.AutoSize = true;
-            randomCreationCheckBox.Location = new Point(166, 38);
+            randomCreationCheckBox.BackColor = Color.Transparent;
+            randomCreationCheckBox.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            randomCreationCheckBox.ForeColor = SystemColors.ButtonFace;
+            randomCreationCheckBox.Location = new Point(37, 76);
             randomCreationCheckBox.Name = "randomCreationCheckBox";
-            randomCreationCheckBox.Size = new Size(132, 19);
+            randomCreationCheckBox.Size = new Size(188, 25);
             randomCreationCheckBox.TabIndex = 4;
-            randomCreationCheckBox.Text = "Random Generation";
-            randomCreationCheckBox.UseVisualStyleBackColor = true;
+            randomCreationCheckBox.Text = "Génération Aléatoire";
+            randomCreationCheckBox.UseVisualStyleBackColor = false;
             randomCreationCheckBox.CheckedChanged += randomCreationCheckBox_CheckedChanged;
             // 
             // fixePointCheckBox
             // 
             fixePointCheckBox.AutoSize = true;
-            fixePointCheckBox.Location = new Point(166, 78);
+            fixePointCheckBox.BackColor = Color.Transparent;
+            fixePointCheckBox.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            fixePointCheckBox.ForeColor = SystemColors.Control;
+            fixePointCheckBox.Location = new Point(267, 76);
             fixePointCheckBox.Name = "fixePointCheckBox";
-            fixePointCheckBox.Size = new Size(159, 19);
+            fixePointCheckBox.Size = new Size(222, 25);
             fixePointCheckBox.TabIndex = 5;
-            fixePointCheckBox.Text = "Utiliser les donné de base";
-            fixePointCheckBox.UseVisualStyleBackColor = true;
+            fixePointCheckBox.Text = "Utiliser les Données Fixes";
+            fixePointCheckBox.UseVisualStyleBackColor = false;
             fixePointCheckBox.CheckedChanged += fixePointCheckBox_CheckedChanged;
             // 
             // boxSphere
             // 
             boxSphere.FormattingEnabled = true;
-            boxSphere.Location = new Point(204, 120);
+            boxSphere.Location = new Point(362, 34);
             boxSphere.Name = "boxSphere";
             boxSphere.Size = new Size(121, 23);
             boxSphere.TabIndex = 6;
@@ -110,16 +121,38 @@
             // boxPlan
             // 
             boxPlan.FormattingEnabled = true;
-            boxPlan.Location = new Point(60, 120);
+            boxPlan.Location = new Point(189, 34);
             boxPlan.Name = "boxPlan";
             boxPlan.Size = new Size(121, 23);
             boxPlan.TabIndex = 7;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(189, 9);
+            label1.Name = "label1";
+            label1.Size = new Size(30, 15);
+            label1.TabIndex = 8;
+            label1.Text = "Plan";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(362, 9);
+            label2.Name = "label2";
+            label2.Size = new Size(43, 15);
+            label2.TabIndex = 9;
+            label2.Text = "Sphère";
             // 
             // NewCharacterDialog
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(467, 155);
+            BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
+            BackgroundImageLayout = ImageLayout.Stretch;
+            ClientSize = new Size(501, 206);
+            Controls.Add(label2);
+            Controls.Add(label1);
             Controls.Add(boxPlan);
             Controls.Add(boxSphere);
             Controls.Add(fixePointCheckBox);
@@ -128,8 +161,8 @@
             Controls.Add(nameTextBox);
             Controls.Add(cancelButton);
             Controls.Add(okButton);
+            ForeColor = SystemColors.ControlText;
             Name = "NewCharacterDialog";
-            Text = "NewCharacterDialog";
             Load += NewCharacterDialog_Load;
             ResumeLayout(false);
             PerformLayout();
@@ -145,5 +178,7 @@
         private CheckBox fixePointCheckBox;
         private ComboBox boxSphere;
         private ComboBox boxPlan;
+        private Label label1;
+        private Label label2;
     }
 }

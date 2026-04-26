@@ -46,7 +46,7 @@
             // 
             Nom.AutoSize = true;
             Nom.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            Nom.Location = new Point(48, 142);
+            Nom.Location = new Point(48, 50);
             Nom.Name = "Nom";
             Nom.Size = new Size(63, 32);
             Nom.TabIndex = 0;
@@ -56,7 +56,7 @@
             // 
             Competence.AutoSize = true;
             Competence.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            Competence.Location = new Point(48, 18);
+            Competence.Location = new Point(48, 198);
             Competence.Name = "Competence";
             Competence.Size = new Size(94, 21);
             Competence.TabIndex = 1;
@@ -66,7 +66,7 @@
             // 
             Indicateur.AutoSize = true;
             Indicateur.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            Indicateur.Location = new Point(48, 57);
+            Indicateur.Location = new Point(48, 164);
             Indicateur.Name = "Indicateur";
             Indicateur.Size = new Size(79, 21);
             Indicateur.TabIndex = 2;
@@ -83,17 +83,17 @@
             // result
             // 
             result.BackColor = SystemColors.ControlLightLight;
-            result.Location = new Point(360, 277);
+            result.Location = new Point(393, 242);
             result.Name = "result";
             result.RightToLeft = RightToLeft.No;
-            result.Size = new Size(376, 30);
+            result.Size = new Size(232, 30);
             result.TabIndex = 5;
             // 
             // Lancer
             // 
-            Lancer.Location = new Point(396, 126);
+            Lancer.Location = new Point(379, 173);
             Lancer.Name = "Lancer";
-            Lancer.Size = new Size(301, 118);
+            Lancer.Size = new Size(266, 46);
             Lancer.TabIndex = 6;
             Lancer.Text = "lancer l'épreuve";
             Lancer.UseVisualStyleBackColor = true;
@@ -102,16 +102,16 @@
             // Fermer
             // 
             Fermer.DialogResult = DialogResult.Cancel;
-            Fermer.Location = new Point(457, 335);
+            Fermer.Location = new Point(414, 297);
             Fermer.Name = "Fermer";
-            Fermer.Size = new Size(168, 38);
+            Fermer.Size = new Size(192, 50);
             Fermer.TabIndex = 7;
             Fermer.Text = "Fermer";
             Fermer.UseVisualStyleBackColor = true;
             // 
             // numUpDownNbEpreuve
             // 
-            numUpDownNbEpreuve.Location = new Point(646, 47);
+            numUpDownNbEpreuve.Location = new Point(48, 297);
             numUpDownNbEpreuve.Maximum = new decimal(new int[] { 10, 0, 0, 0 });
             numUpDownNbEpreuve.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             numUpDownNbEpreuve.Name = "numUpDownNbEpreuve";
@@ -122,7 +122,7 @@
             // labelNumUpDown
             // 
             labelNumUpDown.AutoSize = true;
-            labelNumUpDown.Location = new Point(494, 49);
+            labelNumUpDown.Location = new Point(48, 269);
             labelNumUpDown.Name = "labelNumUpDown";
             labelNumUpDown.Size = new Size(129, 15);
             labelNumUpDown.TabIndex = 9;
@@ -131,17 +131,19 @@
             // Type
             // 
             Type.AutoSize = true;
-            Type.Font = new Font("Segoe UI Symbol", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            Type.Location = new Point(396, 78);
+            Type.BackColor = Color.Transparent;
+            Type.BorderStyle = BorderStyle.FixedSingle;
+            Type.Font = new Font("Segoe UI Symbol", 24F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
+            Type.Location = new Point(360, 40);
             Type.Name = "Type";
-            Type.Size = new Size(86, 45);
+            Type.Size = new Size(88, 47);
             Type.TabIndex = 10;
             Type.Text = "type";
             // 
             // labelMentalHealth
             // 
             labelMentalHealth.AutoSize = true;
-            labelMentalHealth.Location = new Point(390, 411);
+            labelMentalHealth.Location = new Point(48, 96);
             labelMentalHealth.Name = "labelMentalHealth";
             labelMentalHealth.Size = new Size(104, 15);
             labelMentalHealth.TabIndex = 11;
@@ -151,7 +153,8 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(820, 450);
+            BackgroundImage = Properties.Resources.LFD1XZ;
+            ClientSize = new Size(671, 363);
             Controls.Add(labelMentalHealth);
             Controls.Add(Type);
             Controls.Add(labelNumUpDown);
@@ -164,7 +167,6 @@
             Controls.Add(Competence);
             Controls.Add(Nom);
             Name = "TrialForm";
-            Text = "TrialForm";
             ((System.ComponentModel.ISupportInitialize)numUpDownNbEpreuve).EndInit();
             ResumeLayout(false);
             PerformLayout();
