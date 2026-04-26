@@ -32,9 +32,12 @@
             précedentBouton = new Button();
             panelEtape1 = new Panel();
             panelEtape2 = new Panel();
-            panelEtape3 = new Panel();
-            panelEtape4 = new Panel();
-            panelEtape5 = new Panel();
+            labelNom = new Label();
+            textBoxName = new TextBox();
+            labelPlan = new Label();
+            labelSphere = new Label();
+            comboBoxPlan = new ComboBox();
+            comboBoxSphere = new ComboBox();
             panelEtape1.SuspendLayout();
             SuspendLayout();
             // 
@@ -60,7 +63,12 @@
             // 
             // panelEtape1
             // 
-            panelEtape1.Controls.Add(panelEtape2);
+            panelEtape1.Controls.Add(labelNom);
+            panelEtape1.Controls.Add(labelPlan);
+            panelEtape1.Controls.Add(textBoxName);
+            panelEtape1.Controls.Add(labelSphere);
+            panelEtape1.Controls.Add(comboBoxPlan);
+            panelEtape1.Controls.Add(comboBoxSphere);
             panelEtape1.Location = new Point(89, 41);
             panelEtape1.Name = "panelEtape1";
             panelEtape1.Size = new Size(558, 304);
@@ -68,50 +76,75 @@
             // 
             // panelEtape2
             // 
-            panelEtape2.Location = new Point(0, 0);
+            panelEtape2.Location = new Point(89, 41);
             panelEtape2.Name = "panelEtape2";
             panelEtape2.Size = new Size(558, 304);
             panelEtape2.TabIndex = 0;
             panelEtape2.Visible = false;
             // 
-            // panelEtape3
+            // labelNom
             // 
-            panelEtape3.Location = new Point(89, 41);
-            panelEtape3.Name = "panelEtape3";
-            panelEtape3.Size = new Size(558, 304);
-            panelEtape3.TabIndex = 0;
-            panelEtape3.Visible = false;
+            labelNom.AutoSize = true;
+            labelNom.Location = new Point(227, 40);
+            labelNom.Name = "labelNom";
+            labelNom.Size = new Size(96, 15);
+            labelNom.TabIndex = 0;
+            labelNom.Text = "Entrer votre nom";
             // 
-            // panelEtape4
+            // textBoxName
             // 
-            panelEtape4.Location = new Point(89, 41);
-            panelEtape4.Name = "panelEtape4";
-            panelEtape4.Size = new Size(558, 304);
-            panelEtape4.TabIndex = 0;
-            panelEtape4.Visible = false;
+            textBoxName.Location = new Point(227, 82);
+            textBoxName.Name = "textBoxName";
+            textBoxName.Size = new Size(100, 23);
+            textBoxName.TabIndex = 1;
             // 
-            // panelEtape5
+            // labelPlan
             // 
-            panelEtape5.Location = new Point(89, 41);
-            panelEtape5.Name = "panelEtape5";
-            panelEtape5.Size = new Size(558, 304);
-            panelEtape5.TabIndex = 0;
-            panelEtape5.Visible = false;
+            labelPlan.AutoSize = true;
+            labelPlan.Location = new Point(29, 40);
+            labelPlan.Name = "labelPlan";
+            labelPlan.Size = new Size(122, 15);
+            labelPlan.TabIndex = 2;
+            labelPlan.Text = "Choisisser votre plan :";
+            // 
+            // labelSphere
+            // 
+            labelSphere.AutoSize = true;
+            labelSphere.Location = new Point(394, 40);
+            labelSphere.Name = "labelSphere";
+            labelSphere.Size = new Size(134, 15);
+            labelSphere.TabIndex = 3;
+            labelSphere.Text = "Choisisser votre sphere :";
+            // 
+            // comboBoxPlan
+            // 
+            comboBoxPlan.FormattingEnabled = true;
+            comboBoxPlan.Location = new Point(29, 82);
+            comboBoxPlan.Name = "comboBoxPlan";
+            comboBoxPlan.Size = new Size(121, 23);
+            comboBoxPlan.TabIndex = 4;
+            // 
+            // comboBoxSphere
+            // 
+            comboBoxSphere.FormattingEnabled = true;
+            comboBoxSphere.Location = new Point(394, 82);
+            comboBoxSphere.Name = "comboBoxSphere";
+            comboBoxSphere.Size = new Size(121, 23);
+            comboBoxSphere.TabIndex = 5;
             // 
             // NewCharactereCreation
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
-            Controls.Add(panelEtape5);
-            Controls.Add(panelEtape4);
-            Controls.Add(panelEtape3);
+            Controls.Add(panelEtape2);
             Controls.Add(panelEtape1);
             Controls.Add(précedentBouton);
             Controls.Add(suivantBouton);
             Name = "NewCharactereCreation";
             Text = "NewCharactereCreation";
             panelEtape1.ResumeLayout(false);
+            panelEtape1.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -121,8 +154,11 @@
         private Button précedentBouton;
         private Panel panelEtape1;
         private Panel panelEtape2;
-        private Panel panelEtape3;
-        private Panel panelEtape4;
-        private Panel panelEtape5;
+        private Label labelSphere;
+        private Label labelPlan;
+        private TextBox textBoxName;
+        private Label labelNom;
+        private ComboBox comboBoxPlan;
+        private ComboBox comboBoxSphere;
     }
 }
