@@ -341,7 +341,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(674, 312);
+            ClientSize = new Size(674, 337);
             Controls.Add(sphereLabel);
             Controls.Add(planLabel);
             Controls.Add(labelXP);
